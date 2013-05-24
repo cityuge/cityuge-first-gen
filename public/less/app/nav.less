@@ -1,0 +1,40 @@
+body {
+	padding-top: 70px;
+}
+.navbar .brand {
+	padding: 0;
+	margin: 5px 20px 0 0;
+	width: 120px;
+	height: 40px;
+	background: url('../img/logo-zh.png') top left no-repeat;
+	@media screen and (-webkit-device-pixel-ratio: 0.75) {
+		background: url('../img/logo-zh-ldpi.png') top left no-repeat;
+		background-size: 100%;
+	}
+	@media screen and (-webkit-device-pixel-ratio: 1.5) {
+		background: url('../img/logo-zh-hdpi.png') top left no-repeat;
+		background-size: 100%;
+	}
+	@media screen and (-webkit-device-pixel-ratio: 2.0) {
+		background: url('../img/logo-zh-xhdpi.png') top left no-repeat;
+		background-size: 100%;
+	}
+	// image replacement, hide the text
+	border: 0;
+	font: 0/0 a;
+	text-shadow: none;
+	color: transparent;
+	background-color: transparent;
+}
+.navbar .form-search {
+	margin-top: 5px;
+}
+
+@media (max-width: @navbarCollapseWidth) {
+	// Account for brand name
+	.navbar .brand {
+		margin-top: 5px !important;
+		margin-left: 10px !important;
+		padding-left: 0 !important;
+	}
+}

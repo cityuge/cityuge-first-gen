@@ -1,0 +1,29 @@
+#footer {
+	color: @grayLighter;
+	background-color: @gray;
+	padding: 20px 0;
+	margin-top: 40px;
+	border-top: 1px solid lighten(@gray, 10%);
+	@media (max-width: 767px) {
+		padding: 20px;
+		margin: 40px -20px 0;
+	}
+	ul {
+		margin: 0;
+		font-size: 85%;
+	}
+	a {
+		&:link, &:visited {
+			color: @blueLight;
+		}
+		&:hover, &:active {
+			color: @linkColor;
+		}
+	}
+	.inline li:first-of-type {
+		padding-left: 0;
+	}
+	.disclaimer {
+		font-size: 85%;
+	}
+}

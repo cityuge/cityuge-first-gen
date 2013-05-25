@@ -4,11 +4,24 @@
 <head>
 	<meta charset="utf-8">
 	@if (isset($title))
-		<title>{{ e($title) }} | {{ __('app.app_title') }}</title>
+		<title>{{ $title }} | {{ __('app.app_title') }}</title>
 	@else
 		<title>{{ __('app.app_title') }}</title>
 	@endif
+	
+	<!-- Meta keywords and description -->
+	@if (isset($meta_keywords))
+		<meta name="keywords" content="{{ implode(', ', $meta_keywords) . ', ' . __('app.meta_global_keyword') }}">
+	@else
+		<meta name="keywords" content="{{ __('app.meta_global_keyword') }}">
+	@endif
+
+	@if (isset($meta_description))
+		<meta name="description" content="{{ $meta_description }}">
+	@endif
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 	{{ Asset::styles() }}
@@ -17,13 +30,33 @@
 	<!--[if lt IE 9]><script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"></script><![endif]-->
 
 	<!-- Social medias -->
+	{{-- Facebook --}}
 	<meta property="fb:admins" content="***REMOVED***">
 	@if (isset($title))
-		<meta property="og:title" content="{{ e($title) }} | {{ __('app.app_title') }}">
+		<meta property="og:title" content="{{ $title }} | {{ __('app.app_title') }}">
 	@else
 		<meta property="og:title" content="{{ __('app.app_title') }}">
 	@endif
 	<meta property="og:image" content="{{ URL::to_asset('img/logo-140px.png') }}">
+	@if (isset($meta_description))
+		<meta property="og:description" content="{{ $meta_description }}">
+	@endif
+	<meta property="og:url" content="{{ URL::current() }}">
+
+	{{-- Twitter --}}
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="{{ Config::get('app.twitter_card_site') }}">
+	@if (isset($title))
+		<meta name="twitter:title" content="{{ $title }} | {{ __('app.app_title') }}">
+	@else
+		<meta name="twitter:title" content="{{ __('app.app_title') }}">
+	@endif
+	@if (isset($meta_description))
+		<meta name="twitter:description" content="{{ $meta_description }}">
+	@else
+		<meta name="twitter:description" content="{{ __('app.meta_home_desc') }}">
+	@endif
+	<meta name="twitter:image:src" content="{{ URL::to_asset('img/logo-140px.png') }}">
 
 	<!-- RSS feeds -->
 	<link rel="alternate" type="application/rss+xml" title="{{ __('app.feed_meta_title') }}" href="{{ URL::to_route('feed') }}">
@@ -38,7 +71,7 @@
 	<link rel="apple-touch-icon-precomposed" href="{{ URL::base() }}/ico/apple-touch-icon-57-precomposed.png">
 	<meta name="msapplication-TileImage" content="{{ URL::base() }}/ico/metro-tile.png">
 	<meta name="msapplication-TileColor" content="#FF9900">
-	<meta name="apple-mobile-web-app-capable" content="yes">
+	
 	<script type="text/javascript"> 
 		@section('scripts_header')
 		@yield_section

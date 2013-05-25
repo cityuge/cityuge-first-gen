@@ -52,6 +52,8 @@ class Home_Controller extends Base_Controller {
 			'heavy_workload_courses_area1' => Course::get_heavy_workload_courses('AREA1', Config::get('app.home_stats_max_item')),
 			'heavy_workload_courses_area2' => Course::get_heavy_workload_courses('AREA2', Config::get('app.home_stats_max_item')),
 			'heavy_workload_courses_area3' => Course::get_heavy_workload_courses('AREA3', Config::get('app.home_stats_max_item')),
+
+			'meta_description' => __('app.meta_home_desc'),
 		);
 		return View::make('home.index')->with($data);
 	}
@@ -60,6 +62,7 @@ class Home_Controller extends Base_Controller {
 	{
 		$data = array(
 			'title' => __('app.about'),
+			'meta_description' => __('app.meta_about_desc'),
 		);
 		return View::make('home.about')->with($data);
 	}

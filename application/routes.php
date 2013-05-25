@@ -56,30 +56,9 @@ Route::get('about', array('as' => 'about', 'uses' => 'home@about'));
 Route::get('feed', array('as' => 'feed', 'uses' => 'comment@latest_comment_feed'));
 Route::get('courses/(:any)/feed', array('as' => 'course.feed', 'uses' => 'comment@latest_course_comment_feed'));
 
-Route::get('test', function()
+/*Route::get('test', function()
 {
-
-echo 'SELECT * FROM (SELECT courses.code, courses.title_en, '
-							. 'AVG(CASE comments.grade '
-							. "WHEN 'A+' THEN 4.3 "
-							. "WHEN 'A' THEN 4 "
-							. "WHEN 'A-' THEN 3.7 "
-							. "WHEN 'B+' THEN 3.3 "
-							. "WHEN 'B' THEN 3 "
-							. "WHEN 'B-' THEN 2.7 "
-							. "WHEN 'C+' THEN 2.3 "
-							. "WHEN 'C' THEN 2 "
-							. "WHEN 'C-' THEN 1.7 "
-							. "WHEN 'D' THEN 1 "
-							. "WHEN 'F' THEN 0 "
-							. 'ELSE NULL END) AS gpa '
-							. 'FROM courses '
-							. 'INNER JOIN comments on comments.course_id = courses.id '
-							. 'WHERE courses.category = ? '
-							. 'GROUP BY courses.id '
-							. 'ORDER BY gpa ASC'
-							. ') AS t WHERE gpa IS NOT NULL AND gpa < 2.7 LIMIT ?';
-});
+});*/
 
 /*
 |--------------------------------------------------------------------------

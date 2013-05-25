@@ -9,6 +9,8 @@ class Comment_Controller extends Base_Controller {
 			'comments' => Comment::with('course')
 								->order_by('created_at', 'DESC')
 								->paginate(Config::get('app.paginate_comment_per_page')),
+			'meta_keywords' => array('comments', '意見', '評論', '評價'),
+			'meta_description' => __('app.comment_meta_desc'),
 		);
 		return View::make('home.comment.index')->with($data);
 	}

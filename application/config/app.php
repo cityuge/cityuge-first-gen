@@ -15,5 +15,7 @@ return array(
 	'home_stats_max_item' => 8,
 
 	'feed_max_item' => 25,
+
+	'twitter_card_site' => '@swiftzer',
 	
 );

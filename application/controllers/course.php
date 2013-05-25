@@ -17,6 +17,7 @@ class Course_Controller extends Base_Controller {
 							->group_by('courses.id')
 							->order_by('courses.code', 'ASC')
 							->paginate(Config::get('app.paginate_per_page')),
+			'meta_description' => __('app.course_meta_desc'),
 		);
 		return View::make('home.course.index')->with($data);
 	}
@@ -43,6 +44,7 @@ class Course_Controller extends Base_Controller {
 							->group_by('courses.id')
 							->order_by('courses.code', 'ASC')
 							->paginate(Config::get('app.paginate_per_page')),
+			'meta_description' => __('app.course_category_meta_desc', array('category' => Course::get_category_title($category))),
 		);
 		return View::make('home.course.index')->with($data);
 	}
@@ -78,6 +80,8 @@ class Course_Controller extends Base_Controller {
 			'workload_rate' => $workload_rate,
 			'total_comment' => $total_comment,
 			'grade_distribution' => $grade_distribution,
+			'meta_keywords' => array($course_code, Course::get_category_title($course->category), $course->department->initial, e($course->department->title_en), e($course->department->title_zh)),
+			'meta_description' => __('app.course_detail_meta_desc', array('course_code' => $course_code, 'course_title' => e($course->title_en))),
 		);
 		return View::make('home.course.detail')->with($data);
 	}
@@ -85,7 +89,6 @@ class Course_Controller extends Base_Controller {
 	public function post_search()
 	{
 		$keyword = trim(Input::get('keyword'));
-		//dd($keyword);
 		if (empty($keyword)) {
 			return Redirect::to_route('course')
 						->with('alert_type', 'error')
@@ -98,7 +101,6 @@ class Course_Controller extends Base_Controller {
 	public function get_search($keyword = '')
 	{
 		$keyword = urldecode(trim($keyword));
-		//dd($keyword);
 		$data = array(
 			'title' => __('app.course_search_result_title', array('keyword' => e($keyword))),
 			'courses' => DB::table('courses')
@@ -117,6 +119,8 @@ class Course_Controller extends Base_Controller {
 							->paginate(Config::get('app.paginate_per_page')),
 			'keyword' => $keyword,
 			'search_result' => true,
+			'meta_keywords' => array(e($keyword)),
+			'meta_description' => __('app.course_search_meta_desc', array('keyword' => e($keyword))),
 		);
 		return View::make('home.course.index')->with($data);
 	}

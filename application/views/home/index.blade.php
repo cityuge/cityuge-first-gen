@@ -3,11 +3,8 @@
 @section('content')
 
 <div class="hero-unit">
-	<h1>Summer Add/Drop</h1>
-	<p>在 5 月 23 至 24 日期間，每位同學最多可註冊一個 GE 課程（包括 GE1501 及 Area 1-3 的課程）。</p>
-	<p>
-		<a class="btn btn-primary btn-large" target="_blank" href="http://www6.cityu.edu.hk/arro/content.asp?cid=163">了解詳情 <i class="icon-external-link"></i></a>
-	</p>
+	<h1>推己及人</h1>
+	<p>如欲放棄修讀課程，請盡快釋出名額（包括在 Waitlist 的登記），讓其他在 Waitlist 的同學補上。</p>
 </div>
 
 <div class="row">

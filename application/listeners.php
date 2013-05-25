@@ -1,14 +1,17 @@
 <?php
 
 /**
- * Forget all the RSS feed cache when there is a new comment posted.
+ * Forget all the cache when there is a new comment posted.
  */
 Event::listen('app.new_comment', function($course_id) {
 	// Latest comments
 	Cache::forget('feed');
 	// Latest comments for a course
 	Cache::forget('feed_' . $course_id);
+	// XML sitemap
+	Cache::forget('sitemap');
 
+	// Stats on home page
 	Cache::forget('hot_courses_area1');
 	Cache::forget('hot_courses_area2');
 	Cache::forget('hot_courses_area3');

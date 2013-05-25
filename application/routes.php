@@ -52,9 +52,12 @@ Route::get('departments/(:any)', array('as' => 'department.course', 'uses' => 'd
 // Misc
 Route::get('about', array('as' => 'about', 'uses' => 'home@about'));
 
-// Feed
+// RSS Feed
 Route::get('feed', array('as' => 'feed', 'uses' => 'comment@latest_comment_feed'));
 Route::get('courses/(:any)/feed', array('as' => 'course.feed', 'uses' => 'comment@latest_course_comment_feed'));
+
+// XML Sitemap
+Route::get('sitemap', array('as' => 'sitemap', 'uses' => 'home@sitemap'));
 
 /*Route::get('test', function()
 {

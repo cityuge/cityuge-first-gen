@@ -37,7 +37,7 @@ return array(
 
 	//'docs' => array('handles' => 'docs'),
 	'recaptcha' => array('auto' => true),
-	//'sanitize' => array('auto' => true),
 	'feed' => array('auto' => true),
+	'sitemap' => array('auto' => true),
 
 );

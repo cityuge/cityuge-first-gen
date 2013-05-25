@@ -67,4 +67,52 @@ class Home_Controller extends Base_Controller {
 		return View::make('home.about')->with($data);
 	}
 
+	/**
+	 * Output the XML sitemap for search engines.
+	 */
+	public function get_sitemap()
+	{
+		// Don't show the profiler bar
+		Config::set('application.profiler', false);
+
+		// Cache the XML generated for other requests
+		if (!Cache::has('sitemap')) {
+			Cache::forever('sitemap', $this->prepare_sitemap());
+		}
+		// Return the cached XML
+		return Cache::get('sitemap');
+
+		
+	}
+
+	/**
+	 * Generate XML sitemap for search engines.
+	 */
+	private function prepare_sitemap()
+	{
+		$sitemap = new Sitemap();
+
+		// Static pages
+		// Home page, use the current time as the sitemap is cached
+		$sitemap->add(URL::base(), date('c'), '1.0', 'hourly');
+		// Use the view file's last modified date
+		$sitemap->add(URL::to_route('about'), date('c', File::modified('application/views/home/about.blade.php')), '0.5', 'monthly');
+
+		// Course detail pages
+		$courses = DB::query('SELECT courses.code, comments.created_at FROM courses '
+							. 'LEFT JOIN comments ON comments.course_id = courses.id '
+							. 'AND comments.id IN (SELECT MAX(id) FROM comments GROUP BY comments.course_id)');
+		foreach ($courses as $course) {
+			// If created_at is NULL, then use the view file's last modified date
+			$time = $course->created_at ? $course->created_at : date('c', File::modified('application/views/home/course/detail.blade.php'));
+			$sitemap->add(URL::to_route('course.detail', array(strtolower($course->code))), $time, '0.7', 'daily');
+		}
+
+		// Latest comments page
+		$sitemap->add(URL::to_route('comment'), DB::only('SELECT created_at FROM comments ORDER BY created_at DESC LIMIT 1'), '0.6', 'hourly');
+
+
+		return $sitemap->render('xml');
+	}
+
 }

@@ -1,4 +1,2 @@
 User-agent: *
 Disallow: /less/
-
-Sitemap: http://cityuge.swiftzer.net/sitemap

@@ -12,8 +12,9 @@ class Comment extends Basemodel
 		'recaptcha_response_field' => 'required|recaptcha:***REMOVED***',
 	);
 
-	public static $semesters = array('2012/13 Sem A', '2011/12 Summer', '2011/12 Sem B', '2011/12 Sem A');
+	public static $semesters = array('2012/13 Sem B', '2012/13 Sem A', '2011/12 Summer', '2011/12 Sem B', '2011/12 Sem A');
 	public static $semester_values = array(
+		'1213B' => '2012/13 Sem B',
 		'1213A' => '2012/13 Sem A',
 		'1112S' => '2011/12 Summer',
 		'1112B' => '2011/12 Sem B',

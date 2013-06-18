@@ -59,6 +59,9 @@ Route::get('courses/(:any)/feed', array('as' => 'course.feed', 'uses' => 'commen
 // XML Sitemap
 Route::get('sitemap', array('as' => 'sitemap', 'uses' => 'home@sitemap'));
 
+// Sharrre
+Route::get('social-media-counter', array('as' => 'sharrre', 'uses' => 'home@social_media_counter'));
+
 /*Route::get('test', function()
 {
 });*/

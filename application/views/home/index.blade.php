@@ -39,12 +39,19 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<div class="span6">
 		<div class="well well-small">
 			<h2>提提你</h2>
 			<p>目前本網站共收到 200 多篇留言，但由於留言分佈不均，故本頁面所提供的各項排名僅供參考。同時，本網站建議同學於報讀各精進教育課程前，除參考本頁面排名外，亦應細閱各相關留言內容及課程資料，再作判斷。</p>
 			<p>為使本網站的統計資料更為廣泛及準確，望同學可到曾修讀的相關課程頁面留下意見，並向朋友推薦本網站，謝謝！</p>
+			<hr>
+			{{--  Social media share buttons --}}
+			<div id="social-network-btn">
+				<button id="facebook" class="btn btn-facebook" data-url="{{ URL::base() }}" data-text="{{ __('app.meta_home_desc') }}"></button>
+				<button id="twitter" class="btn btn-twitter" data-url="{{ URL::base() }}" data-text="{{ __('app.meta_home_desc') }}"></button>
+				<!-- <button id="google-plus" class="btn btn-google-plus" data-url="{{ URL::base() }}" data-text="{{ __('app.meta_home_desc') }}"></button> -->
+			</div>
 		</div>
 	</div>
 </div><!-- /.row -->
@@ -202,4 +209,44 @@ $('#heavy-workload-course a').click(function (e) {
 	e.preventDefault();
 	$(this).tab('show');
 });
+
+// Social media share buttons
+$('#twitter').sharrre({
+	share: {
+		twitter: true
+	},
+	template: '<i class="icon-twitter"></i> Tweet <span class="badge">{total}</span>',
+	enableHover: false,
+	enableTracking: true,
+	buttons: { twitter: {via: 'swiftzer'}},
+	click: function(api, options){
+		api.simulateClick();
+		api.openPopup('twitter');
+	}
+});
+$('#facebook').sharrre({
+	share: {
+		facebook: true
+	},
+	template: '<i class="icon-facebook"></i> Share <span class="badge">{total}</span>',
+	enableHover: false,
+	enableTracking: true,
+	click: function(api, options){
+		api.simulateClick();
+		api.openPopup('facebook');
+	}
+});
+/*$('#google-plus').sharrre({
+	share: {
+		googlePlus: true
+	},
+	urlCurl: '{{ URL::to_route('sharrre') }}',
+	template: '<i class="icon-google-plus"></i> Share <span class="badge">{total}</span>',
+	enableHover: false,
+	enableTracking: true,
+	click: function(api, options){
+		api.simulateClick();
+		api.openPopup('googlePlus');
+	}
+});*/
 @endsection

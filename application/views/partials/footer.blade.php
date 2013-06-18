@@ -4,7 +4,7 @@
 	<div class="container">
 		<div class="clearfix">
 			<p class="pull-left">&copy; Swiftzer {{ date('Y') }}</p>
-			<p class="pull-right">Version 0.6</p>
+			<p class="pull-right">Version 0.7</p>
 		</div>
 		<p class="disclaimer">{{ __('app.footer_disclaimer') }}</p>
 		<ul class="inline">

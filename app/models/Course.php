@@ -149,118 +149,123 @@ class Course extends BaseModel {
 		return $gradeStyle[$grade];
 	}
 
-	public static function getHotCourses($category, $limit) {
-		$cacheName = 'hotCourses_' . strtolower($category);
+	public static function getHomeStats() {
+		if (!Cache::has('homeStats')) {
+			$stats = array(
+				'hotCoursesArea1' => static::getHotCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
+				'hotCoursesArea2' => static::getHotCourses('AREA2', Config::get('cityuge.home_statsMaxItem')),
+				'hotCoursesArea3' => static::getHotCourses('AREA3', Config::get('cityuge.home_statsMaxItem')),
 
-		if (!Cache::has($cacheName)) {
-			$query = DB::select('SELECT courses.code, courses.title_en FROM courses '
-						. 'INNER JOIN comments ON comments.course_id = courses.id '
-						. 'WHERE courses.category = ? '
-						. 'GROUP BY courses.id '
-						. 'ORDER BY COUNT(*) DESC '
-						. 'LIMIT ?',
-						array($category, $limit));
-			Cache::forever($cacheName, $query);
-			return $query;
+				'goodGradeCoursesArea1' => static::getGoodGradeCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
+				'goodGradeCoursesArea2' => static::getGoodGradeCourses('AREA2', Config::get('cityuge.home_statsMaxItem')),
+				'goodGradeCoursesArea3' => static::getGoodGradeCourses('AREA3', Config::get('cityuge.home_statsMaxItem')),
+
+				'badGradeCoursesArea1' => static::getBadGradeCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
+				'badGradeCoursesArea2' => static::getBadGradeCourses('AREA2', Config::get('cityuge.home_statsMaxItem')),
+				'badGradeCoursesArea3' => static::getBadGradeCourses('AREA3', Config::get('cityuge.home_statsMaxItem')),
+
+				'lightWorkloadCoursesArea1' => static::getLightWorkloadCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
+				'lightWorkloadCoursesArea2' => static::getLightWorkloadCourses('AREA2', Config::get('cityuge.home_statsMaxItem')),
+				'lightWorkloadCoursesArea3' => static::getLightWorkloadCourses('AREA3', Config::get('cityuge.home_statsMaxItem')),
+
+				'heavyWorkloadCoursesArea1' => static::getHeavyWorkloadCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
+				'heavyWorkloadCoursesArea2' => static::getHeavyWorkloadCourses('AREA2', Config::get('cityuge.home_statsMaxItem')),
+				'heavyWorkloadCoursesArea3' => static::getHeavyWorkloadCourses('AREA3', Config::get('cityuge.home_statsMaxItem')),
+			);
+			// Save the queries in cache
+			Cache::forever('homeStats', $stats);
 		}
-		return Cache::get($cacheName);
+		return Cache::get('homeStats');
+	}
+
+	/**
+	 * Get the courses which have most comments.
+	 * @param  string $category category like AREA1, AREA2...
+	 * @param  int    $limit    max number of courses return
+	 * @return array            list of courses
+	 */
+	public static function getHotCourses($category, $limit) {
+		$query = DB::select('SELECT courses.code, courses.title_en FROM courses '
+					. 'INNER JOIN comments ON comments.course_id = courses.id '
+					. 'WHERE courses.category = ? '
+					. 'GROUP BY courses.id '
+					. 'ORDER BY COUNT(*) DESC '
+					. 'LIMIT ?',
+					array($category, $limit));
+		return $query;
 	}
 
 	public static function getGoodGradeCourses($category, $limit) {
-		$cacheName = 'goodGradeCourses_' . strtolower($category);
-
-		if (!Cache::has($cacheName)) {
-			$query = DB::select('SELECT * FROM (SELECT courses.code, courses.title_en, '
-							. 'AVG(CASE comments.grade '
-							. "WHEN 'A+' THEN 4.3 "
-							. "WHEN 'A' THEN 4 "
-							. "WHEN 'A-' THEN 3.7 "
-							. "WHEN 'B+' THEN 3.3 "
-							. "WHEN 'B' THEN 3 "
-							. "WHEN 'B-' THEN 2.7 "
-							. "WHEN 'C+' THEN 2.3 "
-							. "WHEN 'C' THEN 2 "
-							. "WHEN 'C-' THEN 1.7 "
-							. "WHEN 'D' THEN 1 "
-							. "WHEN 'F' THEN 0 "
-							. 'ELSE NULL END) AS gpa '
-							. 'FROM courses '
-							. 'INNER JOIN comments on comments.course_id = courses.id '
-							. 'WHERE courses.category = ? '
-							. 'GROUP BY courses.id '
-							. 'ORDER BY gpa DESC'
-							. ') AS t WHERE gpa IS NOT NULL AND gpa >= 2.7 LIMIT ?',
-						array($category, $limit));
-			Cache::forever($cacheName, $query);
-			return $query;
-		}
-		return Cache::get($cacheName);
+		$query = DB::select('SELECT * FROM (SELECT courses.code, courses.title_en, '
+						. 'AVG(CASE comments.grade '
+						. "WHEN 'A+' THEN 4.3 "
+						. "WHEN 'A' THEN 4 "
+						. "WHEN 'A-' THEN 3.7 "
+						. "WHEN 'B+' THEN 3.3 "
+						. "WHEN 'B' THEN 3 "
+						. "WHEN 'B-' THEN 2.7 "
+						. "WHEN 'C+' THEN 2.3 "
+						. "WHEN 'C' THEN 2 "
+						. "WHEN 'C-' THEN 1.7 "
+						. "WHEN 'D' THEN 1 "
+						. "WHEN 'F' THEN 0 "
+						. 'ELSE NULL END) AS gpa '
+						. 'FROM courses '
+						. 'INNER JOIN comments on comments.course_id = courses.id '
+						. 'WHERE courses.category = ? '
+						. 'GROUP BY courses.id '
+						. 'ORDER BY gpa DESC'
+						. ') AS t WHERE gpa IS NOT NULL AND gpa >= 2.7 LIMIT ?',
+					array($category, $limit));
+		return $query;
 	}
 
 	public static function getBadGradeCourses($category, $limit) {
-		$cacheName = 'badGradeCourses_' . strtolower($category);
-
-		if (!Cache::has($cacheName)) {
-			$query = DB::select('SELECT * FROM (SELECT courses.code, courses.title_en, '
-							. 'AVG(CASE comments.grade '
-							. "WHEN 'A+' THEN 4.3 "
-							. "WHEN 'A' THEN 4 "
-							. "WHEN 'A-' THEN 3.7 "
-							. "WHEN 'B+' THEN 3.3 "
-							. "WHEN 'B' THEN 3 "
-							. "WHEN 'B-' THEN 2.7 "
-							. "WHEN 'C+' THEN 2.3 "
-							. "WHEN 'C' THEN 2 "
-							. "WHEN 'C-' THEN 1.7 "
-							. "WHEN 'D' THEN 1 "
-							. "WHEN 'F' THEN 0 "
-							. 'ELSE NULL END) AS gpa '
-							. 'FROM courses '
-							. 'INNER JOIN comments on comments.course_id = courses.id AND comments.deleted_at IS NULL '
-							. 'WHERE courses.category = ? '
-							. 'GROUP BY courses.id '
-							. 'ORDER BY gpa ASC'
-							. ') AS t WHERE gpa IS NOT NULL AND gpa < 2.7 LIMIT ?',
-						array($category, $limit));
-			Cache::forever($cacheName, $query);
-			return $query;
-		}
-		return Cache::get($cacheName);
+		$query = DB::select('SELECT * FROM (SELECT courses.code, courses.title_en, '
+						. 'AVG(CASE comments.grade '
+						. "WHEN 'A+' THEN 4.3 "
+						. "WHEN 'A' THEN 4 "
+						. "WHEN 'A-' THEN 3.7 "
+						. "WHEN 'B+' THEN 3.3 "
+						. "WHEN 'B' THEN 3 "
+						. "WHEN 'B-' THEN 2.7 "
+						. "WHEN 'C+' THEN 2.3 "
+						. "WHEN 'C' THEN 2 "
+						. "WHEN 'C-' THEN 1.7 "
+						. "WHEN 'D' THEN 1 "
+						. "WHEN 'F' THEN 0 "
+						. 'ELSE NULL END) AS gpa '
+						. 'FROM courses '
+						. 'INNER JOIN comments on comments.course_id = courses.id AND comments.deleted_at IS NULL '
+						. 'WHERE courses.category = ? '
+						. 'GROUP BY courses.id '
+						. 'ORDER BY gpa ASC'
+						. ') AS t WHERE gpa IS NOT NULL AND gpa < 2.7 LIMIT ?',
+					array($category, $limit));
+		return $query;
 	}
 
 	public static function getLightWorkloadCourses($category, $limit) {
-		$cacheName = 'lightWorkloadCourses_' . strtolower($category);
-
-		if (!Cache::has($cacheName)) {
-			$query = DB::select('SELECT courses.code, courses.title_en FROM courses '
-						. 'INNER JOIN comments ON courses.id = comments.course_id AND comments.deleted_at IS NULL '
-						. 'WHERE courses.category = ? '
-						. 'GROUP BY courses.id '
-						. 'HAVING AVG(comments.workload) <= 2 '
-						. 'ORDER BY AVG(comments.workload) ASC '
-						. 'LIMIT ?',
-						array($category, $limit));
-			Cache::forever($cacheName, $query);
-			return $query;
-		}
-		return Cache::get($cacheName);
+		$query = DB::select('SELECT courses.code, courses.title_en FROM courses '
+					. 'INNER JOIN comments ON courses.id = comments.course_id AND comments.deleted_at IS NULL '
+					. 'WHERE courses.category = ? '
+					. 'GROUP BY courses.id '
+					. 'HAVING AVG(comments.workload) <= 2 '
+					. 'ORDER BY AVG(comments.workload) ASC '
+					. 'LIMIT ?',
+					array($category, $limit));
+		return $query;
 	}
 
 	public static function getHeavyWorkloadCourses($category, $limit) {
-		$cacheName = 'heavyWorkloadCourses_' . strtolower($category);
-
-		if (!Cache::has($cacheName)) {
-			$query = DB::select('SELECT courses.code, courses.title_en FROM courses '
-						. 'INNER JOIN comments ON courses.id = comments.course_id AND comments.deleted_at IS NULL '
-						. 'WHERE courses.category = ? '
-						. 'GROUP BY courses.id '
-						. 'HAVING AVG(comments.workload) >= 4 '
-						. 'ORDER BY AVG(comments.workload) DESC '
-						. 'LIMIT ?',
-						array($category, $limit));
-			Cache::forever($cacheName, $query);
-			return $query;
-		}
-		return Cache::get($cacheName);
+		$query = DB::select('SELECT courses.code, courses.title_en FROM courses '
+					. 'INNER JOIN comments ON courses.id = comments.course_id AND comments.deleted_at IS NULL '
+					. 'WHERE courses.category = ? '
+					. 'GROUP BY courses.id '
+					. 'HAVING AVG(comments.workload) >= 4 '
+					. 'ORDER BY AVG(comments.workload) DESC '
+					. 'LIMIT ?',
+					array($category, $limit));
+		return $query;
 	}
 }

@@ -20,21 +20,21 @@
 		<div class="tab-content">
 			<div class="tab-pane active" id="hot-course-area1">
 				<ol>
-					@foreach($hotCoursesArea1 as $row)
+					@foreach($stats['hotCoursesArea1'] as $row)
 						<li>{{ link_to_route('courses.show', $row->code . ' - ' . $row->title_en, array(strtolower($row->code))) }}</li>
 					@endforeach
 				</ol>
 			</div>
 			<div class="tab-pane" id="hot-course-area2">
 				<ol>
-					@foreach($hotCoursesArea2 as $row)
+					@foreach($stats['hotCoursesArea2'] as $row)
 						<li>{{ link_to_route('courses.show', $row->code . ' - ' . $row->title_en, array(strtolower($row->code))) }}</li>
 					@endforeach
 				</ol>
 			</div>
 			<div class="tab-pane" id="hot-course-area3">
 				<ol>
-					@foreach($hotCoursesArea3 as $row)
+					@foreach($stats['hotCoursesArea3'] as $row)
 						<li>{{ link_to_route('courses.show', $row->code . ' - ' . $row->title_en, array(strtolower($row->code))) }}</li>
 					@endforeach
 				</ol>
@@ -70,21 +70,21 @@
 		<div class="tab-content">
 			<div class="tab-pane active" id="goode-grade-course-area1">
 				<ol>
-					@foreach($goodGradeCoursesArea1 as $row)
+					@foreach($stats['goodGradeCoursesArea1'] as $row)
 						<li>{{ link_to_route('courses.show', $row->code . ' - ' . $row->title_en, array(strtolower($row->code))) }}</li>
 					@endforeach
 				</ol>
 			</div>
 			<div class="tab-pane" id="goode-grade-course-area2">
 				<ol>
-					@foreach($goodGradeCoursesArea2 as $row)
+					@foreach($stats['goodGradeCoursesArea2'] as $row)
 						<li>{{ link_to_route('courses.show', $row->code . ' - ' . $row->title_en, array(strtolower($row->code))) }}</li>
 					@endforeach
 				</ol>
 			</div>
 			<div class="tab-pane" id="goode-grade-course-area3">
 				<ol>
-					@foreach($goodGradeCoursesArea3 as $row)
+					@foreach($stats['goodGradeCoursesArea3'] as $row)
 						<li>{{ link_to_route('courses.show', $row->code . ' - ' . $row->title_en, array(strtolower($row->code))) }}</li>
 					@endforeach
 				</ol>
@@ -103,21 +103,21 @@
 		<div class="tab-content">
 			<div class="tab-pane active" id="bade-grade-course-area1">
 				<ol>
-					@foreach($badGradeCoursesArea1 as $row)
+					@foreach($stats['badGradeCoursesArea1'] as $row)
 						<li>{{ link_to_route('courses.show', $row->code . ' - ' . $row->title_en, array(strtolower($row->code))) }}</li>
 					@endforeach
 				</ol>
 			</div>
 			<div class="tab-pane" id="bade-grade-course-area2">
 				<ol>
-					@foreach($badGradeCoursesArea2 as $row)
+					@foreach($stats['badGradeCoursesArea2'] as $row)
 						<li>{{ link_to_route('courses.show', $row->code . ' - ' . $row->title_en, array(strtolower($row->code))) }}</li>
 					@endforeach
 				</ol>
 			</div>
 			<div class="tab-pane" id="bade-grade-course-area3">
 				<ol>
-					@foreach($badGradeCoursesArea3 as $row)
+					@foreach($stats['badGradeCoursesArea3'] as $row)
 						<li>{{ link_to_route('courses.show', $row->code . ' - ' . $row->title_en, array(strtolower($row->code))) }}</li>
 					@endforeach
 				</ol>
@@ -137,21 +137,21 @@
 		<div class="tab-content">
 			<div class="tab-pane active" id="light-workload-course-area1">
 				<ol>
-					@foreach($lightWorkloadCoursesArea1 as $row)
+					@foreach($stats['lightWorkloadCoursesArea1'] as $row)
 						<li>{{ link_to_route('courses.show', $row->code . ' - ' . $row->title_en, array(strtolower($row->code))) }}</li>
 					@endforeach
 				</ol>
 			</div>
 			<div class="tab-pane" id="light-workload-course-area2">
 				<ol>
-					@foreach($lightWorkloadCoursesArea2 as $row)
+					@foreach($stats['lightWorkloadCoursesArea2'] as $row)
 						<li>{{ link_to_route('courses.show', $row->code . ' - ' . $row->title_en, array(strtolower($row->code))) }}</li>
 					@endforeach
 				</ol>
 			</div>
 			<div class="tab-pane" id="light-workload-course-area3">
 				<ol>
-					@foreach($lightWorkloadCoursesArea3 as $row)
+					@foreach($stats['lightWorkloadCoursesArea3'] as $row)
 						<li>{{ link_to_route('courses.show', $row->code . ' - ' . $row->title_en, array(strtolower($row->code))) }}</li>
 					@endforeach
 				</ol>
@@ -169,21 +169,21 @@
 		<div class="tab-content">
 			<div class="tab-pane active" id="heavy-workload-course-area1">
 				<ol>
-					@foreach($heavyWorkloadCoursesArea1 as $row)
+					@foreach($stats['heavyWorkloadCoursesArea1'] as $row)
 						<li>{{ link_to_route('courses.show', $row->code . ' - ' . $row->title_en, array(strtolower($row->code))) }}</li>
 					@endforeach
 				</ol>
 			</div>
 			<div class="tab-pane" id="heavy-workload-course-area2">
 				<ol>
-					@foreach($heavyWorkloadCoursesArea2 as $row)
+					@foreach($stats['heavyWorkloadCoursesArea2'] as $row)
 						<li>{{ link_to_route('courses.show', $row->code . ' - ' . $row->title_en, array(strtolower($row->code))) }}</li>
 					@endforeach
 				</ol>
 			</div>
 			<div class="tab-pane" id="heavy-workload-course-area3">
 				<ol>
-					@foreach($heavyWorkloadCoursesArea3 as $row)
+					@foreach($stats['heavyWorkloadCoursesArea3'] as $row)
 						<li>{{ link_to_route('courses.show', $row->code . ' - ' . $row->title_en, array(strtolower($row->code))) }}</li>
 					@endforeach
 				</ol>

@@ -9,9 +9,9 @@
 	<div id="social-network-btn" class="span6">
 		<h4>{{ trans('app.comment_show_share') }}</h4>
 		{{ trans('app.comment_show_shareDesc')}}
-		<button id="facebook" class="btn btn-facebook" data-url="{{ URL::current() }}" data-text="{{ Lang::get('app.meta_home_desc') }}"></button>
-		<button id="twitter" class="btn btn-twitter" data-url="{{ URL::current() }}" data-text="{{ Lang::get('app.meta_home_desc') }}"></button>
-		<button id="google-plus" class="btn btn-google-plus" data-url="{{ URL::current() }}" data-text="{{ Lang::get('app.meta_home_desc') }}"></button>
+		<button id="facebook" class="btn btn-facebook" data-url="{{ URL::current() }}" data-text="{{{ $metaDescription }}}"></button>
+		<button id="twitter" class="btn btn-twitter" data-url="{{ URL::current() }}" data-text="{{{ $metaDescription }}}"></button>
+		<button id="google-plus" class="btn btn-google-plus" data-url="{{ URL::current() }}" data-text="{{{ $metaDescription }}}"></button>
 	</div>
 </div>
 
@@ -30,6 +30,7 @@ $('#twitter').sharrre({
 	share: {
 		twitter: true
 	},
+	urlCurl: '',
 	template: '<i class="icon-twitter"></i> Tweet',
 	enableHover: false,
 	enableTracking: true,
@@ -43,6 +44,7 @@ $('#facebook').sharrre({
 	share: {
 		facebook: true
 	},
+	urlCurl: '',
 	template: '<i class="icon-facebook"></i> Share',
 	enableHover: false,
 	enableTracking: true,

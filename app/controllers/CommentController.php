@@ -115,9 +115,17 @@ class CommentController extends BaseController {
 			return App::abort(404);
 		}
 		$data = array(
-			'title' => Lang::get('app.comment_show_title', array('id' => $comment->id, 'courseCode' => e($comment->course->code), 'courseTitle' => e($comment->course->title_en))),
-			'metaKeywords' => array($comment->course->code, $comment->course->category, $comment->course->department->initial, e($comment->course->department->title_en), e($comment->course->department->title_zh)),
-			'metaDescription' => mb_substr(strip_tags($comment->body), 0 , 250) . '...',
+			'title' => Lang::get('app.comment_show_title', 
+					array('id' => $comment->id, 
+						'courseCode' => e($comment->course->code), 
+						'courseTitle' => e($comment->course->title_en))),
+			'metaKeywords' => array(
+					$comment->course->code, 
+					$comment->course->category, 
+					$comment->course->department->initial, 
+					e($comment->course->department->title_en), 
+					e($comment->course->department->title_zh)),
+			'metaDescription' => e($this->excerpt($comment->body)),
 			'comment' => $comment,
 		);
 		return View::make('home.comments.show')->with($data);
@@ -153,7 +161,27 @@ class CommentController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$comment = Comment::find($id);
+		if ($comment) {
+			//
+		} else {
+			//
+		}
+	}
+
+	/**
+	 * Generate excerpt form a long text.
+	 * @param  string $text original text
+	 * @return string       excerpt
+	 */
+	private function excerpt($text)
+	{
+		$text = strip_tags($text);
+		//$text = str_replace(array("\r\n", "\r", "\n"), ' ', $text);
+		if (mb_strlen($text) > Config::get('cityuge.excerptLength')) {
+			return mb_substr($text, 0 , Config::get('cityuge.excerptLength'), 'UTF-8') . trans('app.excerptEllipse');
+		}
+		return $text;
 	}
 
 }

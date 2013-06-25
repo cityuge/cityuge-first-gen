@@ -18,26 +18,7 @@ class HomeController extends BaseController {
 	public function index()
 	{
 		$data = array(
-			'hotCoursesArea1' => Course::getHotCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
-			'hotCoursesArea2' => Course::getHotCourses('AREA2', Config::get('cityuge.home_statsMaxItem')),
-			'hotCoursesArea3' => Course::getHotCourses('AREA3', Config::get('cityuge.home_statsMaxItem')),
-
-			'goodGradeCoursesArea1' => Course::getGoodGradeCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
-			'goodGradeCoursesArea2' => Course::getGoodGradeCourses('AREA2', Config::get('cityuge.home_statsMaxItem')),
-			'goodGradeCoursesArea3' => Course::getGoodGradeCourses('AREA3', Config::get('cityuge.home_statsMaxItem')),
-
-			'badGradeCoursesArea1' => Course::getBadGradeCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
-			'badGradeCoursesArea2' => Course::getBadGradeCourses('AREA2', Config::get('cityuge.home_statsMaxItem')),
-			'badGradeCoursesArea3' => Course::getBadGradeCourses('AREA3', Config::get('cityuge.home_statsMaxItem')),
-
-			'lightWorkloadCoursesArea1' => Course::getLightWorkloadCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
-			'lightWorkloadCoursesArea2' => Course::getLightWorkloadCourses('AREA2', Config::get('cityuge.home_statsMaxItem')),
-			'lightWorkloadCoursesArea3' => Course::getLightWorkloadCourses('AREA3', Config::get('cityuge.home_statsMaxItem')),
-
-			'heavyWorkloadCoursesArea1' => Course::getHeavyWorkloadCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
-			'heavyWorkloadCoursesArea2' => Course::getHeavyWorkloadCourses('AREA2', Config::get('cityuge.home_statsMaxItem')),
-			'heavyWorkloadCoursesArea3' => Course::getHeavyWorkloadCourses('AREA3', Config::get('cityuge.home_statsMaxItem')),
-
+			'stats' => Course::getHomeStats(),
 			'metaDescription' => Lang::get('app.meta_homeDesc'),
 		);
 		return View::make('home.index')->with($data);

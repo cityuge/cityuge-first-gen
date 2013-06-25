@@ -13,6 +13,7 @@ return array(
 	'paginate_perPage' => 25,
 	'paginate_commentPerPage' => 20,
 	'home_statsMaxItem' => 8,
+	'excerptLength' => 250,
 
 	'feed_maxItem' => 25,
 	'feed_ttl' => 60,

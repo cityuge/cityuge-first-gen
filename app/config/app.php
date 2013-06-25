@@ -116,6 +116,7 @@ return array(
 		'Greggilbert\Recaptcha\RecaptchaServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Profiler\ProfilerServiceProvider',
+		'Cartalyst\Sentry\SentryServiceProvider',
 
 	),
 
@@ -182,6 +183,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Profiler'        => 'Profiler\Facades\Profiler',
+		'Sentry'          => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
 
 	),
 

@@ -19,6 +19,12 @@ return array(
 	'nav_search' => '搜尋',
 	'nav_searchPlaceholder' => '課程編號或名稱',
 
+	'nav_acp' => '管理控制台',
+	'nav_logout' => '登出',
+
+	// Admin menu
+	'admin_nav_site' => '網站主頁',
+
 	// Home
 	'home_hotCourse' => '熱門課程',
 	'home_goodGradeCourse' => '好 Grade 課程',
@@ -39,7 +45,6 @@ return array(
 	'course_edgeInfo' => 'EDGE 課程目錄',
 	'course_form2b' => '表格 2B',
 	'course_comment' => '{0} 留言|[1,Inf] :count 則留言',
-	'course_stats' => '統計',
 	'course_avgWorkload' => '平均工作量',
 	'course_commentCount' => '留言',
 	'course_noComment' => '現時未有留言。',
@@ -51,6 +56,9 @@ return array(
 	'course_category_metaDesc' => '城大精進教育 (Gateway Education) :category 課程清單。',
 	'course_detail_metaDesc' => ':courseCode (:courseTitle) 的課程資料、留言、工作量及成績統計。',
 	'course_search_metaDesc' => '「:keyword」的搜尋結果。',
+	'course_detail_info' => '基本資料',
+	'course_detail_stats' => '統計',
+	'course_detail_comment' => '留言',
 
 	// Comment
 	'comment' => '{1} 所有留言|[2,Inf] 所有留言：第 :page 頁',
@@ -68,10 +76,11 @@ return array(
 	'comment_created' => '留言已發表，感謝你的支持！',
 	'comment_metaDesc' => 'CityU GE 指南的最新留言。',
 	'comment_permalink' => '永久連結',
+	'comment_share' => '分享這則留言',
 	'comment_courseDetail' => '更多資料',
 	'comment_show_title'=> '留言 #:id (:courseCode - :courseTitle)',
-	'comment_show_share' => '分享這則留言',
-	'comment_show_shareDesc' => '<p>你可以用下列的分享按鈕將這則留言分享到各大社交平台，亦可以將本頁的網址直接分享給朋友。</p>',
+	'comment_show_admin' => '管理專用',
+	'comment_show_shareDesc' => '<p>你可以用分享按鈕 <i class="icon-share-alt"></i> 將這則留言分享到各大社交平台，亦可以將本頁的網址直接分享給朋友。</p>',
 
 	// Grade
 	'grade_p' => 'Pass',
@@ -99,6 +108,19 @@ return array(
 	'category_e' => 'E 仔班',
 	'category_misc' => '其他',
 
+	// Users & login
+	'user_username' => '帳戶名稱',
+	'user_password' => '密碼',
+	'login_rememberMe' => '保持登入',
+	'login_title' => '管理控制台',
+	'login_submit' => '登入',
+	'login_authorizedOnly' => '本頁僅供獲受權人士進入，請先登入！',
+	'login_successful' => '登入成功！',
+	'login_unsuccessful' => '你的帳戶名稱 / 密碼組合錯誤。',
+
+	// Admin
+	'admin_title' => 'CityU GE 指南管理控制台',
+
 	// About
 	'about' => '關於本網站',
 	'meta_aboutDesc' => 'CityU GE 指南的宗旨、介紹及聯絡資料。',
@@ -107,6 +129,7 @@ return array(
 	'footer_disclaimer' => '本網站是以即時上載留言的方式運作，所有資料僅供參考，並不構成任何推薦、保證或協議。Swiftzer 對所有留言的真實性、完整性及立場等，不負任何法律責任。<br />本網站與香港城市大學 (City University of Hong Kong, CityU) 並無任何關連。',
 	'footer_nav_about' => '關於本網站',
 	'footer_nav_devBlog' => '開發日誌',
+	'footer_nav_acp' => '管理控制台',
 
 	// RSS Feed
 	'feed_title' => 'CityU GE 指南',

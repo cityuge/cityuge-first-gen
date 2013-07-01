@@ -31,6 +31,15 @@ Route::get('comments', ['as' => 'comments.index', 'uses' => 'CommentController@i
 Route::get('comments/{id}', ['as' => 'comments.show', 'uses' => 'CommentController@show'])->where('id', '[0-9]+');
 Route::post('comments', ['as' => 'comments.store', 'uses' => 'CommentController@store']);
 
+// Admin
+Route::get('login', ['as' => 'login', 'uses' => 'UserController@getLogin']);
+Route::post('login', ['as' => 'loggingIn', 'before' => 'csrf', 'uses' => 'UserController@postLogin']);
+Route::get('logout', ['as' => 'logout', 'uses' => 'UserController@getLogout']);
+
+Route::group(array('before' => 'auth', 'prefix' => 'admin'), function() {
+	Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'AdminController@index']);
+});
+
 // RSS feed
 Route::get('feed', ['as' => 'feed', 'uses' => 'FeedController@siteLatestComments']);
 Route::get('courses/{code}/feed', ['as' => 'courses.feed', 'uses' => 'FeedController@courseLatestComments']);
@@ -38,4 +47,5 @@ Route::get('courses/{code}/feed', ['as' => 'courses.feed', 'uses' => 'FeedContro
 // Sitemap
 Route::get('sitemap', ['as' => 'sitemap', 'uses' => 'SitemapController@index']);
 
+// Sharrre
 Route::get('social-media-counter', array('as' => 'sharrre', 'uses' => 'homeController@socialMediaCounter'));

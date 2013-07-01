@@ -10,6 +10,7 @@
 		<ul class="inline">
 			<li>{{ link_to_route('about', Lang::get('app.footer_nav_about')) }}</li>
 			<li><a href="http://swiftzer.net/category/cityu-ge-guide">{{ Lang::get('app.footer_nav_devBlog') }}</a></li>
+			<li>{{ link_to_route('admin.dashboard', Lang::get('app.footer_nav_acp')) }}</li>
 		</ul>
 	</div><!-- /.container -->
 </footer>

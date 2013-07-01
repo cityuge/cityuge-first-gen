@@ -20,6 +20,8 @@
 
 @section('footerScript')
 {{ HTML::script('js/masonry.pkgd.min.js') }}
+{{ HTML::script('js/jquery.sharrre.js') }}
+{{ HTML::script('js/comment-box.min.js') }}
 
 <script>
 $(document).ready(function () {
@@ -28,9 +30,6 @@ $(document).ready(function () {
 		transitionDuration: 0,
 		itemSelector: '.comment'
 	});
-
-	$('div[data-toggle=tooltip]').tooltip({ placement: 'left' });
-	$('a[data-toggle=tooltip]').tooltip({ placement: 'left' });
 });
 </script>
 

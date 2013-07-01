@@ -4,65 +4,21 @@
 <head>
 	<meta charset="utf-8">
 	@if (isset($title))
-		<title>{{ $title }} | {{ Lang::get('app.appTitle') }}</title>
+		<title>{{ $title }} | {{ Lang::get('app.admin_title') }}</title>
 	@else
-		<title>{{ Lang::get('app.appTitle') }}</title>
-	@endif
-	
-	<!-- Meta keywords and description -->
-	@if (isset($metaKeywords))
-		<meta name="keywords" content="{{ implode(', ', $metaKeywords) . ', ' . Lang::get('app.meta_globalKeyword') }}">
-	@else
-		<meta name="keywords" content="{{ Lang::get('app.meta_globalKeyword') }}">
-	@endif
-
-	@if (isset($metaDescription))
-		<meta name="description" content="{{ $metaDescription }}">
+		<title>{{ Lang::get('app.admin_title') }}</title>
 	@endif
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	
-	{{ HTML::style('css/default.css') }}
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700" media="all" type="text/css" rel="stylesheet">
+	{{ HTML::style('css/default.css') }}
 	<!--[if IE 7]>{{ HTML::style('css/font-awesome-ie7.css') }}<![endif]-->
 	<!--[if lt IE 9]><script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"></script><![endif]-->
 
-	<!-- Social medias -->
-	{{-- Facebook --}}
-	<meta property="fb:admins" content="***REMOVED***">
-	@if (isset($title))
-		<meta property="og:title" content="{{ $title }} | {{ Lang::get('app.appTitle') }}">
-	@else
-		<meta property="og:title" content="{{ Lang::get('app.appTitle') }}">
-	@endif
-	<meta property="og:image" content="{{ URL::asset('img/logo-140px.png') }}">
-	@if (isset($metaDescription))
-		<meta property="og:description" content="{{ $metaDescription }}">
-	@endif
-	<meta property="og:url" content="{{ URL::current() }}">
 
-	{{-- Twitter --}}
-	<meta name="twitter:card" content="summary">
-	<meta name="twitter:site" content="{{ Config::get('app.twitter_card_site') }}">
-	@if (isset($title))
-		<meta name="twitter:title" content="{{ $title }} | {{ Lang::get('app.appTitle') }}">
-	@else
-		<meta name="twitter:title" content="{{ Lang::get('app.appTitle') }}">
-	@endif
-	@if (isset($metaDescription))
-		<meta name="twitter:description" content="{{ $metaDescription }}">
-	@else
-		<meta name="twitter:description" content="{{ Lang::get('app.meta_homeDesc') }}">
-	@endif
-	<meta name="twitter:image:src" content="{{ URL::asset('img/logo-140px.png') }}">
-
-	<!-- RSS feeds -->
-	<link rel="alternate" type="application/rss+xml" title="{{ Lang::get('app.feed_metaTitle') }}" href="{{ route('feed') }}">
-	@if ($currentRoute === 'courses.show')
-		<link rel="alternate" type="application/rss+xml" title="{{ Lang::get('app.feed_course_metaTitle', array('courseCode' => $course->code)) }}" href="{{ route('courses.feed', array(strtolower($course->code))) }}">
-	@endif
 	<!-- favicon and touch icons -->
 	<link rel="shortcut icon" href="{{ URL::to('') }}/ico/favicon.ico">
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ URL::to('') }}/ico/apple-touch-icon-144-precomposed.png">
@@ -76,15 +32,18 @@
 
 </head>
 <body>
-	<header class="navbar navbar-inverse navbar-fixed-top">
+	<header class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
 				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 					<i class="icon-ellipsis-vertical"></i>
 				</button>
-				<a class="brand" href="{{ URL::to('') }}" title="{{ Lang::get('app.appTitle') }}">{{ Lang::get('app.appTitle') }}</a>
+				<a class="brand" href="{{ URL::route('admin.dashboard') }}" title="{{ Lang::get('app.admin_title') }}">{{ Lang::get('app.admin_title') }}</a>
 				<nav class="nav-collapse collapse">
 					<ul class="nav">
+						<li>
+							<a href="{{ route('home') }}"><i class="icon-home"></i> {{ trans('app.admin_nav_site') }}</a>
+						</li>
 						@if ($currentRoute == 'courses.index' || $currentRoute == 'courses.category')
 							<li class="dropdown active">
 						@else
@@ -120,25 +79,18 @@
 							{{ link_to_route('departments.index', Lang::get('app.nav_department')) }}
 						</li>
 					</ul><!-- /.nav -->
-					{{-- RSS --}}
 					<ul class="nav pull-right">
+						{{-- Admin menu --}}
+
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-rss"></i> {{ Lang::get('app.nav_rss') }} <b class="caret"></b></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li>{{ link_to_route('feed', Lang::get('app.nav_rssSite')) }}</li>
-								@if ($currentRoute === 'courses.show')
-									<li>{{ link_to_route('courses.feed', Lang::get('app.nav_rssCourse', array('courseCode' => $course->code)), strtolower($course->code)) }}</li>
-								@endif
+								<li><a href="{{ URL::route('logout') }}"><i class="icon-off"></i> {{ trans('app.nav_logout') }}</a></li>
 							</ul>
 						</li>
+
 					</ul>
-					{{-- Search form --}}
-					{{ Form::open(['route' => 'courses.search', 'method' => 'POST', 'class' => 'navbar-form pull-right form-search']) }}
-						<div class="input-append">
-							{{ Form::text('keyword', isset($search_result) ? $keyword : '', array('class' => 'input-xlarge search-query', 'placeholder' => Lang::get('app.nav_searchPlaceholder'), 'x-webkit-speech' => '', 'x-webkit-grammar' => 'builtin:search', 'lang' => 'en')) }}
-							<button type="submit" class="btn btn-inverse"><i class="icon-search"></i> {{ Lang::get('app.nav_search') }}</button>
-						</div>
-					{{ Form::close() }}
+					
 
 				</nav><!--/.nav-collapse -->
 			</div>

@@ -35,15 +35,24 @@
 
 		<footer>
 			<p class="muted pull-left">
-				<i class="icon-time"></i> <time pubdate datetime="{{ $comment->created_at->format(DateTime::ISO8601) }}">{{ $comment->created_at->format('F j, Y \a\t H:i') }}</time>
+				<i class="icon-time"></i> <time pubdate datetime="{{ $comment->created_at->format(DateTime::ISO8601) }}">{{ $comment->created_at->format('M j, Y \a\t H:i') }}</time>
 			</p>
-			<div class="pull-right">
-			{{-- <div class="btn-group pull-right"> --}}
+			<div class="btn-group pull-right">
+				{{-- Sharrre --}}
+				<a class="btn dropdown-toggle" data-toggle="dropdown" title="{{ trans('app.comment_share') }}" href="#">
+					<i class="icon-share-alt"></i>
+					<span class="caret"></span>
+				</a>
+
+				{{-- Permalink --}}
 				@unless ($currentRoute === 'comments.show')
-					<a href="{{ URL::route('comments.show', array($comment->id)) }}" role="button" class="btn" data-toggle="tooltip" title="{{ trans('app.comment_permalink') }}">
+					<a href="{{ URL::route('comments.show', array($comment->id)) }}" role="button" class="btn" title="{{ trans('app.comment_permalink') }}">
 						<i class="icon-link"></i>
 					</a>
 				@endunless
+	
+				{{-- Sharrre dropdown --}}
+				<ul class="dropdown-menu pull-right social-media-dropdown" data-url="{{ URL::route('comments.show', array($comment->id)) }}" data-text="{{ trans('app.comment_show_title', array('id' => $comment->id, 'courseCode' => e($comment->course->code), 'courseTitle' => e($comment->course->title_en))) }}"></ul>
 			</div>
 		</footer>
 	</article>

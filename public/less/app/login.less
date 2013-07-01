@@ -15,3 +15,77 @@
 // 		height: auto;
 // 	}
 // }
+#login-body {
+	padding-top: 0;
+	background: url(../img/login-bg.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+
+	display: -webkit-box;   // OLD: Safari,  iOS, Android browser, older WebKit browsers.
+	display: -moz-box;      // OLD: Firefox (buggy)
+	display: -ms-flexbox;   // MID: IE 10
+	display: -webkit-flex;  // NEW, Chrome 21+
+	display: flex;          // NEW: Opera 12.1, Firefox 22+
+
+	-webkit-box-align: center; -moz-box-align: center; // OLD
+	-ms-flex-align: center; // You know the drill now
+	-webkit-align-items: center;
+	align-items: center;
+
+	-webkit-box-pack: center;
+	-moz-box-pack: center; 
+	-ms-flex-pack: center; 
+	-webkit-justify-content: center;
+	justify-content: center;
+
+	margin: 0;
+	padding: 20px;
+	.box-sizing(border-box);
+	height: 100%;
+	width: 100%; /* needed for Firefox */
+
+
+	@media (max-height: 450px) {
+		display: block;
+	}
+	@media (max-width: 450px) {
+		display: block;
+	}
+}
+
+#login-box {
+	width: 370px;
+	@media (max-height: 450px) {
+		width: 100%;
+		.box-sizing(border-box);
+	}
+	@media (max-width: 450px) {
+		width: 100%;
+		.box-sizing(border-box);
+	}
+	
+	
+	.box-shadow(0 5px 10px rgba(0,0,0,.25));
+
+	h1 {
+		text-align: center;
+		font-size: @baseFontSize * 1.5;
+		line-height: @baseLineHeight * 1.5;
+		margin: 0 0 20px;
+	}
+
+	form {
+		margin: 0;
+	}
+
+	input[type="submit"] {
+		margin-top: 36px;
+	}
+
+	input[type="text"], input[type="password"] {
+		font-size: 16px;
+		height: auto;
+	}
+}

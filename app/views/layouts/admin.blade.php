@@ -1,4 +1,4 @@
-@include('partials.home.header')
+@include('partials.admin.header')
 
 <div class="row">
 		<div class="span12">
@@ -10,4 +10,4 @@
 		</div><!--/span-->
 </div>
 
-@include('partials.home.footer')
+@include('partials.admin.footer')

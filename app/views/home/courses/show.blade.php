@@ -13,9 +13,13 @@
 </div>
 
 
+<ul class="nav nav-pills visible-phone" id="mobile-tab">
+	<li><a href="#info">{{ trans('app.course_detail_info') }}</a></li>
+	<li><a href="#stats">{{ trans('app.course_detail_stats') }}</a></li>
+	<li class="active"><a href="#comments">{{ trans('app.course_detail_comment') }}</a></li>
+</ul>
 
 <!-- Info -->
-
 <div class="row">
 	{{-- Course info --}}
 	<section id="info" class="span6">
@@ -53,7 +57,7 @@
 	</section><!-- /.span6 -->
 </div><!-- /.row -->
 
-<hr />
+<hr class="hidden-phone" />
 
 <section id="comments">
 	<div class="clearfix">
@@ -79,18 +83,7 @@
 
 @section('footerScript')
 {{ HTML::script('js/masonry.pkgd.min.js') }}
-
-<script>
-$(document).ready(function () {
-	// Masonry
-	$('#comment-container').masonry({
-		transitionDuration: 0,
-		itemSelector: '.comment'
-	});
-
-	$('div[data-toggle=tooltip]').tooltip({ placement: 'left' });
-	$('a[data-toggle=tooltip]').tooltip({ placement: 'left' });
-});
-</script>
-
+{{ HTML::script('js/jquery.sharrre.js') }}
+{{ HTML::script('js/comment-box.min.js') }}
+{{ HTML::script('js/course-detail.min.js') }}
 @stop

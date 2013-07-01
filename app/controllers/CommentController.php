@@ -110,8 +110,8 @@ class CommentController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$comment = Comment::with('course')->find($id);
-		if (!$comment) {
+		$comment = Comment::withTrashed()->with('course')->find($id);
+		if (!$comment || $comment->trashed() && !Auth::check()) {
 			return App::abort(404);
 		}
 		$data = array(

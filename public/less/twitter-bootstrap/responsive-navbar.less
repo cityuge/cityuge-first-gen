@@ -85,7 +85,8 @@
   .nav-collapse .nav > li > a:focus,
   .nav-collapse .dropdown-menu a:hover,
   .nav-collapse .dropdown-menu a:focus {
-    background-color: @navbarBackground;
+    background-color: darken(@navbarBackground, 3%) !important;
+    background-image: none; // clear the drowdown gradient hover background
   }
   .navbar-inverse .nav-collapse .nav > li > a,
   .navbar-inverse .nav-collapse .dropdown-menu a {

@@ -28,7 +28,7 @@ class DepartmentsTableSeeder extends Seeder {
 			array('id' => '16','initial' => 'MBE','title_zh' => '機械及生物醫學工程學系','title_en' => 'Department of Mechanical and Biomedical Engineering','url' => 'http://www.cityu.edu.hk/mbe/'),
 			array('id' => '17','initial' => 'COM','title_zh' => '媒體與傳播系','title_en' => 'Department of Media and Communication','url' => 'http://www6.cityu.edu.hk/com/'),
 			array('id' => '18','initial' => 'AP','title_zh' => '物理及材料科學系','title_en' => 'Department of Physics and Materials Science','url' => 'http://www.ap.cityu.edu.hk/'),
-			array('id' => '19','initial' => 'SA','title_zh' => '公共及社會行政學系','title_en' => 'Department of Public and Social Administration','url' => 'http://www6.cityu.edu.hk/sa/'),
+			array('id' => '19','initial' => 'POL','title_zh' => '公共政策學系','title_en' => 'Department of Public Policy','url' => 'http://www6.cityu.edu.hk/pol/'),
 			array('id' => '20','initial' => 'SEEM','title_zh' => '系統工程及工程管理學系','title_en' => 'Department of Systems Engineering and Engineering Management','url' => 'http://www.cityu.edu.hk/seem/'),
 			array('id' => '21','initial' => 'BST','title_zh' => '建築科技學部','title_en' => 'Division of Building Science and Technology','url' => 'http://www6.cityu.edu.hk/bst/'),
 			array('id' => '22','initial' => 'SCM','title_zh' => '創意媒體學院','title_en' => 'School of Creative Media','url' => 'http://www.scm.cityu.edu.hk/'),

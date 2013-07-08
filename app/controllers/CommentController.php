@@ -163,9 +163,15 @@ class CommentController extends BaseController {
 	{
 		$comment = Comment::find($id);
 		if ($comment) {
-			//
+			$courseId = $comment->course_id;
+			$comment->delete();
+			return Redirect::route('courses.show', [$courseId])
+							->with('alertType', 'success')
+							->with('alertBody', Lang::get('app.comment_deleted'));
 		} else {
-			//
+			return Redirect::route('courses.show', [$courseId])
+							->with('alertType', 'error')
+							->with('alertBody', Lang::get('app.comment_delete_notFound'));
 		}
 	}
 

@@ -38,6 +38,7 @@ Route::get('logout', ['as' => 'logout', 'uses' => 'UserController@getLogout']);
 
 Route::group(array('before' => 'auth', 'prefix' => 'admin'), function() {
 	Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'AdminController@index']);
+	Route::get('purge-cache', ['as' => 'admin.cache.purge', 'uses' => 'AdminController@purgeCache']);
 });
 
 // RSS feed

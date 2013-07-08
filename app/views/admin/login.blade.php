@@ -39,11 +39,11 @@
 
 		{{ Form::open(array('route' => 'loggingIn', 'method' => 'post')) }}
 			<p>
-				{{ Form::text('username', Input::old('username'), array('placeholder' => trans('app.user_username'), 'class' => 'input-block-level')) }}
+				{{ Form::text('username', Input::old('username'), array('placeholder' => trans('app.user_username'), 'class' => 'input-block-level', 'autofocus', 'autocomplete' => 'off')) }}
 			</p>
 			
 			<p>
-				{{ Form::password('password', array('placeholder' => trans('app.user_password'), 'class' => 'input-block-level')) }}
+				{{ Form::password('password', array('placeholder' => trans('app.user_password'), 'class' => 'input-block-level', 'autocomplete' => 'off')) }}
 			</p>
 			
 			<p>

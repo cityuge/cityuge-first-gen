@@ -120,6 +120,7 @@ return array(
 
 	// Admin
 	'admin_title' => 'CityU GE 指南管理控制台',
+	'cache_purged' => '已清除系統內的所有快取！',
 
 	// About
 	'about' => '關於本網站',

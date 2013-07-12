@@ -35,10 +35,9 @@ Route::post('comments', ['as' => 'comments.store', 'uses' => 'CommentController@
 Route::get('login', ['as' => 'login', 'uses' => 'UserController@getLogin']);
 Route::post('login', ['as' => 'loggingIn', 'before' => 'csrf', 'uses' => 'UserController@postLogin']);
 Route::get('logout', ['as' => 'logout', 'uses' => 'UserController@getLogout']);
-
 Route::group(array('before' => 'auth', 'prefix' => 'admin'), function() {
 	Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'AdminController@index']);
-	Route::get('purge-cache', ['as' => 'admin.cache.purge', 'uses' => 'AdminController@purgeCache']);
+	Route::post('purge-cache', ['as' => 'admin.cache.purge', 'uses' => 'AdminController@purgeCache', 'before' => 'csrf']);
 });
 
 // RSS feed

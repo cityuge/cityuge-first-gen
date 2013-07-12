@@ -65,6 +65,8 @@ return array(
 	'comment_desc' => '<p>現時共有 :count 則留言。</p>',
 	'comment_new' => '發表',
 	'comment_newTitle' => '發表對 :courseCode 的留言',
+	'comment_id' => '留言編號',
+	'comment_ipAdress' => 'IP 地址',
 	'comment_semester' => '學期',
 	'comment_instructor' => '導師',
 	'comment_grade' => '成績',
@@ -80,6 +82,7 @@ return array(
 	'comment_courseDetail' => '更多資料',
 	'comment_show_title'=> '留言 #:id (:courseCode - :courseTitle)',
 	'comment_show_admin' => '管理專用',
+	'comment_whois' => 'WHOIS',
 	'comment_show_shareDesc' => '<p>你可以用分享按鈕 <i class="icon-share-alt"></i> 將這則留言分享到各大社交平台，亦可以將本頁的網址直接分享給朋友。</p>',
 
 	// Grade
@@ -120,6 +123,7 @@ return array(
 
 	// Admin
 	'admin_title' => 'CityU GE 指南管理控制台',
+	'cache_purge' => '清除所有快取',
 	'cache_purged' => '已清除系統內的所有快取！',
 
 	// About

@@ -115,7 +115,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Greggilbert\Recaptcha\RecaptchaServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
-		'Profiler\ProfilerServiceProvider',
+		'Juy\Profiler\Providers\ProfilerServiceProvider',
 
 	),
 
@@ -181,7 +181,7 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-		'Profiler'        => 'Profiler\Facades\Profiler',
+		'Profiler'        => 'Juy\Profiler\Facades\Profiler',
 
 	),
 

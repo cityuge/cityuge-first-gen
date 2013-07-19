@@ -7,7 +7,7 @@
 	},
 	"require-dev": {
 		"way/generators": "dev-master",
-		"loic-sharma/profiler": "1.0.*"
+		"juy/profiler": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

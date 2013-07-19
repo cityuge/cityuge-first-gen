@@ -8,7 +8,8 @@
 <dl class="dl-horizontal">
 	@foreach($departments as $dep)
 		<dt>{{ link_to_route('departments.courses', $dep->initial, strtolower($dep->initial)) }}</dt>
-		<dd>{{{ $dep->title_en }}}<br />{{{ $dep->title_zh }}}</dd>
+		<dd>{{{ $dep->title_en }}}</dd>
+		<dd>{{{ $dep->title_zh }}}</dd>
 	@endforeach
 </dl>
 @stop

@@ -106,7 +106,7 @@ class CourseController extends BaseController {
 			return App::abort(404);
 		}
 
-		$comments = Comment::where('course_id', '=', $course->id)
+		$comments = Comment::with('course')->where('course_id', '=', $course->id)
 						->orderBy('created_at', 'DESC')
 						->paginate(Config::get('cityuge.paginate_commentPerPage'));
 

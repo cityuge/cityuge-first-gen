@@ -106,12 +106,13 @@ class CourseController extends BaseController {
 			return App::abort(404);
 		}
 
-		$comments = Comment::with('course')->where('course_id', '=', $course->id)
+		$comments = Comment::where('course_id', '=', $course->id)
 						->orderBy('created_at', 'DESC')
 						->paginate(Config::get('cityuge.paginate_commentPerPage'));
 
 		$workloadRate = DB::table('comments')
 						->where('course_id', '=', $course->id)
+						->where('deleted_at', null, DB::raw('is null'))
 						->avg('workload') / 5 * 100;
 
 		$gradeDistribution = Comment::getGradeDistribution($course->id, $course->grading_pattern);
@@ -162,6 +163,10 @@ class CourseController extends BaseController {
 		//
 	}
 
+	/**
+	 * Process the search form.
+	 * @return Redirect redirect to the search result page
+	 */
 	public function search()
 	{
 		$keyword = trim(Input::get('keyword'));
@@ -174,6 +179,11 @@ class CourseController extends BaseController {
 		}
 	}
 
+	/**
+	 * Display the search results.
+	 * @param  string $keyword search keyword
+	 * @return View            search result view
+	 */
 	public function searchResult($keyword = '')
 	{
 		$keyword = urldecode(trim($keyword));
@@ -192,7 +202,7 @@ class CourseController extends BaseController {
 							->groupBy('courses.id')
 							->orderBy('courses.code', 'ASC')
 							->paginate(Config::get('cityuge.paginate_perPage'));
-		//dd($results);
+
 		$data = array(
 			'title' => Lang::choice('app.course_search_resultTitle', $results->getCurrentPage(), array('keyword' => e($keyword), 'page' => $results->getCurrentPage())),
 			'courses' => $results,

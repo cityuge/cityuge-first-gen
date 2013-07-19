@@ -1,6 +1,9 @@
 <?php
 
 class Comment extends BaseModel {
+	// Use soft delete for this table
+	protected $softDelete = true;
+
 	protected $guarded = array();
 
 	public static $rules = array(
@@ -11,8 +14,6 @@ class Comment extends BaseModel {
 		'body' => 'required',
 		'recaptcha_response_field' => 'required|recaptcha',
 	);
-
-	protected $softDelete = true;
 
 	public static $semesters = array('2012/13 Sem B', '2012/13 Sem A', '2011/12 Summer', '2011/12 Sem B', '2011/12 Sem A');
 	public static $semesterValues = array(
@@ -77,7 +78,7 @@ class Comment extends BaseModel {
 	public static function getGradeDistribution($courseId, $gradingPattern) {
 		$grades = Course::getGradingOptionArray($gradingPattern);
 
-		$query = DB::select('SELECT grade, COUNT(*) AS count FROM comments WHERE course_id = ? GROUP BY grade', array($courseId));
+		$query = DB::select('SELECT grade, COUNT(*) AS count FROM comments WHERE course_id = ? AND deleted_at IS NULL GROUP BY grade', array($courseId));
 
 		$distrubution = array();
 		foreach ($grades as $key => $value) {

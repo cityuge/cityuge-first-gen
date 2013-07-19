@@ -37,7 +37,7 @@
 				</a>
 
 				{{-- Sharrre dropdown --}}
-				<ul class="dropdown-menu pull-right social-media-dropdown" data-url="{{ URL::route('comments.show', array($comment->id)) }}" data-text="{{ trans('app.comment_show_title', array('id' => $comment->id, 'courseCode' => e($comment->course->code), 'courseTitle' => e($comment->course->title_en))) }}"></ul>
+				<ul class="dropdown-menu pull-right social-media-dropdown" data-url="{{ URL::route('comments.show', array($comment->id)) }}" data-text="{{ trans('app.comment_show_title', array('id' => $comment->id, 'courseCode' => e($course->code), 'courseTitle' => e($course->title_en))) }}"></ul>
 			</div>
 		</footer>
 	</article>

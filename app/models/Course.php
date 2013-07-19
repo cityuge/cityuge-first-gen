@@ -7,9 +7,11 @@ class Course extends BaseModel {
 
 	public $timestamps = false;
 
+	// Course category
 	public static $category = array('AREA1', 'AREA2', 'AREA3', 'UNIREQ', 'E');
 	public static $categoryUrl = array('area-1', 'area-2', 'area-3', 'university-requirements', 'foundation');
 
+	// Grading
 	public static $stdGrading = array('A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'F', 'X');
 	public static $stdPFGrading = array('A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'P', 'F', 'X');
 	public static $pfGrading = array('P', 'F', 'X');

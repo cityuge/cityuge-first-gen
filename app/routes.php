@@ -48,4 +48,4 @@ Route::get('courses/{code}/feed', ['as' => 'courses.feed', 'uses' => 'FeedContro
 Route::get('sitemap', ['as' => 'sitemap', 'uses' => 'SitemapController@index']);
 
 // Sharrre
-Route::get('social-media-counter', array('as' => 'sharrre', 'uses' => 'homeController@socialMediaCounter'));
+Route::get('social-media-counter', array('as' => 'sharrre', 'uses' => 'HomeController@socialMediaCounter'));

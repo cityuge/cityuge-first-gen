@@ -63,7 +63,7 @@
 	<div class="clearfix">
 		<h2 class="pull-left">{{ Lang::choice('app.course_comment', $comments->getTotal(), array('count' => $comments->getTotal())) }}</h2>
 		<a href="{{ URL::route('comments.create', array(strtolower($course->code))) }}" role="button" class="btn btn-primary btn-new-comment pull-left">
-			<i class="icon-plus"></i> {{ Lang::get('app.comment_new') }}
+			<i class="icon-comment"></i> {{ Lang::get('app.comment_new') }}
 		</a>
 	</div>
 	@if (!$comments->getTotal())

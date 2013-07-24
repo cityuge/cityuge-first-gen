@@ -1,6 +1,6 @@
 <?php $currentRoute = Route::currentRouteName(); ?>
 <!DOCTYPE html>
-<html lang="zh-HK">
+<html lang="{{ Session::get('_localeISO') }}">
 <head>
 	<meta charset="utf-8">
 	@if (isset($title))
@@ -82,7 +82,7 @@
 				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 					<i class="icon-ellipsis-vertical"></i>
 				</button>
-				<a class="brand" href="{{ URL::to('') }}" title="{{ Lang::get('app.appTitle') }}">{{ Lang::get('app.appTitle') }}</a>
+				<a class="brand" href="{{ route('home') }}" title="{{ Lang::get('app.appTitle') }}">{{ Lang::get('app.appTitle') }}</a>
 				<nav class="nav-collapse collapse">
 					<ul class="nav">
 						@if ($currentRoute == 'courses.index' || $currentRoute == 'courses.category')
@@ -129,6 +129,14 @@
 								@if ($currentRoute === 'courses.show')
 									<li>{{ link_to_route('courses.feed', Lang::get('app.nav_rssCourse', array('courseCode' => $course->code)), strtolower($course->code)) }}</li>
 								@endif
+							</ul>
+						</li>
+						{{-- Locale --}}
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-globe"></i> <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li>{{ HTML::link(LocaleHelper::getCurrentPageURLInLocale('hk'), '繁體中文') }}</li>
+								<li>{{ HTML::link(LocaleHelper::getCurrentPageURLInLocale('cn'), '简体中文') }}</li>
 							</ul>
 						</li>
 						{{-- Admin menu --}}

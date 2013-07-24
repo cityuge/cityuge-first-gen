@@ -1,6 +1,6 @@
 <?php $currentRoute = Route::currentRouteName(); ?>
 <!DOCTYPE html>
-<html lang="zh-HK">
+<html lang="{{ Session::get('_localeISO') }}">
 <head>
 	<meta charset="utf-8">
 	@if (isset($title))
@@ -38,7 +38,7 @@
 				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 					<i class="icon-ellipsis-vertical"></i>
 				</button>
-				<a class="brand" href="{{ URL::route('admin.dashboard') }}" title="{{ Lang::get('app.admin_title') }}">{{ Lang::get('app.admin_title') }}</a>
+				<a class="brand" href="{{ route('admin.dashboard') }}" title="{{ Lang::get('app.admin_title') }}">{{ Lang::get('app.admin_title') }}</a>
 				<nav class="nav-collapse collapse">
 					<ul class="nav">
 						<li>
@@ -80,8 +80,15 @@
 						</li>
 					</ul><!-- /.nav -->
 					<ul class="nav pull-right">
+						{{-- Locale --}}
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-globe"></i> <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li>{{ HTML::link(LocaleHelper::getCurrentPageURLInLocale('hk'), '繁體中文') }}</li>
+								<li>{{ HTML::link(LocaleHelper::getCurrentPageURLInLocale('cn'), '简体中文') }}</li>
+							</ul>
+						</li>
 						{{-- Admin menu --}}
-
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> <b class="caret"></b></a>
 							<ul class="dropdown-menu">

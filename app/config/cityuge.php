@@ -1,7 +1,13 @@
 <?php
 
 return array(
-	'version' => '0.8',
+	'version' => '0.8.1',
+
+	// Locale
+	'availableLocale' => array('zh-hk', 'zh-cn'),
+	'availableLocaleURL' => array('hk', 'cn'),
+	'availableLocaleISO' => array('zh-HK', 'zh-CN'),
+
 	/*
 	|--------------------------------------------------------------------------
 	| Number of items shown for the paginator

@@ -2,6 +2,36 @@
 
 /*
 |--------------------------------------------------------------------------
+| Application Locale Handling
+|--------------------------------------------------------------------------
+|
+| Check the locale code is in the URL and set the application locale if
+| exist. A route group will wrap all the routes which insert the locale
+| code in the URL.
+| 
+| Reference: http://forums.laravel.io/viewtopic.php?id=7458
+|
+*/
+
+// the first segment of the URL is for the locale
+$locale = Request::segment(1);
+$localeIndex = array_search($locale, Config::get('cityuge.availableLocaleURL'));
+
+if ($localeIndex !== false && $localeIndex !== 0) {
+	// locale is in the available locale list but not the default one
+	App::setLocale(Config::get('cityuge.availableLocale')[$localeIndex]);
+	Session::put('_locale', Config::get('cityuge.availableLocale')[$localeIndex]);
+	Session::put('_localeISO', Config::get('cityuge.availableLocaleISO')[$localeIndex]);
+} else {
+	// locale is invalid or the default one
+	$locale = null;
+	Session::put('_locale', Config::get('cityuge.availableLocale')[0]);
+	Session::put('_localeISO', Config::get('cityuge.availableLocaleISO')[0]);
+}
+
+
+/*
+|--------------------------------------------------------------------------
 | Application Routes
 |--------------------------------------------------------------------------
 |
@@ -11,34 +41,41 @@
 |
 */
 
-Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
-Route::get('about', ['as' => 'about', 'uses' => 'HomeController@about']);
+// Language route group
+Route::group(array('prefix' => $locale), function() {
 
-// Department
-Route::get('departments', ['as' => 'departments.index', 'uses' => 'DepartmentController@index']);
-Route::get('departments/{initial}', ['as' => 'departments.courses', 'uses' => 'DepartmentController@courses']);
+	Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+	Route::get('about', ['as' => 'about', 'uses' => 'HomeController@about']);
 
-// Course
-Route::get('courses', ['as' => 'courses.index', 'uses' => 'CourseController@index']);
-Route::get('courses/categories/{category}', ['as' => 'courses.category', 'uses' => 'CourseController@category']);
-Route::get('courses/{code}', ['as' => 'courses.show', 'uses' => 'CourseController@show']);
-Route::get('courses/{code}/comments/create', array('as' => 'comments.create', 'uses' => 'CommentController@create'));
-Route::post('courses/search', array('as' => 'courses.search', 'uses' => 'CourseController@search'));
-Route::get('courses/search/{keyword?}', array('as' => 'courses.searchResult', 'uses' => 'CourseController@searchResult'));
+	// Department
+	Route::get('departments', ['as' => 'departments.index', 'uses' => 'DepartmentController@index']);
+	Route::get('departments/{initial}', ['as' => 'departments.courses', 'uses' => 'DepartmentController@courses']);
 
-// Comment
-Route::get('comments', ['as' => 'comments.index', 'uses' => 'CommentController@index']);
-Route::get('comments/{id}', ['as' => 'comments.show', 'uses' => 'CommentController@show'])->where('id', '[0-9]+');
-Route::post('comments', ['as' => 'comments.store', 'uses' => 'CommentController@store']);
+	// Course
+	Route::get('courses', ['as' => 'courses.index', 'uses' => 'CourseController@index']);
+	Route::get('courses/categories/{category}', ['as' => 'courses.category', 'uses' => 'CourseController@category']);
+	Route::get('courses/{code}', ['as' => 'courses.show', 'uses' => 'CourseController@show']);
+	Route::get('courses/{code}/comments/create', array('as' => 'comments.create', 'uses' => 'CommentController@create'));
+	Route::post('courses/search', array('as' => 'courses.search', 'uses' => 'CourseController@search'));
+	Route::get('courses/search/{keyword?}', array('as' => 'courses.searchResult', 'uses' => 'CourseController@searchResult'));
 
-// Admin
-Route::get('login', ['as' => 'login', 'uses' => 'UserController@getLogin']);
+	// Comment
+	Route::get('comments', ['as' => 'comments.index', 'uses' => 'CommentController@index']);
+	Route::get('comments/{id}', ['as' => 'comments.show', 'uses' => 'CommentController@show'])->where('id', '[0-9]+');
+	Route::post('comments', ['as' => 'comments.store', 'uses' => 'CommentController@store']);
+
+	// Admin
+	Route::get('login', ['as' => 'login', 'uses' => 'UserController@getLogin']);
+	Route::group(array('before' => 'auth', 'prefix' => 'admin'), function() {
+		Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'AdminController@index']);
+		Route::post('purge-cache', ['as' => 'admin.cache.purge', 'uses' => 'AdminController@purgeCache', 'before' => 'csrf']);
+	});
+
+});
+
+// Login and logout actions
 Route::post('login', ['as' => 'loggingIn', 'before' => 'csrf', 'uses' => 'UserController@postLogin']);
 Route::get('logout', ['as' => 'logout', 'uses' => 'UserController@getLogout']);
-Route::group(array('before' => 'auth', 'prefix' => 'admin'), function() {
-	Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'AdminController@index']);
-	Route::post('purge-cache', ['as' => 'admin.cache.purge', 'uses' => 'AdminController@purgeCache', 'before' => 'csrf']);
-});
 
 // RSS feed
 Route::get('feed', ['as' => 'feed', 'uses' => 'FeedController@siteLatestComments']);

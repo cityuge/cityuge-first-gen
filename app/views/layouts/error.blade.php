@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-HK">
+<html lang="{{ Session::get('_localeISO') }}">
 <head>
 	<meta charset="utf-8">
 	@if (isset($title))

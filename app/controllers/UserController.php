@@ -84,6 +84,13 @@ class UserController extends BaseController {
 		return View::make('admin.login');
 	}
 
+	/**
+	 * Handle the log in.
+	 *
+	 * Verify the username and password.
+	 * 
+	 * @return Response Admin panel dashboard or log in page
+	 */
 	public function postLogin()
 	{
 		$username = Input::get('username');
@@ -95,11 +102,16 @@ class UserController extends BaseController {
 				->with('alertType', 'success')
 				->with('alertBody', trans('app.login_successful'));
 		}
+
 		return Redirect::back()->withInput()
 				->with('alertType', 'error')
 				->with('alertBody', trans('app.login_unsuccessful'));
 	}
 
+	/**
+	 * Log out the system.
+	 * @return Response Home page
+	 */
 	public function getLogout()
 	{
 		if (Auth::check()) {

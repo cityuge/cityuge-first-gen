@@ -35,10 +35,11 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {				
-	if (Auth::guest()) 
-		return Redirect::guest('login')
+	if (Auth::guest()) {
+		return Redirect::route('login')
 			->with('alertType', 'error')
 			->with('alertBody', trans('app.login_authorizedOnly'));
+	}
 });
 
 

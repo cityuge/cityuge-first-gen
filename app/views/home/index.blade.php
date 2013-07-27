@@ -2,8 +2,7 @@
 
 @section('content')
 
-
-	<div class="hero-unit">
+<div class="hero-unit">
 	<h1><i class="icon-thumbs-up"></i> Like Us on Facebook!</h1>
 	<p>我們已開設了 Facebook 專頁！</p>
 	<p><a href="http://www.facebook.com/cityuge" class="btn btn-primary btn-large" target="_blank">Facebook 專頁 <i class="icon-angle-right"></i></a></p>

@@ -133,6 +133,7 @@ return array(
 	// Footer
 	'footer_disclaimer' => '本网站是以实时上载留言的方式运作，所有数据仅供参考，并不构成任何推荐、保证或协议。Swiftzer 对所有留言的真实性、完整性及立场等，不负任何法律责任。<br />本网站与香港城市大学 (City University of Hong Kong, CityU) 并无任何关连。',
 	'footer_nav_about' => '关于本网站',
+	'footer_nav_facebookFanPage' => 'Facebook 专页',
 	'footer_nav_devBlog' => '开发日志',
 	'footer_nav_acp' => '管理控制台',
 

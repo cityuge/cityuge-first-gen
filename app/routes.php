@@ -25,6 +25,10 @@ Route::get('courses/{code}', ['as' => 'courses.show', 'uses' => 'CourseControlle
 Route::get('courses/{code}/comments/create', array('as' => 'comments.create', 'uses' => 'CommentController@create'));
 Route::post('courses/search', array('as' => 'courses.search', 'uses' => 'CourseController@search'));
 Route::get('courses/search/{keyword?}', array('as' => 'courses.searchResult', 'uses' => 'CourseController@searchResult'));
+// Redirect all the new comment links to the new url (for SEO)
+Route::get('courses/{code}/comments/new', function($code) {
+    return Redirect::route('comments.create', array($code), 301);
+});
 
 // Comment
 Route::get('comments', ['as' => 'comments.index', 'uses' => 'CommentController@index']);

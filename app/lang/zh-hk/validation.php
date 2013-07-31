@@ -91,6 +91,7 @@ return array(
 	*/
 
 	'attributes' => array(
+		'semester' => '學期',
 		'instructor' => '導師',
 		'grade' => '成績',
 		'workload' => '工作量',

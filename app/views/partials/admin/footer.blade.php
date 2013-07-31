@@ -6,6 +6,7 @@
 			<p class="pull-left">&copy; Swiftzer {{ date('Y') }}</p>
 			<p class="pull-right">Version {{{ Config::get('cityuge.version') }}}</p>
 		</div>
+		<p class="disclaimer">{{ trans('app.footer_nav_memory', array('memory' => number_format(memory_get_peak_usage(true) / 1024 / 1024, 2))) }}</p>
 	</div><!-- /.container -->
 </footer>
 

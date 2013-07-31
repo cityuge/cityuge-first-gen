@@ -7,9 +7,12 @@
 			<p class="pull-right">Version {{{ Config::get('cityuge.version') }}}</p>
 		</div>
 		<p class="disclaimer">{{ Lang::get('app.footer_disclaimer') }}</p>
+		@if (Auth::check())
+			<p class="disclaimer">{{ trans('app.footer_nav_memory', array('memory' => number_format(memory_get_peak_usage(true) / 1024 / 1024, 2))) }}</p>
+		@endif
 		<ul class="inline">
 			<li>{{ link_to_route('about', Lang::get('app.footer_nav_about')) }}</li>
-			<li><a href="https://facebook.com/cityuge">{{ Lang::get('app.footer_nav_facebookFanPage') }}</a></li>
+			<li><a href="http://facebook.com/cityuge">{{ Lang::get('app.footer_nav_facebookFanPage') }}</a></li>
 			<li><a href="http://swiftzer.net/category/cityu-ge-guide">{{ Lang::get('app.footer_nav_devBlog') }}</a></li>
 			<li>{{ link_to_route('admin.dashboard', Lang::get('app.footer_nav_acp')) }}</li>
 		</ul>

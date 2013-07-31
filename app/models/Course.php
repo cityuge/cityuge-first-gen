@@ -24,6 +24,10 @@ class Course extends BaseModel {
 		return $this->hasMany('Comment');
 	}
 
+	public function offerings() {
+		return $this->hasMany('Offering');
+	}
+
 	public function getCategoryAttribute($value) {
 		return static::getCategoryTitle($value);
 	}

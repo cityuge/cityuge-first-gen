@@ -136,6 +136,7 @@ return array(
 	'footer_nav_facebookFanPage' => 'Facebook 专页',
 	'footer_nav_devBlog' => '开发日志',
 	'footer_nav_acp' => '管理控制台',
+	'footer_nav_memory' => 'Memory: :memory MB',
 
 	// RSS Feed
 	'feed_title' => 'CityU GE 指南',

@@ -63,7 +63,7 @@ return array(
 	// Comment
 	'comment' => '{1} 所有留言|[2,Inf] 所有留言：第 :page 頁',
 	'comment_desc' => '<p>現時共有 :count 則留言。</p>',
-	'comment_new' => '發表',
+	'comment_new' => '撰寫留言',
 	'comment_newTitle' => '發表對 :courseCode 的留言',
 	'comment_id' => '留言編號',
 	'comment_ipAdress' => 'IP 地址',
@@ -136,6 +136,7 @@ return array(
 	'footer_nav_facebookFanPage' => 'Facebook 專頁',
 	'footer_nav_devBlog' => '開發日誌',
 	'footer_nav_acp' => '管理控制台',
+	'footer_nav_memory' => 'Memory: :memory MB',
 
 	// RSS Feed
 	'feed_title' => 'CityU GE 指南',

@@ -1,8 +1,7 @@
 <?php
 
 /**
- * Make the Bootstrap's alert
- * @var [type]
+ * Make the Bootstrap's alert.
  */
 HTML::macro('alert', function($type = null, $message, $dismiss = false, $title = null)
 {
@@ -34,4 +33,15 @@ HTML::macro('alert', function($type = null, $message, $dismiss = false, $title =
 	$html .= $message . '</div>';
 
 	return $html;
+});
+
+/**
+ * Validation rule for course offering.
+ *
+ * Provide the course ID in the parameter.
+ */
+Validator::extend('offering', function($attribute, $value, $parameters)
+{
+	$validSemesters = Offering::where('course_id', '=', $parameters[0])->get(array('semester'))->toArray();
+	return in_array(array('semester' => $value), $validSemesters);
 });

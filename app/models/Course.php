@@ -25,7 +25,7 @@ class Course extends BaseModel {
 	}
 
 	public function offerings() {
-		return $this->hasMany('Offering');
+		return $this->hasMany('Offering')->orderBy('semester', 'DESC');
 	}
 
 	public function getCategoryAttribute($value) {

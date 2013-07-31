@@ -64,6 +64,7 @@ return array(
 	"unique"           => ":attribute 已經用了。",
 	"url"              => ":attribute 的格式錯鋘。",
 	"recaptcha"        => ':attribute 輸入錯誤。',
+	"offering"         => '所揀選的學期並沒有開辦本課程。',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -89,6 +90,12 @@ return array(
 	|
 	*/
 
-	'attributes' => array(),
+	'attributes' => array(
+		'instructor' => '導師',
+		'grade' => '成績',
+		'workload' => '工作量',
+		'body' => '留言',
+		'recaptcha_response_field' => 'reCAPTCHA',
+	),
 
 );

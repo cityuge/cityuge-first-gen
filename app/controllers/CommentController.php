@@ -34,14 +34,15 @@ class CommentController extends BaseController {
 		if (!$course) {
 			return App::abort(404);
 		}
-
-		$grades = Course::getGradingOptionArray($course->gradingPattern);
+		$semesters = array(' ' => ' ') + Comment::getSemesterOptions();
+		$workloads = array(' ' => ' ') + Comment::getWorkloadOptions();
+		$grades = array(' ' => ' ') + Course::getGradingOptionArray($course->gradingPattern);
 
 		$data = array(
 			'title' => Lang::get('app.comment_newTitle', array('courseCode' => $course->code)),
 			'course' => $course,
-			'semesters' => Comment::$semesterValues,
-			'workloads' => Comment::getWorkloadOptions(),
+			'semesters' => $semesters,
+			'workloads' => $workloads,
 			'grades' => $grades,
 		);
 		return View::make('home.comments.create')->with($data);
@@ -66,7 +67,7 @@ class CommentController extends BaseController {
 			return App::abort(400);
 		}
 
-		Comment::$rules['semester'] .= implode(',', array_keys(Comment::$semesterValues));
+		Comment::$rules['semester'] .= $courseId;
 		switch ($course->gradingPattern) {
 			case 'PF':
 				Comment::$rules['grade'] .= implode(',', Course::$pfGrading);

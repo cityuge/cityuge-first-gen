@@ -98,7 +98,7 @@ class UserController extends BaseController {
 		$remember = Input::get('remember') ? true : false;
 
 		if (Auth::attempt(array('username' => $username, 'password' => $password), $remember)) {
-			return Redirect::route('admin.dashboard')
+			return Redirect::intended('/admin')
 				->with('alertType', 'success')
 				->with('alertBody', trans('app.login_successful'));
 		}

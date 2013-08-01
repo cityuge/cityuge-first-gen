@@ -22,7 +22,7 @@
 
 		<footer>
 			<p class="muted pull-left">
-				<i class="icon-time"></i> <time pubdate datetime="{{ $comment->created_at->format(DateTime::ISO8601) }}">{{ $comment->created_at->format('F j, Y \a\t H:i') }}</time>
+				<i class="icon-time"></i> <time pubdate datetime="{{ $comment->created_at->format(DateTime::ISO8601) }}">{{ $comment->created_at->format('M j, Y \a\t H:i') }}</time>
 			</p>
 			<div class="btn-group pull-right">
 				{{-- Sharrre --}}

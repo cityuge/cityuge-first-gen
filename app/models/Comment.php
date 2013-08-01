@@ -15,14 +15,6 @@ class Comment extends BaseModel {
 		'recaptcha_response_field' => 'required|recaptcha',
 	);
 
-	public static $semesterValues = array(
-		'1213B' => '2012/13 Sem B',
-		'1213A' => '2012/13 Sem A',
-		'1112S' => '2011/12 Summer',
-		'1112B' => '2011/12 Sem B',
-		'1112A' => '2011/12 Sem A',
-	);
-
 	public function course() {
 		return $this->belongsTo('Course');
 	}

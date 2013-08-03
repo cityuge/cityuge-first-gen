@@ -52,17 +52,21 @@ return array(
 	'course_avgWorkload' => '平均工作量',
 	'course_commentCount' => '留言',
 	'course_noComment' => '現時未有留言。',
-	'course_search_empty' => '請輸入關鍵字搜尋。',
-	'course_search_nothingFound' => '找不到相關課程，請輸入其他關鍵字搜尋。',
-	'course_search_resultTitle' => '{1} 搜尋「:keyword」的結果|[2,Inf] 搜尋「:keyword」的結果：第 :page 頁',
 	'course_metaDesc' => '城大精進教育 (Gateway Education) 課程清單。',
 	'course_categoryTitle' => '{1} :category|[2,Inf] :category：第 :page 頁',
 	'course_category_metaDesc' => '城大精進教育 (Gateway Education) :category 課程清單。',
 	'course_detail_metaDesc' => ':courseCode (:courseTitle) 的課程資料、留言、工作量及成績統計。',
-	'course_search_metaDesc' => '「:keyword」的搜尋結果。',
 	'course_detail_info' => '基本資料',
 	'course_detail_stats' => '統計',
 	'course_detail_comment' => '留言',
+
+	// Search
+	'course_search_title' => '搜尋課程',
+	'course_search_metaDesc' => '搜尋城大精進教育課程 (GE) 資料。',
+	'course_search_empty' => '請輸入關鍵字搜尋。',
+	'course_search_nothingFound' => '找不到相關課程，請輸入其他關鍵字搜尋。',
+	'course_search_resultTitle' => '{1} 搜尋「:keyword」的結果|[2,Inf] 搜尋「:keyword」的結果：第 :page 頁',
+	'course_search_resultMetaDesc' => '「:keyword」的搜尋結果。',
 
 	// Comment
 	'comment' => '{1} 所有留言|[2,Inf] 所有留言：第 :page 頁',

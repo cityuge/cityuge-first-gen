@@ -31,10 +31,14 @@ class DepartmentController extends \BaseController {
 			'title' => $department->title_zh,
 			'department' => $department,
 			'courses' => DB::table('courses')
+							->remember(Config::get('cityuge.cache_courseList'))
 							->select(array(
 								'courses.*',
 								DB::raw('COUNT(comments.id) AS comment_count')))
-							->leftJoin('comments', 'courses.id', '=', 'comments.course_id')
+							->leftJoin('comments', function($join) {
+								$join->on('courses.id', '=', 'comments.course_id');
+								$join->on('comments.deleted_at', null, DB::raw('is null'));
+							})
 							->where('department_id', '=', $department->id)
 							->groupBy('courses.id')
 							->orderBy('courses.code', 'ASC')

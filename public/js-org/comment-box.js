@@ -20,12 +20,15 @@ $('.social-media-dropdown').sharrre({
 	render: function(api, options) {
 		$(api.element).on('click', '.facebook', function() {
 			api.openPopup('facebook');
+			$('[data-toggle="dropdown"]').parent().removeClass('open');
 		});
 		$(api.element).on('click', '.twitter', function() {
 			api.openPopup('twitter');
+			$('[data-toggle="dropdown"]').parent().removeClass('open');
 		});
 		$(api.element).on('click', '.google-plus', function() {
 			api.openPopup('googlePlus');
+			$('[data-toggle="dropdown"]').parent().removeClass('open');
 		});
 	}
 });

@@ -2,7 +2,7 @@
 
 return array(
 	// App version shown in footer
-	'version' => '0.8.1',
+	'version' => '0.8.2',
 
 	// Locale
 	'availableLocale' => array('zh-hk', 'zh-cn'),
@@ -13,6 +13,8 @@ return array(
 	'currentAllowedSemester' => '1213B',
 	// First semester which allowed to use when posting a comment
 	'firstAllowedSemester' => '1112A',
+	// Latest academic year which the course offerings data is available
+	'latestAcademicYearForOffering' => '1314',
 	// Semester codes
 	'semesters' => array('A', 'B', 'S'),
 
@@ -25,6 +27,9 @@ return array(
 
 	// Maximum length of post excerpt (for meta description and social media sharing)
 	'excerptLength' => 250,
+
+	// Number of minute to remember the query result for course list
+	'cache_courseList' => 10,
 
 	// Maximum number of posts in RSS feed
 	'feed_maxItem' => 25,

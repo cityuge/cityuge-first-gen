@@ -10,6 +10,7 @@ class Course extends BaseModel {
 	// Course category
 	public static $category = array('AREA1', 'AREA2', 'AREA3', 'UNIREQ', 'E');
 	public static $categoryUrl = array('area-1', 'area-2', 'area-3', 'university-requirements', 'foundation');
+	public static $semesterUrl = array('sem-a', 'sem-b', 'summer');
 
 	// Grading
 	public static $stdGrading = array('A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'F', 'X');
@@ -153,6 +154,28 @@ class Course extends BaseModel {
 			'Pass' => 'ap',
 			);
 		return $gradeStyle[$grade];
+	}
+
+	public static function getSearchTypeaheadList() {
+		if (!Cache::has('courseTypeahead')) {
+			$courses = static::orderBy('code', 'ASC')->get(array('title_en', 'category', 'code'))->toArray();
+			$list = array();
+			foreach ($courses as $course) {
+				$list[] = array(
+					'title' => $course['title_en'],
+					'category' => $course['category'],
+					'value' => $course['code'],
+					'tokens' => array(
+						$course['code'],
+						preg_replace("/[A-Z]/", "", $course['code']),
+						$course['title_en'],
+					),
+				);
+			}
+			// Save the queries in cache
+			Cache::forever('courseTypeahead', json_encode($list));
+		}
+		return Cache::get('courseTypeahead');
 	}
 
 	public static function getHomeStats() {

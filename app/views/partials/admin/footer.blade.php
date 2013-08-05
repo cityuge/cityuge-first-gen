@@ -15,13 +15,8 @@
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-	ga('create', '***REMOVED***', 'swiftzer.net');
-	{{-- Set the page view of Google Analytics if current page is a search result page --}}
-	@if (Route::currentRouteName() == 'courses.searchResult')
-		ga('send', 'pageview', {'page': '/search?q={{ urlencode($keyword) }}'});
-	@else
-		ga('send', 'pageview');
-	@endif
+	ga('create', '{{ Config::get('cityuge.googleAnalyticsUA') }}', '{{ Config::get('cityuge.googleAnalyticsDomain') }}');
+	ga('send', 'pageview');
 </script>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

@@ -10,7 +10,6 @@ class Course extends BaseModel {
 	// Course category
 	public static $category = array('AREA1', 'AREA2', 'AREA3', 'UNIREQ', 'E');
 	public static $categoryUrl = array('area-1', 'area-2', 'area-3', 'university-requirements', 'foundation');
-	public static $semesterUrl = array('sem-a', 'sem-b', 'summer');
 
 	// Grading
 	public static $stdGrading = array('A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'F', 'X');

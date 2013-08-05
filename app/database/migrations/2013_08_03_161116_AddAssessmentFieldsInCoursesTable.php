@@ -17,6 +17,11 @@ class AddAssessmentFieldsInCoursesTable extends Migration {
 			$table->boolean('assess_quiz');
 			$table->boolean('assess_report');
 			$table->boolean('assess_project');
+
+			$table->index('assess_exam');
+			$table->index('assess_quiz');
+			$table->index('assess_report');
+			$table->index('assess_project');
 		});
 	}
 

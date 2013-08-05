@@ -56,19 +56,17 @@ class CourseController extends BaseController {
 		}
 		$category = Course::$category[$categoryIndex];
 
-
 		// Check the semester URL
 		if ($semesterUrl != null) {
-			$semesterIndex = array_search($semesterUrl, Course::$semesterUrl);
+			// Get the last semester which the database stored
+			$endSemester = Config::get('cityuge.latestAcademicYearForOffering') . Config::get('cityuge.semesters')[2];
+			$semesters = SemesterHelper::getSemesterOptions(false, $endSemester);
+			$semester = strtoupper($semesterUrl);
+			$semesterIndex = array_search($semester, $semesters);
 			// If semester is not found, return 404 error
 			if ($semesterIndex === false) {
 				return App::abort(404);
 			}
-			$currentAcademicYear = Config::get('cityuge.latestAcademicYearForOffering');
-			$semesterCodes = Config::get('cityuge.semesters');
-			$semester = $currentAcademicYear . $semesterCodes[$semesterIndex];
-
-			//dd($semester);
 		}
 
 		// Query
@@ -85,13 +83,17 @@ class CourseController extends BaseController {
 								->join('offerings', 'courses.id', '=', 'offerings.course_id')
 								->leftJoin('comments', function($join) {
 									$join->on('courses.id', '=', 'comments.course_id');
-									$join->on('comments.deleted_at', null, DB::raw('is null'));
+									$join->on('comments.deleted_at', null, DB::raw('IS NULL'));
 								})
 								->where('category', '=', $category)
 								->where('offerings.semester', '=', $semester)
 								->groupBy('courses.id')
 								->orderBy('courses.code', 'ASC')
 								->paginate(Config::get('cityuge.paginate_perPage'));
+			
+			$title = Lang::choice('app.course_categorySemesterTitle',
+					$courses->getCurrentPage(),
+					['page' => $courses->getCurrentPage(), 'category' => Course::getCategoryTitle($category), 'semester' => SemesterHelper::getSemesterText($semester)]);
 		} else {
 			$courses = DB::table('courses')
 								->remember(Config::get('cityuge.cache_courseList'))
@@ -103,18 +105,26 @@ class CourseController extends BaseController {
 								->join('departments', 'courses.department_id', '=', 'departments.id')
 								->leftJoin('comments', function($join) {
 									$join->on('courses.id', '=', 'comments.course_id');
-									$join->on('comments.deleted_at', null, DB::raw('is null'));
+									$join->on('comments.deleted_at', null, DB::raw('IS NULL'));
 								})
 								->where('category', '=', $category)
 								->groupBy('courses.id')
 								->orderBy('courses.code', 'ASC')
 								->paginate(Config::get('cityuge.paginate_perPage'));
-		}
 			
+			$title = Lang::choice('app.course_categoryTitle',
+					$courses->getCurrentPage(),
+					['page' => $courses->getCurrentPage(), 'category' => Course::getCategoryTitle($category)]);
+		}
+		
+		$metaDescription = Lang::get('app.course_category_metaDesc', array('category' => Course::getCategoryTitle($category)));
+
 		$data = array(
-			'title' => Lang::choice('app.course_categoryTitle', $courses->getCurrentPage(), ['page' => $courses->getCurrentPage(), 'category' => Course::getCategoryTitle($category)]) ,
+			'title' => $title,
 			'courses' => $courses,
-			'metaDescription' => Lang::get('app.course_category_metaDesc', array('category' => Course::getCategoryTitle($category))),
+			'metaDescription' => $metaDescription,
+			'categoryUrl' => $categoryUrl,
+			'semesters' => SemesterHelper::getSemesterOptions(true, Config::get('cityuge.latestAcademicYearForOffering') . Config::get('cityuge.semesters')[2]),
 		);
 		return View::make('home.courses.index')->with($data);
 	}
@@ -218,9 +228,21 @@ class CourseController extends BaseController {
 	 */
 	public function search()
 	{
+		$quickAccesses = SemesterHelper::getQuickAccessCategoryLinks(Config::get('cityuge.currentQuickAccessSemester'));
+		$semesters = array('' => '') + SemesterHelper::getSemesterOptions(true, Config::get('cityuge.latestAcademicYearForOffering') . Config::get('cityuge.semesters')[2]);
+		$departments = array('' => '') + Department::orderBy('title_en')->lists('title_en', 'initial');
+		$categories = array('' => '');
+		foreach (Course::$category as $category) {
+			$categories[$category] = Course::getCategoryTitle($category);
+		}
+
 		$data = array(
 			'title' => trans('app.course_search_title'),
 			'metaDescription' => Lang::get('app.course_search_metaDesc'),
+			'quickAccesses' => $quickAccesses,
+			'semesters' => $semesters,
+			'departments' => $departments,
+			'categories' => $categories,
 		);
 		return View::make('home.courses.search')->with($data);
 	}
@@ -231,53 +253,149 @@ class CourseController extends BaseController {
 	 */
 	public function processSearch()
 	{
+		if (Input::get('type') == 'quick') {
+			return $this->processQuickSearchForm();
+		} else {
+			return $this->processAdvancedSearchForm();
+		}
+	}
+
+	/**
+	 * Prepare the query string for quick search form submission.
+	 * @return Redirect redirect to search result page
+	 */
+	private function processQuickSearchForm()
+	{
 		$keyword = trim(Input::get('keyword'));
 		if (empty($keyword)) {
 			return Redirect::route('courses.search')
 						->with('alertType', 'error')
 						->with('alertBody', Lang::get('app.course_search_empty'));
 		} else {
-			return Redirect::route('courses.searchResult', [$keyword]);
+			return Redirect::route('courses.searchResult', ['q' => $keyword]);
 		}
 	}
 
 	/**
-	 * Display the search results.
-	 * @param  string $keyword search keyword
-	 * @return View            search result view
+	 * Prepare the query string for advanced search form submission.
+	 * @return Redirect redirect to search result page
 	 */
-	public function searchResult($keyword)
+	private function processAdvancedSearchForm()
 	{
-		$keyword = urldecode(trim($keyword));
+		$query = array();
 
-		if (empty($keyword)) {
-			return Redirect::route('courses.search')
-						->with('alertType', 'error')
-						->with('alertBody', Lang::get('app.course_search_empty'));
+		$keyword = trim(Input::get('keyword'));
+		if (!empty($keyword)) {
+			$query['q'] = $keyword;
 		}
 
-		$results = DB::table('courses')
-							->select(array(
-								'courses.*',
-								'departments.initial',
-								'departments.title_en AS department_title_en',
-								DB::raw('COUNT(comments.id) AS comment_count')))
-							->join('departments', 'courses.department_id', '=', 'departments.id')
-							->leftJoin('comments', 'courses.id', '=', 'comments.course_id')
-							->where('courses.code', 'LIKE', '%' . $keyword . '%')
-							->orWhere('courses.title_zh', 'LIKE', '%' . $keyword . '%')
-							->orWhere('courses.title_en', 'LIKE', '%' . $keyword . '%')
-							->groupBy('courses.id')
-							->orderBy('courses.code', 'ASC')
-							->paginate(Config::get('cityuge.paginate_perPage'));
+		$semester = trim(Input::get('semester'));
+		if (!empty($semester)) {
+			$query['semester'] = $semester;
+		}
 
+		$department = trim(Input::get('department'));
+		if (!empty($department)) {
+			$query['department'] = $department;
+		}
+
+		$category = trim(Input::get('category'));
+		if (!empty($category)) {
+			$query['category'] = $category;
+		}
+
+		$exam = trim(Input::get('exam'));
+		if (strlen($exam) > 0) {
+			$query['exam'] = $exam;
+		}
+
+		$quiz = trim(Input::get('quiz'));
+		if (strlen($quiz) > 0) {
+			$query['quiz'] = $quiz;
+		}
+
+		$report = trim(Input::get('report'));
+		if (strlen($report) > 0) {
+			$query['report'] = $report;
+		}
+
+		$project = trim(Input::get('project'));
+		if (strlen($project) > 0) {
+			$query['project'] = $project;
+		}
+
+		return Redirect::route('courses.searchResult', $query);
+	}
+
+	/**
+	 * Display the search results.
+	 * @return View            search result view
+	 */
+	public function searchResult()
+	{
+		$rules = array(
+			'semester' => 'in:' . implode(',', SemesterHelper::getSemesterOptions(false, Config::get('cityuge.latestAcademicYearForOffering') . Config::get('cityuge.semesters')[2])),
+			'department' => 'alpha',
+			'category' => 'in:' . implode(',', Course::$category),
+			'exam' => 'in:0,1',
+			'quiz' => 'in:0,1',
+			'report' => 'in:0,1',
+			'project' => 'in:0,1',
+		);
+		// Check the GET parameters
+		if (Validator::make(Input::all(), $rules)->fails()) {
+			return Redirect::route('courses.search')
+						->with('alertType', 'error')
+						->with('alertBody', Lang::get('app.course_search_wrongParam'));
+		}
+
+		// Build the query
+		$query = DB::table('courses')
+					->select(array(
+						'courses.*',
+						'departments.initial',
+						'departments.title_en AS department_title_en',
+						DB::raw('COUNT(comments.id) AS comment_count')))
+					->join('departments', 'courses.department_id', '=', 'departments.id')
+					->leftJoin('comments', 'courses.id', '=', 'comments.course_id');
+					if (Input::get('semester')) {
+						$query->join('offerings', 'courses.id', '=', 'offerings.course_id');
+						$query->where('offerings.semester', '=', Input::get('semester'));
+					}
+					if (Input::get('q')) {
+						$query->where(function($query) {
+							$query->where('courses.code', 'LIKE', '%' . Input::get('q') . '%');
+							$query->orWhere('courses.title_zh', 'LIKE', '%' . Input::get('q') . '%');
+							$query->orWhere('courses.title_en', 'LIKE', '%' . Input::get('q') . '%');
+						});
+					}
+					if (Input::get('department')) {
+						$query->where('departments.initial', '=', Input::get('department'));
+					}
+					if (Input::get('category')) {
+						$query->where('category', '=', Input::get('category'));
+					}
+					if (strlen(Input::get('exam')) > 0) {
+						$query->where('assess_exam', '=', Input::get('exam'));
+					}
+					if (strlen(Input::get('quiz')) > 0) {
+						$query->where('assess_quiz', '=', Input::get('quiz'));
+					}
+					if (strlen(Input::get('report')) > 0) {
+						$query->where('assess_report', '=', Input::get('report'));
+					}
+					if (strlen(Input::get('project')) > 0) {
+						$query->where('assess_project', '=', Input::get('project'));
+					}
+					$results = $query->groupBy('courses.id')
+					->orderBy('courses.code', 'ASC')
+					->paginate(Config::get('cityuge.paginate_perPage'));
+		
 		$data = array(
-			'title' => Lang::choice('app.course_search_resultTitle', $results->getCurrentPage(), array('keyword' => e($keyword), 'page' => $results->getCurrentPage())),
+			'title' => Lang::choice('app.course_search_resultTitle', $results->getCurrentPage(), array('page' => $results->getCurrentPage())),
 			'courses' => $results,
-			'keyword' => $keyword,
+			'keyword' => Input::get('q'),
 			'searchResult' => true,
-			'metaKeywords' => array(e($keyword)),
-			'metaDescription' => Lang::get('app.course_search_resultMetaDesc', array('keyword' => e($keyword))),
 		);
 		return View::make('home.courses.index')->with($data);
 	}

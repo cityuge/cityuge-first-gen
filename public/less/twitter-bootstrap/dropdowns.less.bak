@@ -133,8 +133,6 @@
   & > .dropdown-menu {
     display: block;
   }
-}
-
 // Backdrop to catch body clicks on mobile, etc.
 // ---------------------------
 .dropdown-backdrop {
@@ -144,6 +142,7 @@
   bottom: 0;
   top: 0;
   z-index: @zindexDropdown - 10;
+}
 }
 
 // Right aligned dropdowns

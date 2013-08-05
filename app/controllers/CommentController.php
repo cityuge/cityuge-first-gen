@@ -34,8 +34,8 @@ class CommentController extends BaseController {
 		if (!$course) {
 			return App::abort(404);
 		}
-		$semesters = array(' ' => ' ') + Comment::getSemesterOptions();
-		$workloads = array(' ' => ' ') + Comment::getWorkloadOptions();
+		$semesters = array('' => '') + SemesterHelper::getSemesterOptions();
+		$workloads = array('' => '') + Comment::getWorkloadOptions();
 		$grades = array(' ' => ' ') + Course::getGradingOptionArray($course->gradingPattern);
 
 		$data = array(

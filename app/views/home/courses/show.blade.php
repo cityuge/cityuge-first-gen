@@ -44,11 +44,28 @@
 			</dd>
 			<dt>{{ Lang::get('app.course_level') }}</dt>
 			<dd>{{{ $course->level }}}</dd>
+			<dt>{{ Lang::get('app.course_assess') }} <a href="#assess-explain-modal" role="button" class="btn btn-small" data-toggle="modal"><i class="icon-info-sign"></i> {{ trans('app.course_assess_explain') }}</a></dt>
+			<dd>
+				<ul class="icons-ul">
+					<li class="{{ $course->assess_exam ? 'text-success' : 'muted'}}">
+						<i class="icon-li {{ $course->assess_exam ? 'icon-ok' : 'icon-remove'}}"></i>{{ trans_choice($course->assess_exam ? 'app.course_assess_include' : 'app.course_assess_exclude', null, array('task' => trans('app.course_assess_exam'))) }}
+					</li>
+					<li class="{{ $course->assess_quiz ? 'text-success' : 'muted'}}">
+						<i class="icon-li {{ $course->assess_quiz ? 'icon-ok' : 'icon-remove'}}"></i>{{ trans_choice($course->assess_quiz ? 'app.course_assess_include' : 'app.course_assess_exclude', null, array('task' => trans('app.course_assess_quiz'))) }}
+					</li>
+					<li class="{{ $course->assess_report ? 'text-success' : 'muted'}}">
+						<i class="icon-li {{ $course->assess_report ? 'icon-ok' : 'icon-remove'}}"></i>{{ trans_choice($course->assess_report ? 'app.course_assess_include' : 'app.course_assess_exclude', null, array('task' => trans('app.course_assess_report'))) }}
+					</li>
+					<li class="{{ $course->assess_project ? 'text-success' : 'muted'}}">
+						<i class="icon-li {{ $course->assess_project ? 'icon-ok' : 'icon-remove'}}"></i>{{ trans_choice($course->assess_project ? 'app.course_assess_include' : 'app.course_assess_exclude', null, array('task' => trans('app.course_assess_project'))) }}
+					</li>
+				</ul>
+			</dd>
 			<dt>{{ Lang::get('app.course_offering') }}</dt>
 			<dd>
 				@if (count($course->offerings) > 0)
 					@foreach ($course->offerings as $offering)
-						<span class="label">{{{ Comment::getSemesterText($offering->semester) }}}</span>
+						<span class="label label-info">{{{ Comment::getSemesterText($offering->semester) }}}</span>
 					@endforeach
 				@else
 					<span class="text-error">{{ trans('app.course_offering_none') }}</span>
@@ -68,6 +85,28 @@
 		@include('partials.courses.stats')
 	</section><!-- /.span6 -->
 </div><!-- /.row -->
+
+{{-- Assessment Task Definitions --}}
+<div id="assess-explain-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="assess-explain-modal-label" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3 id="assess-explain-modal-label">{{ trans('app.course_assess_model_title') }}</h3>
+	</div>
+	<div class="modal-body">
+		<dl>
+			<dt>{{ trans('app.course_assess_exam') }}</dt>
+			<dd>{{ trans('app.course_assess_def_exam') }}</dd>
+			<dt>{{ trans('app.course_assess_quiz') }}</dt>
+			<dd>{{ trans('app.course_assess_def_quiz') }}</dd>
+			<dt>{{ trans('app.course_assess_report') }}</dt>
+			<dd>{{ trans('app.course_assess_def_report') }}</dd>
+			<dt>{{ trans('app.course_assess_project') }}</dt>
+			<dd>{{ trans('app.course_assess_def_project') }}</dd>
+		</dl>
+		
+	</div>
+</div>
+
 
 <hr class="hidden-phone" />
 

@@ -3,10 +3,10 @@ $(document).ready(function () {
 	var typeahead;
 	function doneResizing() {
 		if ($(window).width() < 980) {
-			$('.form-search .search-query').typeahead('destroy');
+			$('.search-course-field').typeahead('destroy');
 		} else {
-			$('.form-search .search-query').typeahead('destroy');
-			typeahead = $('.form-search .search-query').typeahead({
+			$('.search-course-field').typeahead('destroy');
+			typeahead = $('.search-course-field').typeahead({
 				name: 'courses',
 				prefetch: '/courses.json',
 				template: [

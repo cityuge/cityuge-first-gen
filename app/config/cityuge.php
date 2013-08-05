@@ -2,7 +2,7 @@
 
 return array(
 	// App version shown in footer
-	'version' => '0.8.2',
+	'version' => '0.9',
 
 	// Locale
 	'availableLocale' => array('zh-hk', 'zh-cn'),
@@ -15,6 +15,8 @@ return array(
 	'firstAllowedSemester' => '1112A',
 	// Latest academic year which the course offerings data is available
 	'latestAcademicYearForOffering' => '1314',
+	// Current quick access semester
+	'currentQuickAccessSemester' => '1314A',
 	// Semester codes
 	'semesters' => array('A', 'B', 'S'),
 
@@ -38,4 +40,8 @@ return array(
 
 	// Twitter account associate with Twitter Card meta tag
 	'twitterCardSite' => '@swiftzer',
+
+	'facebookInsightsAdminId' => '***REMOVED***',
+	'googleAnalyticsUA' => '***REMOVED***',
+	'googleAnalyticsDomain' => 'swiftzer.net',
 );

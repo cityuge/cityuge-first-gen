@@ -31,7 +31,7 @@
 
 	<!-- Social medias -->
 	{{-- Facebook --}}
-	<meta property="fb:admins" content="***REMOVED***">
+	<meta property="fb:admins" content="{{ Config::get('cityuge.facebookInsightsAdminId') }}">
 	@if (isset($title))
 		<meta property="og:title" content="{{ $title }} | {{ Lang::get('app.appTitle') }}">
 	@else
@@ -85,7 +85,7 @@
 				<a class="brand" href="{{ route('home') }}" title="{{ Lang::get('app.appTitle') }}">{{ Lang::get('app.appTitle') }}</a>
 				<nav class="nav-collapse collapse">
 					<ul class="nav">
-						@if ($currentRoute == 'courses.index' || $currentRoute == 'courses.category')
+						@if ($currentRoute == 'courses.index' || $currentRoute == 'courses.category' || $currentRoute == 'courses.search')
 							<li class="dropdown active">
 						@else
 							<li class="dropdown">
@@ -101,6 +101,8 @@
 								<li>{{ link_to_route('courses.category', Lang::get('app.category_unireq'), 'university-requirements') }}</li>
 								<li class="nav-header">{{ trans('app.nav_otherCategory') }}</li>
 								<li>{{ link_to_route('courses.category', Lang::get('app.category_e'), 'foundation') }}</li>
+								<li class="divider"></li>
+								<li>{{ link_to_route('courses.search', Lang::get('app.nav_advancedSearch')) }}</li>
 							</ul>
 						</li>
 
@@ -154,11 +156,12 @@
 							<ul class="inline">
 								<li>
 									{{-- Search form --}}
-									{{ Form::open(['route' => 'courses.processSearch', 'method' => 'POST', 'class' => 'navbar-form form-search']) }}
+									{{ Form::open(['route' => 'courses.processSearch', 'method' => 'POST', 'class' => 'navbar-form']) }}
 										<div class="input-append">
-											{{ Form::text('keyword', isset($search_result) ? $keyword : '', array('class' => 'search-query', 'placeholder' => Lang::get('app.nav_searchPlaceholder'), 'x-webkit-speech' => '', 'x-webkit-grammar' => 'builtin:search', 'lang' => 'en')) }}
-											<button type="submit" class="btn btn-inverse"><i class="icon-search"></i> {{ Lang::get('app.nav_search') }}</button>
+											{{ Form::text('keyword', isset($search_result) ? $keyword : '', array('class' => 'search-course-field', 'placeholder' => Lang::get('app.nav_searchPlaceholder'), 'x-webkit-speech' => '', 'x-webkit-grammar' => 'builtin:search', 'lang' => 'en')) }}
+											<button type="submit" class="btn btn-inverse" value="{{ Lang::get('app.nav_search') }}"><i class="icon-search"></i></button>
 										</div>
+										{{ Form::hidden('type', 'quick') }}
 									{{ Form::close() }}
 								</li>
 							</ul>

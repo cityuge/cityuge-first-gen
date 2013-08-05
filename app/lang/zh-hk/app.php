@@ -72,10 +72,10 @@ return array(
 	'course_assess_exclude' => '不設<strong>:task</strong>',
 	'course_assess_explain' => '釋義',
 	'course_assess_model_title' => '評核項目釋義',
-	'course_assess_def_exam' => '該課程列載於 Master Examination Schedule 內或在 Form 2B 中有明確表示設有考試。不包括設於教學週次範圍以內的小測及期中測驗。',
-	'course_assess_def_quiz' => '可以是以個人、小組或混合形式進行。設題方式可以是多項選擇題、問答題、',
-	'course_assess_def_report' => 'It includes individual paper work like reports, essays, papers, compositions and journals. This does not include the report part of a group project, online discussion and article reading.',
-	'course_assess_def_project' => 'It includes group assignments like presentations, reports, leaflets and posters. However, it does not include group discussion, role-plays, peer-reviews and games during lessons.',
+	'course_assess_def_exam' => '該課程列載於考試時間表 (Master Examination Schedule) 內或在課程資料 (Form 2B) 中有明確表示設有考試。但不包括設於教學週次範圍以內的小測及期中測驗。',
+	'course_assess_def_quiz' => '可以是以個人、小組或混合形式進行。設題方式可以是多項選擇題、問答題等。此亦包括期中測驗。',
+	'course_assess_def_report' => '此包括各種個人文書課業如報告、論文、文章寫作及學習歷程記錄 (Journal)。但不包括小組報告、網上討論及文章閱讀等簡短文書課業。',
+	'course_assess_def_project' => '此包括小組課業如口頭匯報、小組報告、海報或單張設計等。但不包括小組討論、角色扮演 (Role-play)、組員互評 (Peer-review) 及課堂遊戲。',
 
 	// Search
 	'course_quickAccessCurrentSemester' => '快速查閱於 :semester 開辦的課程',
@@ -90,7 +90,7 @@ return array(
 	'course_search_assess' => '評核項目',
 	'course_search_assess_yes' => '有',
 	'course_search_assess_no' => '無',
-	'course_search_assess_dontCare' => '無所謂',
+	'course_search_assess_dontCare' => '不介意',
 	'course_search_nothingFound' => '找不到條件匹配的課程，請改用其他關鍵字或條件重新搜尋。',
 	'course_search_wrongParam' => '網址參數錯誤，請重新搜尋。',
 	'course_search_resultTitle' => '{1} 搜尋結果|[2,Inf] 搜尋結果：第 :page 頁',

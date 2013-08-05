@@ -40,6 +40,7 @@
 		<div class="span4">
 			<fieldset>
 				<legend>{{ trans('app.course_search_assess') }}</legend>
+				<p><a href="#assess-explain-modal" role="button" class="btn btn-small" data-toggle="modal"><i class="icon-info-sign"></i> {{ trans('app.course_assess_explain') }}</a></p>
 				<p>
 					{{ trans('app.course_assess_exam') }}<br />
 					<label class="radio inline">{{ Form::radio('exam', '1') }} {{ trans('app.course_search_assess_yes') }}</label>
@@ -75,5 +76,26 @@
 	</div>
 
 {{ Form::close() }}
+
+{{-- Assessment Task Definitions --}}
+<div id="assess-explain-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="assess-explain-modal-label" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3 id="assess-explain-modal-label">{{ trans('app.course_assess_model_title') }}</h3>
+	</div>
+	<div class="modal-body">
+		<dl>
+			<dt>{{ trans('app.course_assess_exam') }}</dt>
+			<dd>{{ trans('app.course_assess_def_exam') }}</dd>
+			<dt>{{ trans('app.course_assess_quiz') }}</dt>
+			<dd>{{ trans('app.course_assess_def_quiz') }}</dd>
+			<dt>{{ trans('app.course_assess_report') }}</dt>
+			<dd>{{ trans('app.course_assess_def_report') }}</dd>
+			<dt>{{ trans('app.course_assess_project') }}</dt>
+			<dd>{{ trans('app.course_assess_def_project') }}</dd>
+		</dl>
+		
+	</div>
+</div>
 
 @stop

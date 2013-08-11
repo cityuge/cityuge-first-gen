@@ -57,9 +57,9 @@ class FeedController extends \BaseController {
 
 		// Items
 		foreach ($comments as $comment) {
-			//$url = route('courses.show', strtolower($comment->course->code)). '/#comment-' . $comment->id;
 			$url = route('comments.show', array($comment->id));
-			$desc = '<dl><dt>' . Lang::get('app.comment_instructor') . '</dt><dd>' . e($comment->instructor) . '</dd>'
+			$desc = '<dl><dt>' . Lang::get('app.comment_semester') . '</dt><dd>' . e($comment->semester) . '</dd>'
+						. '<dt>' . Lang::get('app.comment_instructor') . '</dt><dd>' . e($comment->instructor) . '</dd>'
 						. '<dt>' . Lang::get('app.comment_grade') . '</dt><dd>' . e($comment->grade) . '<dd>'
 						. '<dt>' . Lang::get('app.comment_workload') . '</dt><dd>' . e($comment->workload) . '</dd></dl>' . $comment->body;
 
@@ -84,8 +84,8 @@ class FeedController extends \BaseController {
 
 		// Channel
 		$channel = new Channel();
-		$channel->title(Lang::get('app.feed_course_title', ['courseCode' => $course->code]))
-				->description(Lang::get('app.feed_course_description', ['courseCode' => $course->code]))
+		$channel->title(Lang::get('app.feed_course_title', array('courseCode' => $course->code)))
+				->description(Lang::get('app.feed_course_description', array('courseCode' => $course->code)))
 				->url(URL::to(''))
 				->pubDate(count($comments) ? $comments[0]->created_at->timestamp : time())
 				->ttl(Config::get('cityuge.feed_ttl'))
@@ -95,9 +95,9 @@ class FeedController extends \BaseController {
 
 		// Items
 		foreach ($comments as $comment) {
-			//$url = route('courses.show', strtolower($course->code)). '/#comment-' . $comment->id;
 			$url = route('comments.show', array($comment->id));
-			$desc = '<dl><dt>' . Lang::get('app.comment_instructor') . '</dt><dd>' . e($comment->instructor) . '</dd>'
+			$desc = '<dl><dt>' . Lang::get('app.comment_semester') . '</dt><dd>' . e($comment->semester) . '</dd>'
+						. '<dt>' . Lang::get('app.comment_instructor') . '</dt><dd>' . e($comment->instructor) . '</dd>'
 						. '<dt>' . Lang::get('app.comment_grade') . '</dt><dd>' . e($comment->grade) . '<dd>'
 						. '<dt>' . Lang::get('app.comment_workload') . '</dt><dd>' . e($comment->workload) . '</dd></dl>' . $comment->body;
 

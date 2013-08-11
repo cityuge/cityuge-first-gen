@@ -114,7 +114,6 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Greggilbert\Recaptcha\RecaptchaServiceProvider',
-		'Way\Generators\GeneratorsServiceProvider',
 		'Juy\Profiler\Providers\ProfilerServiceProvider',
 
 	),

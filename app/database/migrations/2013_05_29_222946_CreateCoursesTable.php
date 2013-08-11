@@ -14,7 +14,7 @@ class CreateCoursesTable extends Migration {
 	{
 		Schema::create('courses', function(Blueprint $table)
 		{
-			$table->engine = 'InnoDB';
+			$table->engine = 'MyISAM';
 
 			$table->increments('id')->unsigned();
 			$table->string('code', 10)->unique();

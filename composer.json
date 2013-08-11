@@ -6,7 +6,6 @@
 		"thepixeldeveloper/sitemap": "2.0.0"
 	},
 	"require-dev": {
-		"way/generators": "dev-master",
 		"juy/profiler": "dev-master"
 	},
 	"autoload": {

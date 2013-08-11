@@ -14,13 +14,12 @@ class CreateUsersTable extends Migration {
 	{
 		Schema::create('users', function(Blueprint $table)
 		{
-			$table->engine = 'InnoDB';
+			$table->engine = 'MyISAM';
 
 			$table->increments('id')->unsigned();
 			$table->string('username', 20)->unique();
 			$table->string('password', 60);
 			
-			$table->index('username');
 			$table->index('password');
 		});
 	}

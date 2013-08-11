@@ -14,7 +14,7 @@ class CreateOfferingsTable extends Migration {
 	{
 		Schema::create('offerings', function(Blueprint $table)
 		{
-			$table->engine = 'InnoDB';
+			$table->engine = 'MyISAM';
 
 			$table->increments('id')->unsigned();
 			$table->integer('course_id')->unsigned();

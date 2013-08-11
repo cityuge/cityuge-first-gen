@@ -26,10 +26,10 @@ class HomeController extends BaseController {
 
 	public function about()
 	{
-		$data = [
+		$data = array(
 			'title' => Lang::get('app.about'),
 			'meta_description' => Lang::get('app.meta_aboutDesc'),
-		];
+		);
 		return View::make('home.about')->with($data);
 	}
 

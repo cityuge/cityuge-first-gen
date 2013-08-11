@@ -8,7 +8,8 @@ class LocaleHelper {
 	 */
 	public static function getCurrentPageURLInLocale($locale) {
 		// if the input locale is default locale, set it to null
-		if ($locale == Config::get('cityuge.availableLocaleURL')[0]) {
+		$configAvailableLocaleURL = Config::get('cityuge.availableLocaleURL');
+		if ($locale == $configAvailableLocaleURL[0]) {
 			$locale = null;
 		}
 		// get all URL segments

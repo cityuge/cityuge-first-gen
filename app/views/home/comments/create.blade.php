@@ -10,7 +10,7 @@
 </div>
 
 <div class="row">
-	{{ Form::open(['route' => 'comments.store', 'method' => 'POST', 'class' => 'span9 form-horizontal']) }}
+	{{ Form::open(array('route' => 'comments.store', 'method' => 'POST', 'class' => 'span9 form-horizontal')) }}
 		<div class="control-group {{ $errors->has('semester') ? 'error' : '' }}">
 			{{ Form::label('semester', Lang::get('app.comment_semester'), array('class' => 'control-label')) }}
 			<div class="controls">

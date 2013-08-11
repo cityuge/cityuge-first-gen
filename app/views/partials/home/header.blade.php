@@ -156,7 +156,7 @@
 							<ul class="inline">
 								<li>
 									{{-- Search form --}}
-									{{ Form::open(['route' => 'courses.processSearch', 'method' => 'POST', 'class' => 'navbar-form']) }}
+									{{ Form::open(array('route' => 'courses.processSearch', 'method' => 'POST', 'class' => 'navbar-form')) }}
 										<div class="input-append">
 											{{ Form::text('keyword', isset($search_result) ? $keyword : '', array('class' => 'search-course-field', 'placeholder' => Lang::get('app.nav_searchPlaceholder'), 'x-webkit-speech' => '', 'x-webkit-grammar' => 'builtin:search', 'lang' => 'en')) }}
 											<button type="submit" class="btn btn-inverse" value="{{ Lang::get('app.nav_search') }}"><i class="icon-search"></i></button>

@@ -6,7 +6,7 @@
 	<h1>{{ $title }}</h1>
 </div>
 
-{{ Form::open(['route' => 'courses.processSearch', 'method' => 'POST', 'class' => '']) }}
+{{ Form::open(array('route' => 'courses.processSearch', 'method' => 'POST', 'class' => '')) }}
 	<div class="row">
 		<div class="span4">
 			<div class="control-group">

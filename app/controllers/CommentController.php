@@ -13,7 +13,7 @@ class CommentController extends BaseController {
                                 ->orderBy('created_at', 'DESC')
                                 ->paginate(Config::get('cityuge.paginate_commentPerPage'));
 		$data = array(
-			'title' => Lang::choice('app.comment', $comments->getCurrentPage(), ['page' => $comments->getCurrentPage()]),
+			'title' => Lang::choice('app.comment', $comments->getCurrentPage(), array('page' => $comments->getCurrentPage())),
 			'comments' => $comments,
 			'metaKeywords' => array('comments', '意見', '評論', '評價'),
 			'metaDescription' => Lang::get('app.comment_metaDesc'),
@@ -96,7 +96,7 @@ class CommentController extends BaseController {
 			// Fire an event
 			Event::fire('app.newComment', array(Input::get('course_id')));
 
-			return Redirect::route('courses.show', [strtolower($course->code)])
+			return Redirect::route('courses.show', array(strtolower($course->code)))
 							->with('alertType', 'success')
 							->with('alertBody', Lang::get('app.comment_created'));
 		}
@@ -166,11 +166,11 @@ class CommentController extends BaseController {
 		if ($comment) {
 			$courseId = $comment->course_id;
 			$comment->delete();
-			return Redirect::route('courses.show', [$courseId])
+			return Redirect::route('courses.show', array($courseId))
 							->with('alertType', 'success')
 							->with('alertBody', Lang::get('app.comment_deleted'));
 		} else {
-			return Redirect::route('courses.show', [$courseId])
+			return Redirect::route('courses.show', array($courseId))
 							->with('alertType', 'error')
 							->with('alertBody', Lang::get('app.comment_delete_notFound'));
 		}

@@ -17,16 +17,18 @@
 $locale = Request::segment(1);
 $localeIndex = array_search($locale, Config::get('cityuge.availableLocaleURL'));
 
+$availableLocales = Config::get('cityuge.availableLocale');
+$availableLocaleISOs = Config::get('cityuge.availableLocaleISO');
 if ($localeIndex !== false && $localeIndex !== 0) {
 	// locale is in the available locale list but not the default one
-	App::setLocale(Config::get('cityuge.availableLocale')[$localeIndex]);
-	Session::put('_locale', Config::get('cityuge.availableLocale')[$localeIndex]);
-	Session::put('_localeISO', Config::get('cityuge.availableLocaleISO')[$localeIndex]);
+	App::setLocale($availableLocales[$localeIndex]);
+	Session::put('_locale', $availableLocales[$localeIndex]);
+	Session::put('_localeISO', $availableLocaleISOs[$localeIndex]);
 } else {
 	// locale is invalid or the default one
 	$locale = null;
-	Session::put('_locale', Config::get('cityuge.availableLocale')[0]);
-	Session::put('_localeISO', Config::get('cityuge.availableLocaleISO')[0]);
+	Session::put('_locale', $availableLocales[0]);
+	Session::put('_localeISO', $availableLocaleISOs[0]);
 }
 
 
@@ -44,18 +46,18 @@ if ($localeIndex !== false && $localeIndex !== 0) {
 // Language route group
 Route::group(array('prefix' => $locale), function() {
 
-	Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
-	Route::get('about', ['as' => 'about', 'uses' => 'HomeController@about']);
+	Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
+	Route::get('about', array('as' => 'about', 'uses' => 'HomeController@about'));
 
 	// Department
-	Route::get('departments', ['as' => 'departments.index', 'uses' => 'DepartmentController@index']);
-	Route::get('departments/{initial}', ['as' => 'departments.courses', 'uses' => 'DepartmentController@courses']);
+	Route::get('departments', array('as' => 'departments.index', 'uses' => 'DepartmentController@index'));
+	Route::get('departments/{initial}', array('as' => 'departments.courses', 'uses' => 'DepartmentController@courses'));
 
 	// Course
-	Route::get('courses', ['as' => 'courses.index', 'uses' => 'CourseController@index']);
-	Route::get('courses.json', ['uses' => 'CourseController@courseListTypeahead']);
-	Route::get('courses/categories/{category}/{semester?}', ['as' => 'courses.category', 'uses' => 'CourseController@category']);
-	Route::get('courses/{code}', ['as' => 'courses.show', 'uses' => 'CourseController@show']);
+	Route::get('courses', array('as' => 'courses.index', 'uses' => 'CourseController@index'));
+	Route::get('courses.json', array('uses' => 'CourseController@courseListTypeahead'));
+	Route::get('courses/categories/{category}/{semester?}', array('as' => 'courses.category', 'uses' => 'CourseController@category'));
+	Route::get('courses/{code}', array('as' => 'courses.show', 'uses' => 'CourseController@show'));
 	Route::get('courses/{code}/comments/create', array('as' => 'comments.create', 'uses' => 'CommentController@create'));
 
 	// Search
@@ -68,29 +70,29 @@ Route::group(array('prefix' => $locale), function() {
 	});
 
 	// Comment
-	Route::get('comments', ['as' => 'comments.index', 'uses' => 'CommentController@index']);
-	Route::get('comments/{id}', ['as' => 'comments.show', 'uses' => 'CommentController@show'])->where('id', '[0-9]+');
-	Route::post('comments', ['as' => 'comments.store', 'uses' => 'CommentController@store']);
+	Route::get('comments', array('as' => 'comments.index', 'uses' => 'CommentController@index'));
+	Route::get('comments/{id}', array('as' => 'comments.show', 'uses' => 'CommentController@show'))->where('id', '[0-9]+');
+	Route::post('comments', array('as' => 'comments.store', 'uses' => 'CommentController@store'));
 
 	// Admin
-	Route::get('login', ['as' => 'login', 'uses' => 'UserController@getLogin']);
+	Route::get('login', array('as' => 'login', 'uses' => 'UserController@getLogin'));
 	Route::group(array('before' => 'auth', 'prefix' => 'admin'), function() {
-		Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'AdminController@index']);
-		Route::post('purge-cache', ['as' => 'admin.cache.purge', 'uses' => 'AdminController@purgeCache', 'before' => 'csrf']);
+		Route::get('/', array('as' => 'admin.dashboard', 'uses' => 'AdminController@index'));
+		Route::post('purge-cache', array('as' => 'admin.cache.purge', 'uses' => 'AdminController@purgeCache', 'before' => 'csrf'));
 	});
 
 });
 
 // Login and logout actions
-Route::post('login', ['as' => 'loggingIn', 'before' => 'csrf', 'uses' => 'UserController@postLogin']);
-Route::get('logout', ['as' => 'logout', 'uses' => 'UserController@getLogout']);
+Route::post('login', array('as' => 'loggingIn', 'before' => 'csrf', 'uses' => 'UserController@postLogin'));
+Route::get('logout', array('as' => 'logout', 'uses' => 'UserController@getLogout'));
 
 // RSS feed
-Route::get('feed', ['as' => 'feed', 'uses' => 'FeedController@siteLatestComments']);
-Route::get('courses/{code}/feed', ['as' => 'courses.feed', 'uses' => 'FeedController@courseLatestComments']);
+Route::get('feed', array('as' => 'feed', 'uses' => 'FeedController@siteLatestComments'));
+Route::get('courses/{code}/feed', array('as' => 'courses.feed', 'uses' => 'FeedController@courseLatestComments'));
 
 // Sitemap
-Route::get('sitemap', ['as' => 'sitemap', 'uses' => 'SitemapController@index']);
+Route::get('sitemap', array('as' => 'sitemap', 'uses' => 'SitemapController@index'));
 
 // Sharrre
 Route::get('social-media-counter', array('as' => 'sharrre', 'uses' => 'HomeController@socialMediaCounter'));

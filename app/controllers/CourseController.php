@@ -25,7 +25,7 @@ class CourseController extends BaseController {
 							->paginate(Config::get('cityuge.paginate_perPage'));
 
 		$data = array(
-			'title' => Lang::choice('app.course', $courses->getCurrentPage(), ['page' => $courses->getCurrentPage()]),
+			'title' => Lang::choice('app.course', $courses->getCurrentPage(), array('page' => $courses->getCurrentPage())),
 			'courses' => $courses,
 			'metaDescription' => Lang::get('app.course_metaDesc'),
 		);
@@ -56,10 +56,12 @@ class CourseController extends BaseController {
 		}
 		$category = Course::$category[$categoryIndex];
 
+		$configSemesters = Config::get('cityuge.semesters');
+		
 		// Check the semester URL
 		if ($semesterUrl != null) {
 			// Get the last semester which the database stored
-			$endSemester = Config::get('cityuge.latestAcademicYearForOffering') . Config::get('cityuge.semesters')[2];
+			$endSemester = Config::get('cityuge.latestAcademicYearForOffering') . $configSemesters[2];
 			$semesters = SemesterHelper::getSemesterOptions(false, $endSemester);
 			$semester = strtoupper($semesterUrl);
 			$semesterIndex = array_search($semester, $semesters);
@@ -93,7 +95,7 @@ class CourseController extends BaseController {
 			
 			$title = Lang::choice('app.course_categorySemesterTitle',
 					$courses->getCurrentPage(),
-					['page' => $courses->getCurrentPage(), 'category' => Course::getCategoryTitle($category), 'semester' => SemesterHelper::getSemesterText($semester)]);
+					array('page' => $courses->getCurrentPage(), 'category' => Course::getCategoryTitle($category), 'semester' => SemesterHelper::getSemesterText($semester)));
 		} else {
 			$courses = DB::table('courses')
 								->remember(Config::get('cityuge.cache_courseList'))
@@ -114,7 +116,7 @@ class CourseController extends BaseController {
 			
 			$title = Lang::choice('app.course_categoryTitle',
 					$courses->getCurrentPage(),
-					['page' => $courses->getCurrentPage(), 'category' => Course::getCategoryTitle($category)]);
+					array('page' => $courses->getCurrentPage(), 'category' => Course::getCategoryTitle($category)));
 		}
 		
 		$metaDescription = Lang::get('app.course_category_metaDesc', array('category' => Course::getCategoryTitle($category)));
@@ -124,7 +126,7 @@ class CourseController extends BaseController {
 			'courses' => $courses,
 			'metaDescription' => $metaDescription,
 			'categoryUrl' => $categoryUrl,
-			'semesters' => SemesterHelper::getSemesterOptions(true, Config::get('cityuge.latestAcademicYearForOffering') . Config::get('cityuge.semesters')[2]),
+			'semesters' => SemesterHelper::getSemesterOptions(true, Config::get('cityuge.latestAcademicYearForOffering') . $configSemesters[2]),
 		);
 		return View::make('home.courses.index')->with($data);
 	}
@@ -228,8 +230,10 @@ class CourseController extends BaseController {
 	 */
 	public function search()
 	{
+		$configSemesters = Config::get('cityuge.semesters');
+
 		$quickAccesses = SemesterHelper::getQuickAccessCategoryLinks(Config::get('cityuge.currentQuickAccessSemester'));
-		$semesters = array('' => '') + SemesterHelper::getSemesterOptions(true, Config::get('cityuge.latestAcademicYearForOffering') . Config::get('cityuge.semesters')[2]);
+		$semesters = array('' => '') + SemesterHelper::getSemesterOptions(true, Config::get('cityuge.latestAcademicYearForOffering') . $configSemesters[2]);
 		$departments = array('' => '') + Department::orderBy('title_en')->lists('title_en', 'initial');
 		$categories = array('' => '');
 		foreach (Course::$category as $category) {
@@ -272,7 +276,7 @@ class CourseController extends BaseController {
 						->with('alertType', 'error')
 						->with('alertBody', Lang::get('app.course_search_empty'));
 		} else {
-			return Redirect::route('courses.searchResult', ['q' => $keyword]);
+			return Redirect::route('courses.searchResult', array('q' => $keyword));
 		}
 	}
 
@@ -333,8 +337,10 @@ class CourseController extends BaseController {
 	 */
 	public function searchResult()
 	{
+		$configSemesters = Config::get('cityuge.semesters');
+
 		$rules = array(
-			'semester' => 'in:' . implode(',', SemesterHelper::getSemesterOptions(false, Config::get('cityuge.latestAcademicYearForOffering') . Config::get('cityuge.semesters')[2])),
+			'semester' => 'in:' . implode(',', SemesterHelper::getSemesterOptions(false, Config::get('cityuge.latestAcademicYearForOffering') . $configSemesters[2])),
 			'department' => 'alpha',
 			'category' => 'in:' . implode(',', Course::$category),
 			'exam' => 'in:0,1',

@@ -85,7 +85,7 @@ class SemesterHelper {
 		for ($i = 0; $i < count($categoryCodes); $i++) {
 			$result[] = array(
 				'text' => Course::getCategoryTitle($categoryCodes[$i]),
-				'url' => route('courses.category', array($categoryUrls[$i], $semester)),
+				'url' => route('courses.category', array($categoryUrls[$i], strtolower($semester))),
 			);
 			
 		}

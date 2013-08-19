@@ -42,6 +42,10 @@ HTML::macro('alert', function($type = null, $message, $dismiss = false, $title =
  */
 Validator::extend('offering', function($attribute, $value, $parameters)
 {
+	// Get the offering semesters of that course
 	$validSemesters = Offering::where('course_id', '=', $parameters[0])->get(array('semester'))->toArray();
-	return in_array(array('semester' => $value), $validSemesters);
+	// Get all the semesters which is allowed for user to input
+	$allowedSemesters = SemesterHelper::getSemesterOptions(false);
+
+	return in_array(array('semester' => $value), $validSemesters) && in_array($value, $allowedSemesters);
 });

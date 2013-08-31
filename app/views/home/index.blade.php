@@ -3,9 +3,12 @@
 @section('content')
 
 <div class="hero-unit">
-	<h1><i class="icon-thumbs-up"></i> Like Us on Facebook!</h1>
-	<p>我們已開設了 Facebook 專頁！</p>
-	<p><a href="http://www.facebook.com/cityuge" class="btn btn-primary btn-large" target="_blank">Facebook 專頁 <i class="icon-angle-right"></i></a></p>
+	<h1>Looking for good grade course?</h1>
+	<p>《Gateway Education Courses Analysis Report》經已出版。</p>
+	<p>
+		<a href="http://issuu.com/swiftzer/docs/ge_course_analysis_report__aug_2013" class="btn btn-inverse btn-large" target="_blank">閱讀 <small>(ISSUU)</small> <i class="icon-angle-right"></i></a>
+		<a href="http://docs.google.com/file/d/0B1iBpnvlJzmtMERYeGUtVFo4VG8/edit" class="btn btn-large" target="_blank">下載 <small>(Google Drive)</small> <i class="icon-angle-right"></i></a>
+	</p>
 </div>
 
 
@@ -50,6 +53,7 @@
 			<hr>
 			{{--  Social media share buttons --}}
 			<div id="social-network-btn">
+				<a href="http://www.facebook.com/cityuge" class="btn btn-facebook" target="_blank"><i class="icon-facebook"></i> Fan Page</i></a>
 				<button id="facebook" class="btn btn-facebook" data-url="{{ URL::to('') }}" data-text="{{ Lang::get('app.meta_homeDesc') }}"></button>
 				<button id="twitter" class="btn btn-twitter" data-url="{{ URL::to('') }}" data-text="{{ Lang::get('app.meta_homeDesc') }}"></button>
 				<button id="google-plus" class="btn btn-google-plus" data-url="{{ URL::to('') }}" data-text="{{ Lang::get('app.meta_homeDesc') }}"></button>

@@ -6,7 +6,8 @@
 		"thepixeldeveloper/sitemap": "2.0.0"
 	},
 	"require-dev": {
-		"juy/profiler": "dev-master"
+		"juy/profiler": "dev-master",
+		"phpunit/phpunit" : "3.7.*"
 	},
 	"autoload": {
 		"classmap": [

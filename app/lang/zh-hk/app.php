@@ -11,9 +11,7 @@ return array(
 	'nav_otherCategory' => '其他',
 	'nav_advancedSearch' => '進階搜尋',
 	'nav_comment' => '留言',
-	'nav_category' => '分類',
 	'nav_department' => '學系',
-	'nav_rss' => 'RSS',
 	'nav_rssSite' => '網站的最新留言',
 	'nav_rssCourse' => ':courseCode 的最新留言',
 
@@ -29,7 +27,7 @@ return array(
 	// Home
 	'home_hotCourse' => '熱門課程',
 	'home_goodGradeCourse' => '好 Grade 課程',
-	'home_goodGradeCourseNote' => '平均成績高於或等於 B- 的首 :limit 個課程。',
+	'home_goodGradeCourseNote' => '平均成績高於或等於 B+ 的首 :limit 個課程。',
 	'home_badGradeCourse' => '爛 Grade 課程',
 	'home_badGradeCourseNote' => '平均成績低於 B- 的首 :limit 個課程。',
 	'home_lightWorkloadCourse' => '輕鬆之選',

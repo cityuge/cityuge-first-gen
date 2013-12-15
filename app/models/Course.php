@@ -243,7 +243,7 @@ class Course extends BaseModel {
 						. 'WHERE courses.category = ? '
 						. 'GROUP BY courses.id '
 						. 'ORDER BY gpa DESC'
-						. ') AS t WHERE gpa IS NOT NULL AND gpa >= 2.7 LIMIT ?',
+						. ') AS t WHERE gpa IS NOT NULL AND gpa >= 3.3 LIMIT ?',
 					array($category, $limit));
 		return $query;
 	}

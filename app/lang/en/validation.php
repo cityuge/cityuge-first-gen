@@ -89,6 +89,8 @@ return array(
 	|
 	*/
 
-	'attributes' => array(),
+	'attributes' => array(
+		'recaptcha_response_field' => 'reCAPTCHA',
+	),
 
 );

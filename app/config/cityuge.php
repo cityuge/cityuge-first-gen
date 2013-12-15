@@ -5,9 +5,9 @@ return array(
 	'version' => '0.9',
 
 	// Locale
-	'availableLocale' => array('zh-hk', 'zh-cn'),
-	'availableLocaleURL' => array('hk', 'cn'),
-	'availableLocaleISO' => array('zh-HK', 'zh-CN'),
+	'availableLocale' => array('zh-hk', 'zh-cn', 'en'),
+	'availableLocaleURL' => array('hk', 'cn', 'en'),
+	'availableLocaleISO' => array('zh-HK', 'zh-CN', 'en'),
 
 	// Latest semester which allowed to use when posting a comment
 	'currentAllowedSemester' => '1213S',
@@ -25,7 +25,7 @@ return array(
 	'paginate_commentPerPage' => 20,
 
 	// Maximum number of courses shown on the statistics lists
-	'home_statsMaxItem' => 8,
+	'home_statsMaxItem' => 10,
 
 	// Maximum length of post excerpt (for meta description and social media sharing)
 	'excerptLength' => 250,

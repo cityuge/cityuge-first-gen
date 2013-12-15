@@ -44,19 +44,19 @@
 	<meta property="og:url" content="{{ URL::current() }}">
 
 	{{-- Twitter --}}
-	<meta name="twitter:card" content="summary">
-	<meta name="twitter:site" content="{{ Config::get('app.twitter_card_site') }}">
+	<meta property="twitter:card" content="summary">
+	<meta property="twitter:site" content="{{ Config::get('app.twitter_card_site') }}">
 	@if (isset($title))
-		<meta name="twitter:title" content="{{ $title }} | {{ Lang::get('app.appTitle') }}">
+		<meta property="twitter:title" content="{{ $title }} | {{ Lang::get('app.appTitle') }}">
 	@else
-		<meta name="twitter:title" content="{{ Lang::get('app.appTitle') }}">
+		<meta property="twitter:title" content="{{ Lang::get('app.appTitle') }}">
 	@endif
 	@if (isset($metaDescription))
-		<meta name="twitter:description" content="{{ $metaDescription }}">
+		<meta property="twitter:description" content="{{ $metaDescription }}">
 	@else
-		<meta name="twitter:description" content="{{ Lang::get('app.meta_homeDesc') }}">
+		<meta property="twitter:description" content="{{ Lang::get('app.meta_homeDesc') }}">
 	@endif
-	<meta name="twitter:image:src" content="{{ URL::asset('img/logo-140px.png') }}">
+	<meta property="twitter:image:src" content="{{ URL::asset('img/logo-140px.png') }}">
 
 	<!-- RSS feeds -->
 	<link rel="alternate" type="application/rss+xml" title="{{ Lang::get('app.feed_metaTitle') }}" href="{{ route('feed') }}">
@@ -82,7 +82,11 @@
 				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 					<i class="icon-ellipsis-vertical"></i>
 				</button>
-				<a class="brand" href="{{ route('home') }}" title="{{ Lang::get('app.appTitle') }}">{{ Lang::get('app.appTitle') }}</a>
+				@if (Session::get('_locale') == 'en')
+					<a class="brand brand-en" href="{{ route('home') }}" title="{{ Lang::get('app.appTitle') }}">{{ Lang::get('app.appTitle') }}</a>
+				@else
+					<a class="brand" href="{{ route('home') }}" title="{{ Lang::get('app.appTitle') }}">{{ Lang::get('app.appTitle') }}</a>
+				@endif
 				<nav class="nav-collapse collapse">
 					<ul class="nav">
 						@if ($currentRoute == 'courses.index' || $currentRoute == 'courses.category' || $currentRoute == 'courses.search')
@@ -125,7 +129,7 @@
 					<ul class="nav pull-right">
 						{{-- RSS --}}
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-rss"></i> {{ Lang::get('app.nav_rss') }} <b class="caret"></b></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-rss"></i> <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li>{{ link_to_route('feed', Lang::get('app.nav_rssSite')) }}</li>
 								@if ($currentRoute === 'courses.show')
@@ -139,6 +143,7 @@
 							<ul class="dropdown-menu">
 								<li>{{ HTML::link(LocaleHelper::getCurrentPageURLInLocale('hk'), '繁體中文') }}</li>
 								<li>{{ HTML::link(LocaleHelper::getCurrentPageURLInLocale('cn'), '简体中文') }}</li>
+								<li>{{ HTML::link(LocaleHelper::getCurrentPageURLInLocale('en'), 'English') }}</li>
 							</ul>
 						</li>--}}
 						{{-- Admin menu --}}
@@ -166,12 +171,10 @@
 								</li>
 							</ul>
 						</li>
-					</ul>
-					
-
+					</ul><!-- /.nav .pull-right -->
 				</nav><!--/.nav-collapse -->
-			</div>
-		</div>
+			</div><!--/.container -->
+		</div><!--/.navbar-inner -->
 	</header>
 
 	<div class="container">

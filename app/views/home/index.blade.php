@@ -53,7 +53,7 @@
 			<hr>
 			{{--  Social media share buttons --}}
 			<div id="social-network-btn">
-				<a href="http://www.facebook.com/cityuge" class="btn btn-facebook" target="_blank"><i class="icon-facebook"></i> Fan Page</i></a>
+				<a href="http://www.facebook.com/cityuge" class="btn btn-facebook" target="_blank"><i class="icon-facebook"></i> Fan Page</a>
 				<button id="facebook" class="btn btn-facebook" data-url="{{ URL::to('') }}" data-text="{{ Lang::get('app.meta_homeDesc') }}"></button>
 				<button id="twitter" class="btn btn-twitter" data-url="{{ URL::to('') }}" data-text="{{ Lang::get('app.meta_homeDesc') }}"></button>
 				<button id="google-plus" class="btn btn-google-plus" data-url="{{ URL::to('') }}" data-text="{{ Lang::get('app.meta_homeDesc') }}"></button>
@@ -66,7 +66,7 @@
 	<div class="span6">
 		<h2>{{ Lang::get('app.home_goodGradeCourse') }}</h2>
 		<p class="muted">{{ Lang::get('app.home_goodGradeCourseNote', array('limit' => Config::get('cityuge.home_statsMaxItem'))) }}</p>
-		<ul class="nav nav-tabs" id="hot-course">
+		<ul class="nav nav-tabs" id="goode-grade-course">
 			<li class="active"><a href="#goode-grade-course-area1">{{ Lang::get('app.category_area1') }}</a></li>
 			<li><a href="#goode-grade-course-area2">{{ Lang::get('app.category_area2') }}</a></li>
 			<li><a href="#goode-grade-course-area3">{{ Lang::get('app.category_area3') }}</a></li>
@@ -99,27 +99,27 @@
 	<div class="span6">
 		<h2>{{ Lang::get('app.home_badGradeCourse') }}</h2>
 		<p class="muted">{{ Lang::get('app.home_badGradeCourseNote', array('limit' => Config::get('cityuge.home_statsMaxItem'))) }}</p>
-		<ul class="nav nav-tabs" id="hot-course">
-			<li class="active"><a href="#bade-grade-course-area1">{{ Lang::get('app.category_area1') }}</a></li>
-			<li><a href="#bade-grade-course-area2">{{ Lang::get('app.category_area2') }}</a></li>
-			<li><a href="#bade-grade-course-area3">{{ Lang::get('app.category_area3') }}</a></li>
+		<ul class="nav nav-tabs" id="bad-grade-course">
+			<li class="active"><a href="#bad-grade-course-area1">{{ Lang::get('app.category_area1') }}</a></li>
+			<li><a href="#bad-grade-course-area2">{{ Lang::get('app.category_area2') }}</a></li>
+			<li><a href="#bad-grade-course-area3">{{ Lang::get('app.category_area3') }}</a></li>
 		</ul>
 		<div class="tab-content">
-			<div class="tab-pane active" id="bade-grade-course-area1">
+			<div class="tab-pane active" id="bad-grade-course-area1">
 				<ol>
 					@foreach($stats['badGradeCoursesArea1'] as $row)
 						<li>{{ link_to_route('courses.show', $row->code . ' - ' . $row->title_en, array(strtolower($row->code))) }}</li>
 					@endforeach
 				</ol>
 			</div>
-			<div class="tab-pane" id="bade-grade-course-area2">
+			<div class="tab-pane" id="bad-grade-course-area2">
 				<ol>
 					@foreach($stats['badGradeCoursesArea2'] as $row)
 						<li>{{ link_to_route('courses.show', $row->code . ' - ' . $row->title_en, array(strtolower($row->code))) }}</li>
 					@endforeach
 				</ol>
 			</div>
-			<div class="tab-pane" id="bade-grade-course-area3">
+			<div class="tab-pane" id="bad-grade-course-area3">
 				<ol>
 					@foreach($stats['badGradeCoursesArea3'] as $row)
 						<li>{{ link_to_route('courses.show', $row->code . ' - ' . $row->title_en, array(strtolower($row->code))) }}</li>
@@ -206,6 +206,10 @@ $('#hot-course a').click(function (e) {
 	$(this).tab('show');
 });
 $('#goode-grade-course a').click(function (e) {
+	e.preventDefault();
+	$(this).tab('show');
+});
+$('#bad-grade-course a').click(function (e) {
 	e.preventDefault();
 	$(this).tab('show');
 });

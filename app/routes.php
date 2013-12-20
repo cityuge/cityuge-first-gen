@@ -64,10 +64,6 @@ Route::group(array('prefix' => $locale), function() {
 	Route::get('search', array('as' => 'courses.search', 'uses' => 'CourseController@search'));
 	Route::post('search', array('as' => 'courses.processSearch', 'uses' => 'CourseController@processSearch'));
 	Route::get('search/results', array('as' => 'courses.searchResult', 'uses' => 'CourseController@searchResult'));
-	// Redirect all the new comment links to the new url (for SEO)
-	Route::get('courses/{code}/comments/new', function($code) {
-		return Redirect::route('comments.create', array($code), 301);
-	});
 
 	// Comment
 	Route::get('comments', array('as' => 'comments.index', 'uses' => 'CommentController@index'));

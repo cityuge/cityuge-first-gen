@@ -6,13 +6,13 @@ return array(
 	'profiler' => NULL,
 	
 	// Set to TRUE to activate URL based Profiler enabling/ disabling (add /_profiler to the root url to activate the toggle mechanism, e.g. http://localhost/_profiler)
-	'urlToggle' => FALSE,
+	'urlToggle' => true,
 
 	// Change below urlTogglePassword from *(string) mt_rand(0, microtime(true))* to your prefered password for improved security in production environments.
 	'urlTogglePassword' => \Hash::make((string) mt_rand(0, microtime(true))),
 
 	// Profiler can hide certain footer elements and be annoying. This makes it minimized by default. Set TRUE to enable.
-	'minimized' => FALSE,
+	'minimized' => true,
 
 	// Buttons: order /disable buttons
 	'btns' => array(

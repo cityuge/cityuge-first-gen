@@ -4,7 +4,7 @@ use \Suin\RSSWriter\Feed;
 use \Suin\RSSWriter\Channel;
 use \Suin\RSSWriter\Item;
 
-class FeedController extends \BaseController {
+class FeedController extends BaseController {
 
 	/**
 	 * RSS feed for the site's latest comments.

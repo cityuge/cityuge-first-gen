@@ -11,7 +11,7 @@ return array(
 	'nav_otherCategory' => '其他',
 	'nav_comment' => '留言',
 	'nav_category' => '分类',
-	'nav_department' => '学系',
+	'nav_department' => '学术部门',
 	'nav_rss' => 'RSS',
 	'nav_rssSite' => '网站的最新留言',
 	'nav_rssCourse' => ':courseCode 的最新留言',

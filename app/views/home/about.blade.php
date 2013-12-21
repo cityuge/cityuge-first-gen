@@ -1,6 +1,8 @@
 @extends('layouts.home')
 
 @section('content')
+<div class="container">
+	
 
 <article>
 	<div class="page-header">
@@ -14,5 +16,7 @@
 	<p>如欲聯絡我們，請電郵至 <a href="mailto:cityuge@swiftzer.net">cityuge@swiftzer.net</a>。若在操作上遇上任何困難（如誤填資料、網站故障等）或資料錯誤，亦歡迎來函，我們將儘快跟進。此外，我們亦開設了 <a href="http://www.facebook.com/cityuge">Facebook 專頁</a>，歡迎「讚好」並關注本網站的最新動向。</p>
 	
 </article>
+
+</div>
 
 @stop

@@ -1,0 +1,65 @@
+// For fixed navbar
+body {
+	padding-top: @navbar-height + 20px;
+}
+
+.navbar-brand {
+	width: 120px + @navbar-padding-horizontal;
+	height: @navbar-height;
+	padding: @navbar-padding-vertical @navbar-padding-horizontal;
+	background: url('../img/logo-zh.png') no-repeat @navbar-padding-horizontal 5px;
+	@media screen and (-webkit-device-pixel-ratio: 2.0) {
+		background: url('../img/logo-zh-xhdpi.png') no-repeat @navbar-padding-horizontal 5px;
+		background-size: 120px 40px;
+	}
+	@media screen and (-webkit-device-pixel-ratio: 1.5) {
+		background: url('../img/logo-zh-hdpi.png') no-repeat @navbar-padding-horizontal 5px;
+		background-size: 120px 40px;
+	}
+	@media screen and (-webkit-device-pixel-ratio: 0.75) {
+		background: url('../img/logo-zh-ldpi.png') no-repeat @navbar-padding-horizontal 5px;
+		background-size: 120px 40px;
+	}
+}
+// Hide the brand text (put it here due to Android 2.3)
+.navbar-header .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+	.hide-text();
+}
+.navbar-brand-en {
+	background: url('../img/logo-en.png') no-repeat @navbar-padding-horizontal 5px;
+	@media screen and (-webkit-device-pixel-ratio: 2.0) {
+		background: url('../img/logo-en-xhdpi.png') no-repeat @navbar-padding-horizontal 5px;
+	}
+	@media screen and (-webkit-device-pixel-ratio: 1.5) {
+		background: url('../img/logo-en-hdpi.png') no-repeat @navbar-padding-horizontal 5px;
+	}
+	@media screen and (-webkit-device-pixel-ratio: 0.75) {
+		background: url('../img/logo-en-ldpi.png') no-repeat @navbar-padding-horizontal 5px;
+	}
+}
+@media (max-width: @grid-float-breakpoint-max) {
+	// Make it like Bootstrap 2.3 when the navbar view in mobile (no nested scrolling)
+	// http://stackoverflow.com/a/20637626/813369
+	body {
+		padding-top: 0;
+	}
+	.navbar-fixed-top {
+		position: relative;
+		top: auto;
+	}
+	.navbar-collapse {
+		max-height: none;
+	}
+	// Remove the dropdown menu shadow in Android 2.3
+	.dropdown-menu {
+		.box-shadow(none);
+	}
+	.navbar-default {
+		.divider {
+			background-color: @navbar-default-border;
+		}
+		.dropdown-header {
+			color: darken(@navbar-default-bg, 20%);
+		}
+	}
+}

@@ -11,7 +11,7 @@ return array(
 	'nav_otherCategory' => 'Miscellaneous',
 	'nav_advancedSearch' => 'Advanced search',
 	'nav_comment' => 'Comments',
-	'nav_department' => 'Departments',
+	'nav_department' => 'Academic units',
 	'nav_rssSite' => 'All latest comments',
 	'nav_rssCourse' => 'Latest comments for :courseCode',
 

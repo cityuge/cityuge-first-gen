@@ -11,7 +11,7 @@ return array(
 	'nav_otherCategory' => '其他',
 	'nav_advancedSearch' => '進階搜尋',
 	'nav_comment' => '留言',
-	'nav_department' => '學系',
+	'nav_department' => '學術部門',
 	'nav_rssSite' => '網站的最新留言',
 	'nav_rssCourse' => ':courseCode 的最新留言',
 

@@ -82,6 +82,7 @@
 
 </head>
 <body>
+<a class="sr-only" href="#content">{{ trans('app.nav_skipNav') }}</a>
 <header id="overall-header">
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container">

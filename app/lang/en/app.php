@@ -5,6 +5,7 @@ return array(
 	'appTitle' => 'CityU GE Guide',
 
 	// Menu
+	'nav_skipNav' => 'Skip to main content',
 	'nav_course' => 'Courses',
 	'nav_allCourse' => 'All courses',
 	'nav_cityUGECategory' => 'Gateway Education (GE)',

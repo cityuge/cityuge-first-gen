@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
 @section('content')
-<div class="container">
+<div id="content" class="container">
 	
 
 <article>

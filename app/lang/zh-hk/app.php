@@ -5,6 +5,7 @@ return array(
 	'appTitle' => 'CityU GE 指南',
 
 	// Menu
+	'nav_skipNav' => '跳至網頁內容',
 	'nav_course' => '課程',
 	'nav_allCourse' => '所有課程',
 	'nav_cityUGECategory' => '精進教育 (GE)',

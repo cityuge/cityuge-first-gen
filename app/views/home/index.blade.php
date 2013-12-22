@@ -3,11 +3,10 @@
 @section('content')
 
 <div class="hero-unit">
-	<h1>Looking for good grade course?</h1>
-	<p>《Gateway Education Courses Analysis Report》經已出版。</p>
+	<h1>GE Add/drop 最新政策</h1>
+	<p>在一月二日至三日期間，只可報讀一科 Area 1-3 精進教育 (GE) 課程。</p>
 	<p>
-		<a href="http://issuu.com/swiftzer/docs/ge_course_analysis_report__aug_2013" class="btn btn-inverse btn-large" target="_blank">閱讀 <small>(ISSUU)</small> <i class="icon-angle-right"></i></a>
-		<a href="http://docs.google.com/file/d/0B1iBpnvlJzmtMERYeGUtVFo4VG8/edit" class="btn btn-large" target="_blank">下載 <small>(Google Drive)</small> <i class="icon-angle-right"></i></a>
+		<a href="http://www6.cityu.edu.hk/arro/content.asp?cid=163" class="btn btn-primary btn-large" target="_blank">教務處 (ARRO) 網頁 <i class="icon-external-link"></i></a>
 	</p>
 </div>
 
@@ -47,9 +46,15 @@
 	
 	<div class="span6">
 		<div class="well well-small">
-			<h2>提提你</h2>
+			<h4>提提你</h4>
 			<p>由於目前網站的留言分佈不均，故本頁面所提供的各項排名僅供參考。同時，本網站建議同學於報讀各精進教育課程前，除參考本頁面排名外，亦應細閱各相關留言內容及課程資料，再作判斷。</p>
 			<p>為使本網站的統計資料更為廣泛及準確，望同學可到曾修讀的相關課程頁面留下意見，並向朋友推薦本網站，謝謝！</p>
+			<hr>
+			<h4>Gateway Education Courses Analysis Report</h4>
+			<p>
+				<a href="http://issuu.com/swiftzer/docs/ge_course_analysis_report__aug_2013" class="btn" target="_blank">閱讀 <small>(ISSUU)</small> <i class="icon-angle-right"></i></a>
+				<a href="http://docs.google.com/file/d/0B1iBpnvlJzmtMERYeGUtVFo4VG8/edit" class="btn" target="_blank">下載 <small>(Google Drive)</small> <i class="icon-angle-right"></i></a>
+			</p>
 			<hr>
 			{{--  Social media share buttons --}}
 			<div id="social-network-btn">

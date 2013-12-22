@@ -1,41 +1,32 @@
 // For fixed navbar
 body {
-	padding-top: @navbar-height + 20px;
+	padding-top: @navbar-height + @navbar-margin-bottom;
 }
 
 .navbar-brand {
 	width: 120px + @navbar-padding-horizontal;
 	height: @navbar-height;
 	padding: @navbar-padding-vertical @navbar-padding-horizontal;
-	background: url('../img/logo-zh.png') no-repeat @navbar-padding-horizontal 5px;
-	@media screen and (-webkit-device-pixel-ratio: 2.0) {
-		background: url('../img/logo-zh-xhdpi.png') no-repeat @navbar-padding-horizontal 5px;
-		background-size: 120px 40px;
-	}
-	@media screen and (-webkit-device-pixel-ratio: 1.5) {
-		background: url('../img/logo-zh-hdpi.png') no-repeat @navbar-padding-horizontal 5px;
-		background-size: 120px 40px;
-	}
-	@media screen and (-webkit-device-pixel-ratio: 0.75) {
-		background: url('../img/logo-zh-ldpi.png') no-repeat @navbar-padding-horizontal 5px;
-		background-size: 120px 40px;
-	}
+	.density-bg-img(120px, 40px, @navbar-padding-horizontal, 5px,
+		'../img/logo-zh-ldpi.png',
+		'../img/logo-zh.png',
+		'../img/logo-zh-hdpi.png',
+		'../img/logo-zh-xhdpi.png',
+		'../img/logo-zh-xxhdpi.png');
 }
 // Hide the brand text (put it here due to Android 2.3)
-.navbar-header .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+.navbar-header .navbar-brand,
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
 	.hide-text();
 }
 .navbar-brand-en {
-	background: url('../img/logo-en.png') no-repeat @navbar-padding-horizontal 5px;
-	@media screen and (-webkit-device-pixel-ratio: 2.0) {
-		background: url('../img/logo-en-xhdpi.png') no-repeat @navbar-padding-horizontal 5px;
-	}
-	@media screen and (-webkit-device-pixel-ratio: 1.5) {
-		background: url('../img/logo-en-hdpi.png') no-repeat @navbar-padding-horizontal 5px;
-	}
-	@media screen and (-webkit-device-pixel-ratio: 0.75) {
-		background: url('../img/logo-en-ldpi.png') no-repeat @navbar-padding-horizontal 5px;
-	}
+	.density-bg-img(120px, 40px, @navbar-padding-horizontal, 5px,
+		'../img/logo-en-ldpi.png',
+		'../img/logo-en.png',
+		'../img/logo-en-hdpi.png',
+		'../img/logo-en-xhdpi.png',
+		'../img/logo-en-xxhdpi.png');
 }
 @media (max-width: @grid-float-breakpoint-max) {
 	// Make it like Bootstrap 2.3 when the navbar view in mobile (no nested scrolling)
@@ -59,7 +50,7 @@ body {
 			background-color: @navbar-default-border;
 		}
 		.dropdown-header {
-			color: darken(@navbar-default-bg, 20%);
+			color: darken(@navbar-default-bg, 40%);
 		}
 	}
 }

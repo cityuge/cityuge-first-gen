@@ -4,6 +4,9 @@ return array(
 
 	'appTitle' => 'CityU GE Guide',
 
+	// Common
+	'close' => 'Close',
+
 	// Menu
 	'nav_skipNav' => 'Skip to main content',
 	'nav_course' => 'Courses',
@@ -15,6 +18,7 @@ return array(
 	'nav_department' => 'Academic units',
 	'nav_rssSite' => 'All latest comments',
 	'nav_rssCourse' => 'Latest comments for :courseCode',
+	'nav_stat' => 'Statistics',
 
 	'nav_search' => 'Search',
 	'nav_searchPlaceholder' => 'Course code or title',
@@ -25,14 +29,21 @@ return array(
 	// Admin menu
 	'admin_nav_site' => 'Home',
 
-	// Home
-	'home_hotCourse' => 'Hot Courses',
-	'home_goodGradeCourse' => 'Good Grade Courses',
-	'home_goodGradeCourseNote' => 'First :limit courses with average grade greater than or equal to B+.',
-	'home_badGradeCourse' => 'Bad Grade Courses',
-	'home_badGradeCourseNote' => 'First :limit courses with average grade below B-.',
-	'home_lightWorkloadCourse' => 'Low Workload Courses',
-	'home_heavyWorkloadCourse' => 'High Workload Courses',
+	// Stat
+	'stat_title' => 'Statistics',
+	'stat_metaDesc' => 'Statistics and rankings for Gateway Education courses in CityU.',
+	'stat_hotCourse' => 'Hot Courses',
+	'stat_goodGradeCourse' => 'Good Grade Courses',
+	'stat_goodGradeCourseNote' => 'First :limit courses with average grade greater than or equal to B+.',
+	'stat_badGradeCourse' => 'Bad Grade Courses',
+	'stat_badGradeCourseNote' => 'First :limit courses with average grade below B-.',
+	'stat_lightWorkloadCourse' => 'Low Workload Courses',
+	'stat_heavyWorkloadCourse' => 'High Workload Courses',
+	'stat_emptyList' => 'No data for this part.',
+	'stat_analysisReportTitle' => 'Analysis Report',
+	'stat_analysisReportDesc' => '<p>All rankings provided on this page are using simple methodologies which are not very accurate and the rankings are for reference only. Before taking any Gateway Education (GE) course, you should read the feedback provided by others as well as the course information.</p><p>For detailed statistics and analysis, please refer to <em>Gateway Education Courses Analysis Report</em>.</p>',
+	'stat_analysisReportRead' => 'Read <small>(ISSUU)</small> <i class="fa fa-angle-right"></i>',
+	'stat_analysisReportDownload' => 'Download <small>(Google Drive)</small> <i class="fa fa-angle-right"></i>',
 
 	// Course
 	'course' => '{1} All Courses|[2,Inf] All Courses: Page :page',

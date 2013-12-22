@@ -4,6 +4,9 @@ return array(
 
 	'appTitle' => 'CityU GE 指南',
 
+	// Common
+	'close' => '關閉',
+
 	// Menu
 	'nav_skipNav' => '跳至網頁內容',
 	'nav_course' => '課程',
@@ -15,6 +18,7 @@ return array(
 	'nav_department' => '學術部門',
 	'nav_rssSite' => '網站的最新留言',
 	'nav_rssCourse' => ':courseCode 的最新留言',
+	'nav_stat' => '統計',
 
 	'nav_search' => '搜尋',
 	'nav_searchPlaceholder' => '課程編號或名稱',
@@ -25,14 +29,21 @@ return array(
 	// Admin menu
 	'admin_nav_site' => '網站主頁',
 
-	// Home
-	'home_hotCourse' => '熱門課程',
-	'home_goodGradeCourse' => '好 Grade 課程',
-	'home_goodGradeCourseNote' => '平均成績高於或等於 B+ 的首 :limit 個課程。',
-	'home_badGradeCourse' => '爛 Grade 課程',
-	'home_badGradeCourseNote' => '平均成績低於 B- 的首 :limit 個課程。',
-	'home_lightWorkloadCourse' => '輕鬆之選',
-	'home_heavyWorkloadCourse' => '繁重之選',
+	// Stats
+	'stat_title' => '統計',
+	'stat_metaDesc' => '城大精進教育課程 (GE) 統計及排名資料。',
+	'stat_hotCourse' => '熱門課程',
+	'stat_goodGradeCourse' => '好 Grade 課程',
+	'stat_goodGradeCourseNote' => '平均成績高於或等於 B+ 的首 :limit 個課程。',
+	'stat_badGradeCourse' => '爛 Grade 課程',
+	'stat_badGradeCourseNote' => '平均成績低於 B- 的首 :limit 個課程。',
+	'stat_lightWorkloadCourse' => '輕鬆之選',
+	'stat_heavyWorkloadCourse' => '繁重之選',
+	'stat_emptyList' => '目前未有資料。',
+	'stat_analysisReportTitle' => '分析報告',
+	'stat_analysisReportDesc' => '<p>本頁所提供的課程排名是以簡單計算即時生成，只能作基本參考之用。在報讀各精進教育 (GE) 課程前，除參考本頁面排名外，亦應細閱各課程的相關留言及資料再作判斷。</p><p>如要取得詳盡的統計資料及分析，請參閱《精進教育課程分析報告》（僅提供英文版）。</p>',
+	'stat_analysisReportRead' => '閱讀 <small>(ISSUU)</small> <i class="fa fa-angle-right"></i>',
+	'stat_analysisReportDownload' => '下載 <small>(Google Drive)</small> <i class="fa fa-angle-right"></i>',
 
 	// Course
 	'course' => '{1} 所有課程|[2,Inf] 所有課程：第 :page 頁',
@@ -57,7 +68,7 @@ return array(
 	'course_categorySemesterTitle' => '{1} :category (:semester)|[2,Inf] :category (:semester)：第 :page 頁',
 	'course_category_metaDesc' => '城大精進教育 (Gateway Education) :category 課程清單。',
 	'course_semester' => '學期',
-	'course_semesterNone' => '所有課程',
+	'course_semesterNone' => '所有學期',
 	'course_detail_metaDesc' => ':courseCode (:courseTitle) 的課程資料、留言、工作量及成績統計。',
 	'course_detail_info' => '基本資料',
 	'course_detail_stats' => '統計',
@@ -144,7 +155,7 @@ return array(
 	'category_area2' => 'Area 2',
 	'category_area3' => 'Area 3',
 	'category_unireq' => '大學必修',
-	'category_e' => 'E 仔班',
+	'category_e' => '補底班',
 	'category_misc' => '其他',
 
 	// Users & login
@@ -168,7 +179,7 @@ return array(
 
 	// Footer
 	'footer_disclaimer' => '本網站是以即時上載留言的方式運作，所有資料僅供參考，並不構成任何推薦、保證或協議。Swiftzer 對所有留言的真實性、完整性及立場等，不負任何法律責任。<br />本網站與香港城市大學 (City University of Hong Kong, CityU) 並無任何關連。',
-	'footer_nav_about' => '關於本網站',
+	'footer_nav_about' => '關於',
 	'footer_nav_facebookFanPage' => 'Facebook 專頁',
 	'footer_nav_devBlog' => '開發日誌',
 	'footer_nav_acp' => '管理控制台',

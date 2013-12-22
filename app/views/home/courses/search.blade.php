@@ -10,7 +10,7 @@
 
 {{ Form::open(array('route' => 'courses.processSearch', 'method' => 'POST', 'role' => 'form')) }}
 	<div class="row">
-		<div class="col-lg-4 col-md-6">
+		<div class="col-lg-4 col-sm-6">
 			<div class="form-group">
 				{{ Form::label('keyword', trans('app.course_search_keyword')) }}
 				{{ Form::text('keyword', null, array('class' => 'form-control')) }}
@@ -25,7 +25,7 @@
 
 		</div>
 		
-		<div class="col-lg-4 col-md-6">
+		<div class="col-lg-4 col-sm-6">
 			<fieldset>
 				<legend>{{ trans('app.course_search_misc') }}</legend>
 				<div class="form-group">
@@ -43,7 +43,7 @@
   			</fieldset>
 		</div>
 
-		<div class="col-lg-4 col-md-12">
+		<div class="col-lg-4 col-sm-12">
 			<fieldset>
 				<legend>
 					{{ trans('app.course_search_assess') }}
@@ -116,6 +116,9 @@
 					<dt>{{ trans('app.course_assess_project') }}</dt>
 					<dd>{{ trans('app.course_assess_def_project') }}</dd>
 				</dl>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('app.close') }}</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->

@@ -110,6 +110,7 @@
 						<ul class="dropdown-menu">
 							<li>{{ link_to_route('courses.index', trans('app.nav_allCourse')) }}</li>
 							<li>{{ link_to_route('departments.index', trans('app.nav_department')) }}</li>
+							<li>{{ link_to_route('stats', trans('app.nav_stat')) }}</li>
 							<li class="divider"></li>
 							<li role="presentation" class="dropdown-header">{{ trans('app.nav_cityUGECategory') }}</li>
 							<li>{{ link_to_route('courses.category', trans('app.category_area1'), 'area-1') }}</li>

@@ -2,7 +2,7 @@
 
 return array(
 	// App version shown in footer
-	'version' => '0.9',
+	'version' => '0.9.1',
 
 	// Locale
 	'availableLocale' => array('zh-hk', 'zh-cn', 'en'),

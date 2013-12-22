@@ -1,0 +1,46 @@
+.jumbotron-home {
+	margin-top: -@navbar-margin-bottom;
+	background: @brand-grey-light url('../img/home-jumbotron-bg.png');
+	background-repeat: no-repeat;
+	background-position: 75% 100%;
+	@media screen and (max-width: @screen-md-max) {
+		background-position: 90% 100%;
+	}
+	@media screen and (max-width: @screen-sm-max) {
+		background-position: 50% 100%;
+	}
+	
+	//-webkit-background-size: cover;
+	//background-size: cover;
+}
+.home-feature-container {
+	padding-top: @padding-large-vertical;
+	padding-bottom: @padding-large-vertical;
+}
+.home-feature-icon {
+	width: 90px;
+	height: 90px;
+	margin: 0 auto;
+	border-radius: 45px;
+	text-align: center;
+	& > i {
+		color: #fff;
+		font-size: 50px;
+		line-height: 90px;
+	}
+}
+.home-feature-icon-search {
+	background-color: #25a0ca;
+}
+.home-feature-icon-browse {
+	background-color: #e66000;
+}
+.home-feature-icon-write {
+	background-color: #4e6252;
+}
+
+// Make Facebook like box responsive
+// http://fundesigner.net/fb-fluid-likebox/
+.fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe {
+    width: 100% !important;
+}

@@ -25,14 +25,14 @@ return array(
 	// Admin menu
 	'admin_nav_site' => '网站主页',
 
-	// Home
-	'home_hotCourse' => '热门课程',
-	'home_goodGradeCourse' => '好 Grade 课程',
-	'home_goodGradeCourseNote' => '平均成绩高于或等于 B- 的首 :limit 个课程。',
-	'home_badGradeCourse' => '烂 Grade 课程',
-	'home_badGradeCourseNote' => '平均成绩低于 B- 的首 :limit 个课程。',
-	'home_lightWorkloadCourse' => '轻松之选',
-	'home_heavyWorkloadCourse' => '繁重之选',
+	// Stat
+	'stat_hotCourse' => '热门课程',
+	'stat_goodGradeCourse' => '好 Grade 课程',
+	'stat_goodGradeCourseNote' => '平均成绩高于或等于 B- 的首 :limit 个课程。',
+	'stat_badGradeCourse' => '烂 Grade 课程',
+	'stat_badGradeCourseNote' => '平均成绩低于 B- 的首 :limit 个课程。',
+	'stat_lightWorkloadCourse' => '轻松之选',
+	'stat_heavyWorkloadCourse' => '繁重之选',
 
 	// Course
 	'course' => '{1} 所有课程|[2,Inf] 所有课程：第 :page 页',

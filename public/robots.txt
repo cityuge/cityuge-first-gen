@@ -4,3 +4,6 @@ Disallow: /js/
 Disallow: /less/
 Disallow: /packages/
 Disallow: /admin/
+Disallow: /login
+Disallow: /logout
+Disallow: /search/results

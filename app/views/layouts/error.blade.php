@@ -1,23 +1,28 @@
 <!DOCTYPE html>
-<html lang="{{ Session::get('_localeISO') }}">
+<html>
 <head>
 	<meta charset="utf-8">
 	@if (isset($title))
-		<title>{{ $title }} | {{ Lang::get('app.appTitle') }}</title>
+		<title>{{ $title }} | {{ trans('app.appTitle') }}</title>
 	@else
-		<title>{{ Lang::get('app.appTitle') }}</title>
+		<title>{{ trans('app.appTitle') }}</title>
 	@endif
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	
-	{{ HTML::style('css/default.css') }}
-	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700" media="all" type="text/css" rel="stylesheet">
-	<!--[if IE 7]>{{ HTML::style('css/font-awesome-ie7.css') }}<![endif]-->
-	<!--[if lt IE 9]><script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"></script><![endif]-->
-	
-	<!-- favicon and touch icons -->
+	<!-- CSS -->
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans" media="all" type="text/css" rel="stylesheet">
+	{{ HTML::style('css/error.css') }}
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.min.js"></script>
+	<![endif]-->
+
+	<!-- favicon and Apple touch icons -->
 	<link rel="shortcut icon" href="{{ URL::to('') }}/ico/favicon.ico">
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ URL::to('') }}/ico/apple-touch-icon-144-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ URL::to('') }}/ico/apple-touch-icon-114-precomposed.png">
@@ -25,23 +30,27 @@
 	<link rel="apple-touch-icon-precomposed" href="{{ URL::to('') }}/ico/apple-touch-icon-57-precomposed.png">
 	<meta name="msapplication-TileImage" content="{{ URL::to('') }}/ico/metro-tile.png">
 	<meta name="msapplication-TileColor" content="#FF9900">
+
 </head>
-<body class="body-error">
-	<div class="container">
-		<div class="row">
-			<div class="span3 offset1 error-icon">
-				{{-- Icon --}}
-				@if (isset($errorIcon))
-					<i class="icon-{{ $errorIcon }}"></i>
-				@else
-					<i class="icon-warning-sign"></i>
-				@endif
-			</div>
-			<div class="span7 error-content">
-				{{-- Content --}}
-				@yield('content')
-			</div>
-		</div>
-	</div>
+<body>
+<header class="container">
+	<span class="simp-logo">{{ trans('app.appTitle', array(), null, 'en') }}</span>
+</header>
+
+@yield('content')
+
+@if (App::environment('production'))
+	<!-- Google Analytics: Universal Analytics tracking code -->
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', ga('create', '{{ Config::get('cityuge.googleAnalyticsUA') }}', '{{ Config::get('cityuge.googleAnalyticsDomain') }}');
+	ga('send', 'pageview');
+</script>
+@endif
+
 </body>
 </html>

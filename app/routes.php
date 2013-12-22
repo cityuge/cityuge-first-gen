@@ -48,6 +48,7 @@ Route::group(array('prefix' => $locale), function() {
 
 	Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
 	Route::get('about', array('as' => 'about', 'uses' => 'HomeController@about'));
+	Route::get('statistics', array('as' => 'stats', 'uses' => 'HomeController@stats'));
 
 	// Department
 	Route::get('departments', array('as' => 'departments.index', 'uses' => 'DepartmentController@index'));
@@ -89,6 +90,3 @@ Route::get('courses/{code}/feed', array('as' => 'courses.feed', 'uses' => 'FeedC
 
 // Sitemap
 Route::get('sitemap', array('as' => 'sitemap', 'uses' => 'SitemapController@index'));
-
-// Sharrre
-Route::get('social-media-counter', array('as' => 'sharrre', 'uses' => 'HomeController@socialMediaCounter'));

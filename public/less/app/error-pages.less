@@ -1,21 +1,19 @@
-.body-error {
-	background-color: @navbarInverseBackground;
-	color: @navbarInverseText;
-	padding-top: 10px;
-	// cancel the navbar padding
-	@media (min-width: 768px) {
-		padding-top: 80px;
-	}
+body {
+	background-color: @brand-grey-light;
+	border-top: 15px solid @navbar-default-bg;
+	background: @brand-grey-light url('../img/error-bg.png') no-repeat center -50px;
 }
-.error-icon {
-	text-align: right;
-	font-size: 120pt;
-	@media (max-width: 767px) {
-		font-size: 60pt;
-		text-align: left;
-	}
-}
-.error-content {
-	padding-top: 20px;
-	font-size: 1.5em;
+
+.simp-logo {
+	.hide-text();
+	display: block;
+	width: 180px;
+	height: 60px;
+	margin: 15px 0 @padding-large-vertical;
+	.density-bg-img(180px, 60px, 0, 0,
+		'../img/logo-simp-en-ldpi.png',
+		'../img/logo-simp-en.png',
+		'../img/logo-simp-en-hdpi.png',
+		'../img/logo-simp-en-xhdpi.png',
+		'../img/logo-simp-en-xxhdpi.png');
 }

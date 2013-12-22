@@ -9,6 +9,7 @@ return array(
 
 	// Menu
 	'nav_skipNav' => 'Skip to main content',
+	'nav_toggleNav' => 'Toggle navigation',
 	'nav_course' => 'Courses',
 	'nav_allCourse' => 'All courses',
 	'nav_cityUGECategory' => 'Gateway Education (GE)',

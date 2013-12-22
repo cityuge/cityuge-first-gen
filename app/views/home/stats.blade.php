@@ -10,7 +10,9 @@
 	<div class="row">
 		<div class="col-sm-6">
 			<div class="panel panel-default">
-				<div class="panel-heading">{{ trans('app.stat_analysisReportTitle') }}</div>
+				<div class="panel-heading">
+					<h3 class="panel-title">{{ trans('app.stat_analysisReportTitle') }}</h3>
+				</div>
 				<div class="panel-body">
 					{{ trans('app.stat_analysisReportDesc') }}
 				</div>

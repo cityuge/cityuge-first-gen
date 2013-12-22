@@ -39,9 +39,9 @@
 	<!-- Facebook -->
 	<meta property="fb:admins" content="{{ Config::get('cityuge.facebookInsightsAdminId') }}">
 	@if (isset($title))
-		<meta property="og:title" content="{{ $title }} | {{ Lang::get('app.appTitle') }}">
+		<meta property="og:title" content="{{ $title }} | {{ trans('app.appTitle') }}">
 	@else
-		<meta property="og:title" content="{{ Lang::get('app.appTitle') }}">
+		<meta property="og:title" content="{{ trans('app.appTitle') }}">
 	@endif
 	<meta property="og:image" content="{{ URL::asset('img/logo-140px.png') }}">
 	@if (isset($metaDescription))
@@ -53,21 +53,21 @@
 	<meta property="twitter:card" content="summary">
 	<meta property="twitter:site" content="{{ Config::get('app.twitter_card_site') }}">
 	@if (isset($title))
-		<meta property="twitter:title" content="{{ $title }} | {{ Lang::get('app.appTitle') }}">
+		<meta property="twitter:title" content="{{ $title }} | {{ trans('app.appTitle') }}">
 	@else
-		<meta property="twitter:title" content="{{ Lang::get('app.appTitle') }}">
+		<meta property="twitter:title" content="{{ trans('app.appTitle') }}">
 	@endif
 	@if (isset($metaDescription))
 		<meta property="twitter:description" content="{{ $metaDescription }}">
 	@else
-		<meta property="twitter:description" content="{{ Lang::get('app.meta_homeDesc') }}">
+		<meta property="twitter:description" content="{{ trans('app.meta_homeDesc') }}">
 	@endif
 	<meta property="twitter:image:src" content="{{ URL::asset('img/logo-140px.png') }}">
 
 	<!-- RSS feeds -->
-	<link rel="alternate" type="application/rss+xml" title="{{ Lang::get('app.feed_metaTitle') }}" href="{{ route('feed') }}">
+	<link rel="alternate" type="application/rss+xml" title="{{ trans('app.feed_metaTitle') }}" href="{{ route('feed') }}">
 	@if ($currentRoute === 'courses.show')
-		<link rel="alternate" type="application/rss+xml" title="{{ Lang::get('app.feed_course_metaTitle', array('courseCode' => $course->code)) }}" href="{{ route('courses.feed', array(strtolower($course->code))) }}">
+		<link rel="alternate" type="application/rss+xml" title="{{ trans('app.feed_course_metaTitle', array('courseCode' => $course->code)) }}" href="{{ route('courses.feed', array(strtolower($course->code))) }}">
 	@endif
 	<!-- favicon and Apple touch icons -->
 	<link rel="shortcut icon" href="{{ URL::to('') }}/ico/favicon.ico">

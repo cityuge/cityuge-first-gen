@@ -34,9 +34,19 @@
 	</div>
 	
 	<div class="row">
+		<div class="col-sm-6">
+			<blockquote>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+				<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+			</blockquote>
+			<blockquote>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+				<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+			</blockquote>
+		</div>
 		<!-- Facebook like box plug-in -->
-		<div class="col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4">
-			<div class="fb-like-box" data-href="http://www.facebook.com/cityuge" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
+		<div class="col-sm-6">
+			<div class="fb-like-box" data-href="http://www.facebook.com/cityuge" data-width="380" data-height="270" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
 		</div>
 	</div>
 </section>

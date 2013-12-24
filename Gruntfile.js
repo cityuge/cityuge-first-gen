@@ -48,7 +48,7 @@ module.exports = function(grunt) {
 		less: {
 			development: {
 				options: {
-					paths: ['public/less'],
+					paths: ['less'],
 					compress: true,
 					strictMath: false,
 					strictUnits: false,
@@ -57,23 +57,23 @@ module.exports = function(grunt) {
 					sourceMapRootpath: '../..'
 				},
 				files: {
-					'public/css/default.css': 'public/less/default.less',
-					'public/css/error.css': 'public/less/error.less',
-					'public/css/login.css': 'public/less/login.less'
+					'public/css/default.css': 'less/default.less',
+					'public/css/error.css': 'less/error.less',
+					'public/css/login.css': 'less/login.less'
 				}
 			},
 			production: {
 				options: {
-					paths: ['public/less'],
+					paths: ['less'],
 					cleancss: true,
 					strictMath: false,
 					strictUnits: false,
 					report: 'min'
 				},
 				files: {
-					'public/css/default.css': 'public/less/default.less',
-					'public/css/error.css': 'public/less/error.less',
-					'public/css/login.css': 'public/less/login.less'
+					'public/css/default.css': 'less/default.less',
+					'public/css/error.css': 'less/error.less',
+					'public/css/login.css': 'less/login.less'
 				}
 			}
 		},
@@ -96,7 +96,7 @@ module.exports = function(grunt) {
 			// 	},
 			// },
 			styles: {
-				files: ['public/less/**/*.less'],
+				files: ['less/**/*.less'],
 				tasks: ['less:development'],
 				options: {
 					spawn: true,

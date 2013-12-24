@@ -201,7 +201,5 @@ return array(
 
 	// Error page
 	'error_maintenance' => '維修進行中',
-	'error_maintenance_detail' => '<p>網站現正進行維修，請於稍後時間再次造訪。不便之處，敬請原諒！</p>',
-	'error_404' => '找不到網頁 (Error 404)',
-	'error_404_detail' => '<p>請檢查網址是否輸入正確。</p>',
+	'error_404' => '找不到網頁',
 );

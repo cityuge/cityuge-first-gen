@@ -201,7 +201,5 @@ return array(
 
 	// Error page
 	'error_maintenance' => 'Under Maintenance',
-	'error_maintenance_detail' => '<p>The website is under maintenance now, please visit later. We apologize for any inconvenience caused.</p>',
-	'error_404' => 'Page Not Found (Error 404)',
-	'error_404_detail' => '<p>Please check the URL.</p>',
+	'error_404' => 'Page Not Found',
 );

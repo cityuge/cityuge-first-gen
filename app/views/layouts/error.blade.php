@@ -14,7 +14,7 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	
 	<!-- CSS -->
-	<link href="http://fonts.googleapis.com/css?family=Open+Sans" media="all" type="text/css" rel="stylesheet">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" media="all" type="text/css" rel="stylesheet">
 	{{ HTML::style('css/error.css') }}
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -34,8 +34,11 @@
 
 </head>
 <body>
-<header class="container">
-	<span class="simp-logo">{{ trans('app.appTitle', array(), null, 'en') }}</span>
+<header class="container clearfix">
+	<span class="simp-logo pull-left">{{ trans('app.appTitle', array(), null, 'en') }}</span>
+	@if (isset($errorCode))
+		<span class="label label-status-code pull-right">HTTP {{ $errorCode }}</span>
+	@endif
 </header>
 
 @yield('content')

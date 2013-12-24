@@ -56,7 +56,7 @@ App::error(function(Exception $exception, $code)
 
 
 App::missing(function($exception) {
-	return Response::view('errors.404', array('title' => trans('app.error_404')), 404);
+	return Response::view('errors.404', array('title' => trans('app.error_404'), 'errorCode' => 404), 404);
 });
 
 /*

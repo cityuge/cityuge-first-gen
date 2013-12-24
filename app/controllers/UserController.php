@@ -104,7 +104,7 @@ class UserController extends BaseController {
 		}
 
 		return Redirect::back()->withInput()
-				->with('alertType', 'error')
+				->with('alertType', 'danger')
 				->with('alertBody', trans('app.login_unsuccessful'));
 	}
 

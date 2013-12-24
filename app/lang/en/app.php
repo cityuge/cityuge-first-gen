@@ -24,7 +24,7 @@ return array(
 	'nav_search' => 'Search',
 	'nav_searchPlaceholder' => 'Course code or title',
 
-	'nav_acp' => 'Admin Control Panel',
+	'nav_acp' => 'Admin Console',
 	'nav_logout' => 'Log out',
 
 	// Admin menu
@@ -163,14 +163,14 @@ return array(
 	'user_username' => 'Username',
 	'user_password' => 'Password',
 	'login_rememberMe' => 'Remember me',
-	'login_title' => 'Admin Control Panel',
+	'login_title' => 'Admin Console',
 	'login_submit' => 'Log in',
 	'login_authorizedOnly' => 'Authorized persons only, please log in!',
 	'login_successful' => 'Log in successfully!',
 	'login_unsuccessful' => 'Your usename / password combination is incorrect.',
 
 	// Admin
-	'admin_title' => 'CityU GE Guide Admin Control Panel',
+	'admin_title' => 'CityU GE Guide Admin Console',
 	'cache_purge' => 'Purge all cache',
 	'cache_purged' => 'Purged all cache in the system!',
 

@@ -109,7 +109,6 @@ return array(
 
 		// 3rd party
 		'Greggilbert\Recaptcha\RecaptchaServiceProvider',
-		'Sebklaus\Profiler\Providers\ProfilerServiceProvider',
 
 	),
 

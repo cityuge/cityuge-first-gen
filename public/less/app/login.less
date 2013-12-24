@@ -1,91 +1,44 @@
-// #login-form {
-// 	max-width: 400px;
-// 	margin: 0 auto 20px;
-
-// 	h1 {
-// 		text-align: center;
-// 	}
-
-// 	#btn-login {
-// 		margin-top: 36px;
-// 	}
-
-// 	input[type="text"], input[type="password"] {
-// 		font-size: 16px;
-// 		height: auto;
-// 	}
-// }
-#login-body {
-	padding-top: 0;
-	background: url(../img/login-bg.jpg) no-repeat center center fixed; 
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-
-	display: -webkit-box;   // OLD: Safari,  iOS, Android browser, older WebKit browsers.
-	display: -moz-box;      // OLD: Firefox (buggy)
-	display: -ms-flexbox;   // MID: IE 10
-	display: -webkit-flex;  // NEW, Chrome 21+
-	display: flex;          // NEW: Opera 12.1, Firefox 22+
-
-	-webkit-box-align: center; -moz-box-align: center; // OLD
-	-ms-flex-align: center; // You know the drill now
-	-webkit-align-items: center;
-	align-items: center;
-
-	-webkit-box-pack: center;
-	-moz-box-pack: center; 
-	-ms-flex-pack: center; 
-	-webkit-justify-content: center;
-	justify-content: center;
-
-	margin: 0;
-	padding: 20px;
-	.box-sizing(border-box);
-	height: 100%;
-	width: 100%; /* needed for Firefox */
-
-
-	@media (max-height: 450px) {
-		display: block;
-	}
-	@media (max-width: 450px) {
-		display: block;
-	}
+body {
+	background-color: @brand-grey-light;
+	border-top: 15px solid @navbar-default-bg;
+	background-color: @brand-grey-light;
+	padding-top: 30px;
 }
 
-#login-box {
-	width: 370px;
-	@media (max-height: 450px) {
-		width: 100%;
-		.box-sizing(border-box);
-	}
-	@media (max-width: 450px) {
-		width: 100%;
-		.box-sizing(border-box);
-	}
-	
-	
-	.box-shadow(0 5px 10px rgba(0,0,0,.25));
+.simp-logo {
+	.hide-text();
+	display: block;
+	width: 180px;
+	height: 60px;
+	margin: 15px 0 @padding-large-vertical;
+	.density-bg-img(180px, 60px, 0, 0,
+		'../img/logo-simp-en-ldpi.png',
+		'../img/logo-simp-en.png',
+		'../img/logo-simp-en-hdpi.png',
+		'../img/logo-simp-en-xhdpi.png',
+		'../img/logo-simp-en-xxhdpi.png');
+	.center-block();
+}
 
-	h1 {
-		text-align: center;
-		font-size: @baseFontSize * 1.5;
-		line-height: @baseLineHeight * 1.5;
-		margin: 0 0 20px;
-	}
+h1 {
+	font-size: @font-size-h3;
+	text-align: center;
+}
 
-	form {
-		margin: 0;
-	}
+input[type="text"] {
+	.border-bottom-radius(0);
+	margin-bottom: -1px;
+}
 
-	input[type="submit"] {
-		margin-top: 36px;
-	}
+input[type="password"] {
+	.border-top-radius(0);
+}
 
-	input[type="text"], input[type="password"] {
-		font-size: 16px;
-		height: auto;
-	}
+.checkbox {
+	font-weight: normal;
+	margin: (@line-height-computed / 2) 0 @line-height-computed;
+}
+
+input[type="submit"] {
+	margin-bottom: 20px;
 }

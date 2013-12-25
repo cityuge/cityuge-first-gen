@@ -52,7 +52,6 @@ module.exports = function(grunt) {
 					compress: true,
 					strictMath: false,
 					strictUnits: false,
-					report: 'min',
 					sourceMap: true,
 					sourceMapRootpath: '../..'
 				},

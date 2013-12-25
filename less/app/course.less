@@ -1,0 +1,96 @@
+// Course Masonry wrapper, set width to 100% on extra small devices for Masonry layout
+.course-wrapper {
+	.make-sm-column(6);
+	@media (max-width: @screen-xs-max) {
+		width: 100%;
+	}
+}
+
+.panel-course {
+	overflow: hidden; // clip the border top of the course title
+}
+
+.panel-course-heading {
+	padding: 0;
+	& > a {
+		display: block;
+		padding: 10px 15px;
+		margin-bottom: -1px;
+		color: @list-group-link-heading-color;
+
+		&:hover,
+		&:focus {
+			text-decoration: none;
+			background-color: @list-group-hover-bg;
+		}
+
+		// Active class on item itself, not parent
+		&.active,
+		&.active:hover,
+		&.active:focus {
+			z-index: 2; // Place active items above their siblings for proper border styling
+			color: @list-group-active-color;
+			background-color: @list-group-active-bg;
+			border-color: @list-group-active-border;
+		}
+	}
+}
+
+.panel-course-code {
+	display: block;
+	font-size: @font-size-base;
+	font-weight: bold;
+	margin-bottom: @padding-small-vertical;
+}
+
+.panel-course-heading-area1 {
+	border-top: @card-color-strip-width solid @category-area-1;
+}
+.panel-course-heading-area2 {
+	border-top: @card-color-strip-width solid @category-area-2;
+}
+.panel-course-heading-area3 {
+	border-top: @card-color-strip-width solid @category-area-3;
+}
+.panel-course-heading-unireq {
+	border-top: @card-color-strip-width solid @category-uni-req;
+}
+.panel-course-heading-e {
+	border-top: @card-color-strip-width solid @category-e;
+}
+
+.panel-course-footer {
+	ul, dl {
+		margin-bottom: 0;
+	}
+	dt {
+		font-size: @font-size-small;
+		font-weight: normal;
+	}
+}
+.panel-course-footer-meta {
+	.list-unstyled();
+
+	> li {
+		display: inline-block;
+		padding-left: 0;
+		padding-right: @padding-large-vertical;
+
+		&:last-child {
+			padding-right: 0;
+		}
+	}
+}
+
+// Create a dummy div for Masonry to get the correct column width in IE9 or above
+.course-wrapper-dummy {
+	float: left;
+	width: percentage((6 / @grid-columns));
+	@media (max-width: @screen-xs-max) {
+		width: 100%;
+	}
+}
+
+.course-dropdown-wrapper {
+	margin-bottom: @line-height-computed;
+}

@@ -51,7 +51,7 @@ return array(
 	'course_detail_title' => '{1} :courseCode Course Information|[2,Inf] :courseCode: Course Information: Page :page',
 	'course_code' => 'Code',
 	'course_title' => 'Title',
-	'course_department' => 'Academic Unit',
+	'course_department' => 'Department',
 	'course_department_course' => 'Other courses',
 	'course_department_website' => 'Website',
 	'course_category' => 'Category',

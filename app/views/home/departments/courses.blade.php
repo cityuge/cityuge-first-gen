@@ -1,42 +1,52 @@
 @extends('layouts.home')
 
 @section('content')
-<div class="page-header">
-	<h1>{{{ $department->initial }}} <small>{{{ $department->title_en }}}</small></h1>
+
+<div id="content" class="container">
+
+	<div class="page-header">
+		@if (Session::get('_locale') === 'en')
+			<h1>{{{ $department->initial }}} <small>{{{ $department->title_en }}}</small></h1>
+		@else
+			<h1>{{{ $department->initial }}} <small>{{{ $department->title_zh }}}</small></h1>
+		@endif
+	</div>
+
+	@if (!$courses->getTotal())
+		{{ HTML::alert('info', trans('app.department_noCourse')) }}
+	@else
+		{{ $courses->links() }}
+		
+		<div id="course-container" class="row">
+			<!-- Create a dummy div for Masonry to get the correct column width in IE9 or above -->
+			<div class="course-wrapper-dummy"></div>
+			@foreach ($courses as $course)
+				@include('partials.courses.courseItem')
+			@endforeach
+		</div>
+		
+		{{ $courses->links() }}
+	@endif
+
 </div>
 
-@if (!$courses->getTotal())
-	{{ HTML::alert('info', Lang::get('app.department_noCourse')) }}
-@else
-	{{ $courses->links() }}
-	<table class="table table-striped table-hover table-responsive">
-		<thead>
-			<tr>
-				<th>{{ Lang::get('app.course_code') }}</th>
-				<th>{{ Lang::get('app.course_title') }}</th>
-				<th>{{ Lang::get('app.course_category') }}</th>
-				<th>{{ Lang::get('app.course_level') }}</th>
-				<th>{{ Lang::get('app.course_commentCount') }}</th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach ($courses as $course)
-				<tr>
-					<td data-title="{{ Lang::get('app.course_code') }}">{{ link_to_route('courses.show', $course->code, strtolower($course->code)) }}</td>
-					<td data-title="{{ Lang::get('app.course_title') }}">
-						{{ link_to_route('courses.show', $course->title_en, strtolower($course->code)) }}
-						@if (!empty($course->title_zh))
-							<br />{{ link_to_route('courses.show', $course->title_zh, strtolower($course->code)) }}
-						@endif
-					</td>
-					<td data-title="{{ Lang::get('app.course_category') }}">{{ Course::getCategoryTitle($course->category) }}</td>
-					<td data-title="{{ Lang::get('app.course_level') }}">{{{ $course->level }}}</td>
-					<td data-title="{{ Lang::get('app.course_commentCount') }}">{{{ $course->comment_count }}}</td>
-				</tr>
-			@endforeach
-		</tbody>
-	</table>
-	{{ $courses->links() }}
-@endif
+@stop
 
+
+@section('footerScript')
+{{ HTML::script('js/masonry.pkgd.min.js') }}
+<script>
+$(document).ready(function () {
+	
+
+	// Masonry
+	$('#course-container').masonry({
+		transitionDuration: 0,
+		itemSelector: '.course-wrapper',
+		columnWidth: '.course-wrapper-dummy'
+	});
+
+
+});
+</script>
 @stop

@@ -1,20 +1,19 @@
 <div class="course-wrapper">
-	<div class="panel panel-default panel-course">
-		<div class="panel-course-heading">
+	<article class="panel panel-default panel-course">
+		<header class="panel-course-heading">
 			<a href="{{ route('courses.show', strtolower($course->code)) }}" class="panel-course-heading-{{ strtolower($course->category) }}">
 				<h3 class="panel-title">
 
 						<span class="panel-course-code">{{{ $course->code }}}</span>
 
-						{{{ $course->title_en }}}
-
+						<span class="panel-course-title">{{{ $course->title_en }}}</span>
 						@if (!empty($course->title_zh) && Session::get('_locale') !== 'en')
-							<br />{{{ $course->title_zh }}}
+							<span class="panel-course-title">{{{ $course->title_zh }}}</span>
 						@endif
 				</h3>
 			</a>
-		</div>
-		<div class="panel-footer panel-course-footer">
+		</header>
+		<footer class="panel-footer panel-course-footer">
 			<ul class="panel-course-footer-meta">
 				<li>
 					<dl>
@@ -43,6 +42,6 @@
 					</dl>
 				</li>
 			</ul>
-		</div>
-	</div>
+		</footer>
+	</article>
 </div>

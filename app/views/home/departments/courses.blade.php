@@ -17,13 +17,13 @@
 	@else
 		{{ $courses->links() }}
 		
-		<div id="course-container" class="row">
+		<section id="course-container" class="row">
 			<!-- Create a dummy div for Masonry to get the correct column width in IE9 or above -->
 			<div class="course-wrapper-dummy"></div>
 			@foreach ($courses as $course)
 				@include('partials.courses.courseItem')
 			@endforeach
-		</div>
+		</section>
 		
 		{{ $courses->links() }}
 	@endif

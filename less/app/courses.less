@@ -6,11 +6,18 @@
 	}
 }
 
-.panel-course {
-	overflow: hidden; // clip the border top of the course title
+// Create a dummy div for Masonry to get the correct column width in IE9 or above
+.course-wrapper-dummy {
+	float: left;
+	width: percentage((6 / @grid-columns));
+	@media (max-width: @screen-xs-max) {
+		width: 100%;
+	}
 }
 
 .panel-course-heading {
+	.border-top-radius(@panel-border-radius - 1);
+	overflow: hidden; // clip the border top of the course title
 	padding: 0;
 	& > a {
 		display: block;
@@ -36,6 +43,7 @@
 	}
 }
 
+// Share with comment card
 .panel-course-code {
 	display: block;
 	font-size: @font-size-base;
@@ -82,15 +90,6 @@
 		&:last-child {
 			padding-right: 0;
 		}
-	}
-}
-
-// Create a dummy div for Masonry to get the correct column width in IE9 or above
-.course-wrapper-dummy {
-	float: left;
-	width: percentage((6 / @grid-columns));
-	@media (max-width: @screen-xs-max) {
-		width: 100%;
 	}
 }
 

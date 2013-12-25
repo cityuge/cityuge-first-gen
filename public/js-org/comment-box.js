@@ -1,6 +1,6 @@
 // Show tooltip on grade
 $(document).ready(function () {
-	$('div[data-toggle=tooltip]').tooltip({ placement: 'left' });
+	$('span[data-toggle=tooltip]').tooltip({ placement: 'left' });
 });
 
 // Social media share buttons shown in individual comment

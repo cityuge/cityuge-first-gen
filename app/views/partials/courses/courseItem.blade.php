@@ -3,13 +3,11 @@
 		<header class="panel-course-heading">
 			<a href="{{ route('courses.show', strtolower($course->code)) }}" class="panel-course-heading-{{ strtolower($course->category) }}">
 				<h3 class="panel-title">
-
-						<span class="panel-course-code">{{{ $course->code }}}</span>
-
-						<span class="panel-course-title">{{{ $course->title_en }}}</span>
-						@if (!empty($course->title_zh) && Session::get('_locale') !== 'en')
-							<span class="panel-course-title">{{{ $course->title_zh }}}</span>
-						@endif
+					<span class="panel-course-code">{{{ $course->code }}}</span>
+					<span class="panel-course-title">{{{ $course->title_en }}}</span>
+					@if (!empty($course->title_zh) && Session::get('_locale') !== 'en')
+						<span class="panel-course-title">{{{ $course->title_zh }}}</span>
+					@endif
 				</h3>
 			</a>
 		</header>

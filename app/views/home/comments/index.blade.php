@@ -2,19 +2,26 @@
 
 @section('content')
 
-<div class="page-header">
-	<h1>{{ $title }}</h1>
-</div>
-{{ trans('app.comment_desc', array('count' => $comments->getTotal())) }}
-{{ $comments->links() }}
+<div id="content" class="container">
 
-<div id="comments" class="row">
-	@foreach ($comments as $comment)
-		@include('partials.comments.latestComment')
-	@endforeach
-</div>
+	<div class="page-header">
+		<h1>{{ $title }}</h1>
+	</div>
+	{{ trans('app.comment_desc', array('count' => $comments->getTotal())) }}
+	{{ $comments->links() }}
 
-{{ $comments->links() }}
+	
+	<section id="comment-container" class="row" itemscope itemtype="http://schema.org/UserComments">
+		<!-- Create a dummy div for Masonry to get the correct column width in IE9 or above -->
+		<div class="comment-wrapper-dummy"></div>
+		@foreach ($comments as $comment)
+			@include('partials.comments.commentItem')
+		@endforeach
+	</section>
+
+	{{ $comments->links() }}
+
+</div>
 
 @stop
 
@@ -26,9 +33,10 @@
 <script>
 $(document).ready(function () {
 	// Masonry
-	$('#comments').masonry({
+	$('#comment-container').masonry({
 		transitionDuration: 0,
-		itemSelector: '.comment'
+		itemSelector: '.comment-wrapper',
+		columnWidth: '.comment-wrapper-dummy'
 	});
 });
 </script>

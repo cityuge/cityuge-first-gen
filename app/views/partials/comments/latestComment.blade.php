@@ -1,4 +1,3 @@
-<?php $currentRoute = Route::currentRouteName(); ?>
 <div class="span6 comment">
 	<article id="comment-{{ $comment->id }}" class="comment-inner">
 		<header class="comment-grade-strip-{{ Course::getGradeStyle($comment->grade) }}">
@@ -45,11 +44,9 @@
 				</a>
 
 				{{-- Permalink --}}
-				@unless ($currentRoute === 'comments.show')
 					<a href="{{ URL::route('comments.show', array($comment->id)) }}" role="button" class="btn" title="{{ trans('app.comment_permalink') }}">
 						<i class="icon-link"></i>
 					</a>
-				@endunless
 	
 				{{-- Sharrre dropdown --}}
 				<ul class="dropdown-menu pull-right social-media-dropdown" data-url="{{ URL::route('comments.show', array($comment->id)) }}" data-text="{{ trans('app.comment_show_title', array('id' => $comment->id, 'courseCode' => e($comment->course->code), 'courseTitle' => e($comment->course->title_en))) }}"></ul>

@@ -4,9 +4,9 @@
 
 <div class="hero-unit">
 	<h1>GE Add/drop 最新政策</h1>
-	<p>在一月二日至三日期間，只可報讀一科 Area 1-3 精進教育 (GE) 課程。</p>
+	<p>在一月二日至三日期間，學生只可以按照其所屬組別報讀指定數目的 Area 1-3 精進教育 (GE) 課程。</p>
 	<p>
-		<a href="http://www6.cityu.edu.hk/arro/content.asp?cid=163" class="btn btn-primary btn-large" target="_blank">教務處 (ARRO) 網頁 <i class="icon-external-link"></i></a>
+		<a href="http://www6.cityu.edu.hk/arro/content.asp?cid=155#add_drop_GE" class="btn btn-primary btn-large" target="_blank">教務處 (ARRO) 網頁 <i class="icon-external-link"></i></a>
 	</p>
 </div>
 

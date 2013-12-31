@@ -10,13 +10,13 @@ return array(
 	'availableLocaleISO' => array('zh-HK', 'zh-CN'),
 
 	// Latest semester which allowed to use when posting a comment
-	'currentAllowedSemester' => '1213S',
+	'currentAllowedSemester' => '1314A',
 	// First semester which allowed to use when posting a comment
 	'firstAllowedSemester' => '1112A',
 	// Latest academic year which the course offerings data is available
 	'latestAcademicYearForOffering' => '1314',
 	// Current quick access semester
-	'currentQuickAccessSemester' => '1314A',
+	'currentQuickAccessSemester' => '1314B',
 	// Semester codes
 	'semesters' => array('A', 'B', 'S'),
 

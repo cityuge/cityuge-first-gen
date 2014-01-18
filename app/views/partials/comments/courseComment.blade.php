@@ -1,8 +1,8 @@
 <div class="span6 comment">
 	<article id="comment-{{ $comment->id }}" class="comment-inner">
-		<header class="comment-grade-strip-{{ Course::getGradeStyle($comment->grade) }}">
-			<div class="comment-grade comment-grade-{{ Course::getGradeStyle($comment->grade) }}" data-toggle="tooltip" title="{{ trans('app.comment_grade_tooltip', array('grade' => $comment->grade)) }}">
-				{{ Course::getRawGradeByText($comment->grade) }}
+		<header class="{{ CourseHelper::getGradeStyle('comment-grade-strip-', $comment->grade) }}">
+			<div class="comment-grade {{ CourseHelper::getGradeStyle('comment-grade-', $comment->grade) }}" data-toggle="tooltip" title="{{ trans('app.comment_grade_tooltip', array('grade' => $comment->grade)) }}">
+				{{ $comment->grade }}
 			</div>
 			<h4>{{{ $comment->semester }}}</h4>
 

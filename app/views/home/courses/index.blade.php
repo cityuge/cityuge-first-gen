@@ -4,7 +4,12 @@
 
 <div id="content" class="container">
 	<div class="page-header">
-		<h1>{{ $title }}</h1>
+		<h1>
+			{{ $title }}
+			@if (isset($categoryDesc))
+				<small>{{ $categoryDesc }}</small>
+			@endif
+		</h1>
 	</div>
 </div>
 

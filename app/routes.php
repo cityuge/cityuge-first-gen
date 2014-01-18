@@ -56,7 +56,6 @@ Route::group(array('prefix' => $locale), function() {
 
 	// Course
 	Route::get('courses', array('as' => 'courses.index', 'uses' => 'CourseController@index'));
-	Route::get('courses.json', array('uses' => 'CourseController@courseListTypeahead'));
 	Route::get('courses/categories/{category}/{semester?}', array('as' => 'courses.category', 'uses' => 'CourseController@category'));
 	Route::get('courses/{code}', array('as' => 'courses.show', 'uses' => 'CourseController@show'));
 	Route::get('courses/{code}/comments/create', array('as' => 'comments.create', 'uses' => 'CommentController@create'));
@@ -90,3 +89,8 @@ Route::get('courses/{code}/feed', array('as' => 'courses.feed', 'uses' => 'FeedC
 
 // Sitemap
 Route::get('sitemap', array('as' => 'sitemap', 'uses' => 'SitemapController@index'));
+
+// Web API
+Route::group(array('prefix' => 'web-api'), function() {
+	Route::get('courses/typeahead', array('uses' => 'CourseController@courseListTypeahead'));
+});

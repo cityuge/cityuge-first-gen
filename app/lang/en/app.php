@@ -158,6 +158,9 @@ return array(
 	'category_unireq' => 'University Requirements',
 	'category_e' => 'Foundation',
 	'category_misc' => 'Miscellaneous',
+	'category_desc_area1' => 'Arts and Humanities',
+	'category_desc_area2' => 'Study of Societies, Social and Business Organisations',
+	'category_desc_area3' => 'Science and Technology',
 
 	// Users & login
 	'user_username' => 'Username',
@@ -185,6 +188,13 @@ return array(
 	'footer_nav_devBlog' => 'Developer Blog (Chinese only)',
 	'footer_nav_acp' => 'Admin Control Panel',
 	'footer_nav_memory' => 'Memory: :memory MB',
+
+	// Social media network
+	'socialMedia_facebook' => 'Facebook',
+	'socialMedia_twitter' => 'Twitter',
+	'socialMedia_googlePlus' => 'Google+',
+	'socialMedia_renren' => 'Renren',
+	'socialMedia_sinaWeibo' => 'Sina Weibo',
 
 	// RSS Feed
 	'feed_title' => 'CityU GE Guide',

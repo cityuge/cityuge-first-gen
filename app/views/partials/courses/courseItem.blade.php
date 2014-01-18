@@ -16,7 +16,7 @@
 				<li>
 					<dl>
 						<dt>{{ trans('app.course_category') }}</dt>
-						<dd>{{ Course::getCategoryTitle($course->category) }}</dd>
+						<dd>{{ CourseHelper::getCategoryText($course->category) }}</dd>
 					</dl>
 				</li>
 				<li>

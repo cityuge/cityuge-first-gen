@@ -18,7 +18,7 @@ class CourseController extends BaseController {
 							->join('departments', 'courses.department_id', '=', 'departments.id')
 							->leftJoin('comments', function($join) {
 								$join->on('courses.id', '=', 'comments.course_id');
-								$join->on('comments.deleted_at', null, DB::raw('is null'));
+								$join->on('comments.deleted_at', null, DB::raw('IS NULL'));
 							})
 							->groupBy('courses.id')
 							->orderBy('courses.code', 'ASC')
@@ -49,12 +49,12 @@ class CourseController extends BaseController {
 	public function category($categoryUrl, $semesterUrl = null)
 	{
 		// Check the category URL
-		$categoryIndex = array_search($categoryUrl, Course::$categoryUrl);
+		$categoryIndex = array_search($categoryUrl, CourseHelper::$categoryUrl);
 		// If category is not found, return 404 error
 		if ($categoryIndex === false) {
 			return App::abort(404);
 		}
-		$category = Course::$category[$categoryIndex];
+		$category = CourseHelper::$category[$categoryIndex];
 
 		$configSemesters = Config::get('cityuge.semesters');
 		
@@ -95,7 +95,7 @@ class CourseController extends BaseController {
 			
 			$title = Lang::choice('app.course_categorySemesterTitle',
 					$courses->getCurrentPage(),
-					array('page' => $courses->getCurrentPage(), 'category' => Course::getCategoryTitle($category), 'semester' => SemesterHelper::getSemesterText($semester)));
+					array('page' => $courses->getCurrentPage(), 'category' => CourseHelper::getCategoryText($category), 'semester' => SemesterHelper::getSemesterText($semester)));
 		} else {
 			$courses = DB::table('courses')
 								->remember(Config::get('cityuge.cache_courseList'))
@@ -116,16 +116,18 @@ class CourseController extends BaseController {
 			
 			$title = Lang::choice('app.course_categoryTitle',
 					$courses->getCurrentPage(),
-					array('page' => $courses->getCurrentPage(), 'category' => Course::getCategoryTitle($category)));
+					array('page' => $courses->getCurrentPage(), 'category' => CourseHelper::getCategoryText($category)));
 		}
 		
-		$metaDescription = Lang::get('app.course_category_metaDesc', array('category' => Course::getCategoryTitle($category)));
+		$metaDescription = Lang::get('app.course_category_metaDesc', array('category' => CourseHelper::getCategoryText($category)));
+		$categoryDesc = CourseHelper::getCategoryDesc($category);
 
 		$data = array(
 			'title' => $title,
 			'courses' => $courses,
 			'metaDescription' => $metaDescription,
 			'categoryUrl' => $categoryUrl,
+			'categoryDesc' => $categoryDesc,
 			'semesters' => SemesterHelper::getSemesterOptions(true, Config::get('cityuge.latestAcademicYearForOffering') . $configSemesters[2]),
 		);
 		return View::make('home.courses.index')->with($data);
@@ -236,8 +238,8 @@ class CourseController extends BaseController {
 		$semesters = array('' => '') + SemesterHelper::getSemesterOptions(true, Config::get('cityuge.latestAcademicYearForOffering') . $configSemesters[2]);
 		$departments = array('' => '') + Department::orderBy('title_en')->lists('title_en', 'initial');
 		$categories = array('' => '');
-		foreach (Course::$category as $category) {
-			$categories[$category] = Course::getCategoryTitle($category);
+		foreach (CourseHelper::$category as $category) {
+			$categories[$category] = CourseHelper::getCategoryText($category);
 		}
 
 		$data = array(

@@ -1,52 +1,56 @@
-.input-append .twitter-typeahead {
-	font-size: @baseFontSize;
+.tt-hint {
+	width: 100%;
+	height: @input-height-base; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
+  padding: @padding-base-vertical @padding-base-horizontal;
+  font-size: @font-size-base;
+  line-height: @line-height-base;
+  color: @input-color;
+  vertical-align: middle;
+  border: 1px solid @input-border;
+  border-radius: @input-border-radius;
 }
-
-.form-search .tt-hint {
-	padding-right: 14px;
-	padding-right: 4px \9;
-	padding-left: 14px;
-	padding-left: 4px \9; /* IE7-8 doesn't have border-radius, so don't indent the padding */
-	margin-bottom: 0; // Remove the default margin on all inputs
-	.border-radius(14px 0 0 14px);
-}
-
 .tt-dropdown-menu {
-	min-width: 160px;
-	margin: 2px 0 0; // override default ul
+	width: 100%;
 	padding: 5px 0;
-	background-color: @dropdownBackground;
-	border: 1px solid #ccc;
-	border: 1px solid @dropdownBorder;
-	*border-right-width: 2px;
-	*border-bottom-width: 2px;
-	.border-radius(@borderRadiusLarge);
-	.box-shadow(0 2px 8px rgba(0,0,0,.2));
-	-webkit-background-clip: padding-box;
-	-moz-background-clip: padding;
+	margin: 2px 0 0; // override default ul
+	font-size: @font-size-base;
+	background-color: @dropdown-bg;
+	border: 1px solid @dropdown-fallback-border; // IE8 fallback
+	border: 1px solid @dropdown-border;
+	border-radius: @border-radius-base;
+	.box-shadow(0 6px 12px rgba(0,0,0,.175));
 	background-clip: padding-box;
 }
-
 .tt-suggestion {
 	display: block;
 	padding: 3px 20px;
+	clear: both;
+	font-weight: normal;
+	line-height: @line-height-base;
+	color: @dropdown-link-color;
+	white-space: nowrap; // prevent links from randomly breaking onto new lines
+}
+.tt-is-under-cursor {
+	text-decoration: none;
+	color: @dropdown-link-hover-color;
+	background-color: @dropdown-link-hover-bg;
 }
 
-.tt-suggestion.tt-is-under-cursor {
-	color: @dropdownLinkColorHover;
-	#gradient > .vertical(@dropdownLinkBackgroundHover, darken(@dropdownLinkBackgroundHover, 5%));
-}
-
-.tt-suggestion.tt-is-under-cursor a {
-	color: @dropdownBackground;
-}
-
-.tt-suggestion p {
-	margin: 0;
-}
-
-// Suggestion item for courses
-.search-course-code {
-	font-size: @baseFontSize;
-	margin: 0;
+// Course code quick search
+.tt-dataset-quick-search-courses {
+	.tt-suggestion {
+		position: relative;
+	}
+	.course-code {
+		display: block;
+	}
+	.course-title {
+		display: block;
+		font-size: @font-size-small;
+	}
+	.course-category {
+		position: absolute;
+		top: 4px;
+		right: 20px;
+	}
 }

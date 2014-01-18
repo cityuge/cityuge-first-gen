@@ -78,7 +78,10 @@
 	<meta name="msapplication-TileImage" content="{{ URL::to('') }}/ico/metro-tile.png">
 	<meta name="msapplication-TileColor" content="#FF9900">
 
-	@yield('headerScript')
+	@section('headerScript')
+		<!-- Require.JS -->
+		<script data-main="{{ URL::to('') }}/js/default" src="http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.9/require.min.js"></script>
+	@show
 
 </head>
 <body>
@@ -127,12 +130,14 @@
 				</ul>
 
 				<!-- Right hand side -->
-				<form class="navbar-form navbar-right" role="search">
+				{{ Form::open(array('route' => 'courses.processSearch', 'method' => 'POST', 'id' => 'header-quick-search', 'class' => 'navbar-form navbar-right', 'role' => 'search')) }}
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="{{ trans('app.nav_searchPlaceholder') }}">
+						<label for="header-quick-search-keyword" class="sr-only">{{ trans('app.nav_searchPlaceholder') }}</label>
+						{{ Form::text('keyword', isset($search_result) ? $keyword : '', array('id' => 'header-quick-search-keyword', 'class' => 'form-control', 'placeholder' => trans('app.nav_searchPlaceholder'), 'x-webkit-speech' => '', 'x-webkit-grammar' => 'builtin:search', 'lang' => 'en')) }}
 					</div>
-					<button type="submit" class="btn btn-default"><i class="fa fa-search"></i> {{ trans('app.nav_search') }}</button>
-				</form>
+					<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> <span class="sr-only">{{ trans('app.nav_search') }}</span></button>
+					{{ Form::hidden('type', 'quick') }}
+				{{ Form::close() }}
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe"></i> <b class="caret"></b></a>

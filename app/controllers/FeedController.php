@@ -46,8 +46,8 @@ class FeedController extends BaseController {
 
 		// Channel
 		$channel = new Channel();
-		$channel->title(Lang::get('app.feed_title'))
-				->description(Lang::get('app.feed_description'))
+		$channel->title(trans('app.feed_title'))
+				->description(trans('app.feed_description'))
 				->url(URL::to(''))
 				->pubDate(count($comments) ? $comments[0]->created_at->timestamp : time())
 				->ttl(Config::get('cityuge.feed_ttl'))
@@ -58,10 +58,10 @@ class FeedController extends BaseController {
 		// Items
 		foreach ($comments as $comment) {
 			$url = route('comments.show', array($comment->id));
-			$desc = '<dl><dt>' . Lang::get('app.comment_semester') . '</dt><dd>' . e($comment->semester) . '</dd>'
-						. '<dt>' . Lang::get('app.comment_instructor') . '</dt><dd>' . e($comment->instructor) . '</dd>'
-						. '<dt>' . Lang::get('app.comment_grade') . '</dt><dd>' . e($comment->grade) . '<dd>'
-						. '<dt>' . Lang::get('app.comment_workload') . '</dt><dd>' . e($comment->workload) . '</dd></dl>' . $comment->body;
+			$desc = '<dl><dt>' . trans('app.comment_semester') . '</dt><dd>' . SemesterHelper::getSemesterText($comment->semester) . '</dd>'
+						. '<dt>' . trans('app.comment_instructor') . '</dt><dd>' . e($comment->instructor) . '</dd>'
+						. '<dt>' . trans('app.comment_grade') . '</dt><dd>' . e($comment->grade) . '<dd>'
+						. '<dt>' . trans('app.comment_workload') . '</dt><dd>' . CommentHelper::getWorkloadText($comment->workload) . '</dd></dl>' . $comment->body;
 
 			$item = new Item();
 			$item->title($comment->course->code . ' - ' . $comment->course->title_en)
@@ -84,8 +84,8 @@ class FeedController extends BaseController {
 
 		// Channel
 		$channel = new Channel();
-		$channel->title(Lang::get('app.feed_course_title', array('courseCode' => $course->code)))
-				->description(Lang::get('app.feed_course_description', array('courseCode' => $course->code)))
+		$channel->title(trans('app.feed_course_title', array('courseCode' => $course->code)))
+				->description(trans('app.feed_course_description', array('courseCode' => $course->code)))
 				->url(URL::to(''))
 				->pubDate(count($comments) ? $comments[0]->created_at->timestamp : time())
 				->ttl(Config::get('cityuge.feed_ttl'))
@@ -96,10 +96,10 @@ class FeedController extends BaseController {
 		// Items
 		foreach ($comments as $comment) {
 			$url = route('comments.show', array($comment->id));
-			$desc = '<dl><dt>' . Lang::get('app.comment_semester') . '</dt><dd>' . e($comment->semester) . '</dd>'
-						. '<dt>' . Lang::get('app.comment_instructor') . '</dt><dd>' . e($comment->instructor) . '</dd>'
-						. '<dt>' . Lang::get('app.comment_grade') . '</dt><dd>' . e($comment->grade) . '<dd>'
-						. '<dt>' . Lang::get('app.comment_workload') . '</dt><dd>' . e($comment->workload) . '</dd></dl>' . $comment->body;
+			$desc = '<dl><dt>' . trans('app.comment_semester') . '</dt><dd>' . SemesterHelper::getSemesterText($comment->semester) . '</dd>'
+						. '<dt>' . trans('app.comment_instructor') . '</dt><dd>' . e($comment->instructor) . '</dd>'
+						. '<dt>' . trans('app.comment_grade') . '</dt><dd>' . e($comment->grade) . '<dd>'
+						. '<dt>' . trans('app.comment_workload') . '</dt><dd>' . CommentHelper::getWorkloadText($comment->workload) . '</dd></dl>' . $comment->body;
 
 			$item = new Item();
 			$item->title($course->code . ' - ' . $course->title_en)

@@ -53,7 +53,7 @@ return array(
 	'course_title' => '名稱',
 	'course_department' => '學系',
 	'course_department_course' => '其他課程',
-	'course_department_website' => '網站',
+	'course_department_website' => '學系網站',
 	'course_category' => '分類',
 	'course_level' => '程度',
 	'course_offering' => '開辦學期',
@@ -158,6 +158,9 @@ return array(
 	'category_unireq' => '大學必修',
 	'category_e' => '補底班',
 	'category_misc' => '其他',
+	'category_desc_area1' => '藝術和人文科學',
+	'category_desc_area2' => '社會研究，社會和商業組織',
+	'category_desc_area3' => '科學和技術',
 
 	// Users & login
 	'user_username' => '帳戶名稱',
@@ -185,6 +188,13 @@ return array(
 	'footer_nav_devBlog' => '開發日誌',
 	'footer_nav_acp' => '管理控制台',
 	'footer_nav_memory' => 'Memory: :memory MB',
+
+	// Social media network
+	'socialMedia_facebook' => 'Facebook',
+	'socialMedia_twitter' => 'Twitter',
+	'socialMedia_googlePlus' => 'Google+',
+	'socialMedia_renren' => '人人網',
+	'socialMedia_sinaWeibo' => '新浪微博',
 
 	// RSS Feed
 	'feed_title' => 'CityU GE 指南',

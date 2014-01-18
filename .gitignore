@@ -9,5 +9,5 @@ $RECYCLE.BIN/
 Desktop.ini
 
 *.less.bak
-/node_modules
 *.css.map
+/node_modules

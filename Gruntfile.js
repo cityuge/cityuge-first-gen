@@ -1,23 +1,83 @@
+/*jshint es3:false */
 module.exports = function(grunt) {
 
 	// All configuration goes here 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 
-		// concat: {
-		// 	dist: {
-		// 		src: [
-		// 			'public/js-org/*.js'
-		// 		],
-		// 		dest: 'public/js/test.js'
-		// 	}
-		// },
-		// uglify: {
-		// 	build: {
-		// 		src: 'public/js/test.js',
-		// 		dest: 'public/js/test.min.js'
-		// 	}
-		// },
+		jshint: {
+			files: ['Gruntfile.js', 'js/**/*.js'],
+			options: {
+				// http://www.jshint.com/docs/options/
+				ignores: ['js/vendor/**/*.js'],
+				smarttabs: true,
+				trailing: true,
+				noempty: true,
+				es3: true,
+				unused: true,
+				undef: 'vars',
+				eqnull: true,
+				browser: true,
+				devel: true,
+				globals: {
+					jquery: true,
+					module: false,
+					require: false,
+					define: false,
+				}
+			}
+		},
+		requirejs: {
+			options: {
+				appDir: 'js',
+				baseUrl: '.',
+				dir: 'public/js',
+				optimize: 'none',
+				optimizeCss: 'none',
+				mainConfigFile: 'js/config.js'
+			},
+			development: {
+				generateSourceMaps: true,
+				skipDirOptimize: true
+			},
+			production: {
+				options: {
+					inlineText: true,
+					findNestedDependencies: true,
+					fileExclusionRegExp: /^\.|^config\.js/,
+					removeCombined: true,
+					modules: [{
+						name: 'default'
+					}]
+				}
+			}
+		},
+		clean: [
+			'public/js/vendor',
+			'public/js/build.txt'
+		],
+		concat: {
+			development: {
+				files: {
+					'public/js/default.js': ['public/js/config.js', 'public/js/default.js'],
+					'public/js/comments-all.js': ['public/js/config.js', 'public/js/comments-all.js']
+				}
+			}
+		},
+		uglify: {
+			options: {
+				// Put a banner on each uglified file
+				banner: '/*! <%= pkg.description %> - <%= grunt.template.today("ddd, mmm d, yyyy, h:MM:ss Z") %> */\n'
+			},
+			build: {
+				files: [{
+					expand: true,
+					cwd: 'public/js',
+					src: '**/*.js',
+					dest: 'public/js'
+				}]
+			}
+		},
 		imagemin: {
 			png: {
 				options: {
@@ -84,21 +144,21 @@ module.exports = function(grunt) {
 				files: ['public/img/**/*.{png,jpg,gif}'],
 				tasks: ['imagemin'],
 				options: {
-					spawn: false,
+					spawn: false
 				},
 			},
-			// scripts: {
-			// 	files: ['public/js-org/*.js'],
-			// 	tasks: ['jshint'],
-			// 	options: {
-			// 		spawn: false,
-			// 	},
-			// },
+			scripts: {
+				files: ['js/**/*.{js,html}'],
+				tasks: ['requirejs:development', 'concat'],
+				options: {
+					spawn: false
+				},
+			},
 			styles: {
 				files: ['less/**/*.less'],
 				tasks: ['less:development'],
 				options: {
-					spawn: true,
+					spawn: true
 				},
 			}
 		}
@@ -106,7 +166,10 @@ module.exports = function(grunt) {
 	});
 
 	// Where we tell Grunt we plan to use this plug-in.
+	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-imagemin');
 	grunt.loadNpmTasks('grunt-contrib-less');
@@ -114,6 +177,7 @@ module.exports = function(grunt) {
 
 	// Where we tell Grunt what to do when we type "grunt" into the terminal.
 	grunt.registerTask('default', ['watch']);
-	grunt.registerTask('prod', ['imagemin', 'less:production']);
+	grunt.registerTask('prod', ['requirejs:production', 'clean', 'uglify', 'imagemin', 'less:production']);
+	grunt.registerTask('test', ['jshint', 'requirejs:development', 'concat']);
 
 };

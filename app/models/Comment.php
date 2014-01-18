@@ -35,41 +35,8 @@ class Comment extends BaseModel {
 		$this->attributes['admin_note'] = trim($result);
 	}
 
-	public function getSemesterAttribute($val) {
-		return static::getSemesterText($val);
-	}
-
-	public function getGradeAttribute($val) {
-		return Course::getGradeText($val);
-	}
-
-	public function getWorkloadAttribute($val) {
-		return static::getWorkloadText($val);
-	}
-
-
-
-	public static function getWorkloadOptions() {
-		return array(
-			'1' => Lang::get('app.workload_1'),
-			'2' => Lang::get('app.workload_2'),
-			'3' => Lang::get('app.workload_3'),
-			'4' => Lang::get('app.workload_4'),
-			'5' => Lang::get('app.workload_5'),
-		);
-	}
-
-	public static function getWorkloadText($index) {
-		$workloads = self::getWorkloadOptions();
-		return $workloads[$index];
-	}
-
-	public static function getSemesterText($input) {
-		return SemesterHelper::getSemesterText($input);
-	}
-
 	public static function getGradeDistribution($courseId, $gradingPattern) {
-		$grades = Course::getGradingOptionArray($gradingPattern);
+		$grades = CourseHelper::getGradingOptionArray($gradingPattern);
 
 		$query = DB::select('SELECT grade, COUNT(*) AS count FROM comments WHERE course_id = ? AND deleted_at IS NULL GROUP BY grade', array($courseId));
 

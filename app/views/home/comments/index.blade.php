@@ -1,5 +1,9 @@
 @extends('layouts.home')
 
+@section('headerScript')
+	<script data-main="{{ URL::to('') }}/js/comments-all" src="http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.9/require.min.js"></script>
+@stop
+
 @section('content')
 
 <div id="content" class="container">
@@ -22,23 +26,5 @@
 	{{ $comments->links() }}
 
 </div>
-
-@stop
-
-@section('footerScript')
-{{ HTML::script('js/masonry.pkgd.min.js') }}
-{{ HTML::script('js/jquery.sharrre.js') }}
-{{ HTML::script('js/comment-box.min.js') }}
-
-<script>
-$(document).ready(function () {
-	// Masonry
-	$('#comment-container').masonry({
-		transitionDuration: 0,
-		itemSelector: '.comment-wrapper',
-		columnWidth: '.comment-wrapper-dummy'
-	});
-});
-</script>
 
 @stop

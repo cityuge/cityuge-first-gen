@@ -2,20 +2,9 @@
 
 class Course extends BaseModel {
 	protected $guarded = array();
-
 	public static $rules = array();
-
 	public $timestamps = false;
-
-	// Course category
-	public static $category = array('AREA1', 'AREA2', 'AREA3', 'UNIREQ', 'E');
-	public static $categoryUrl = array('area-1', 'area-2', 'area-3', 'university-requirements', 'foundation');
-
-	// Grading
-	public static $stdGrading = array('A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'F', 'X');
-	public static $stdPFGrading = array('A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'P', 'F', 'X');
-	public static $pfGrading = array('P', 'F', 'X');
-
+	
 	public function department() {
 		return $this->belongsTo('Department');
 	}
@@ -26,106 +15,7 @@ class Course extends BaseModel {
 
 	public function offerings() {
 		return $this->hasMany('Offering')->orderBy('semester', 'DESC');
-	}
-
-	public function getCategoryAttribute($value) {
-		return static::getCategoryTitle($value);
-	}
-
-	public static function getCategoryTitle($code) {
-		switch ($code) {
-			case 'AREA1':
-				return Lang::get('app.category_area1');
-			case 'AREA2':
-				return Lang::get('app.category_area2');
-			case 'AREA3':
-				return Lang::get('app.category_area3');
-			case 'UNIREQ':
-				return Lang::get('app.category_unireq');
-			case 'E':
-				return Lang::get('app.category_e');
-			default:
-				return Lang::get('app.category_misc');
-		}
-	}
-
-	public static function getStdGradingOptions() {
-		return array(
-			'A+' => 'A+',
-			'A' => 'A',
-			'A-' => 'A-',
-			'B+' => 'B+',
-			'B' => 'B',
-			'B-' => 'B-',
-			'C+' => 'C+',
-			'C' => 'C',
-			'C-' => 'C-',
-			'D' => 'D',
-			'F' => Lang::get('app.grade_f'),
-			'X' => Lang::get('app.grade_x'),
-		);
-	}
-
-	public static function getStdPfGradingOptions() {
-		return array(
-			'A+' => 'A+',
-			'A' => 'A',
-			'A-' => 'A-',
-			'B+' => 'B+',
-			'B' => 'B',
-			'B-' => 'B-',
-			'C+' => 'C+',
-			'C' => 'C',
-			'C-' => 'C-',
-			'D' => 'D',
-			'P' => Lang::get('app.grade_p'),
-			'F' => Lang::get('app.grade_f'),
-			'X' => Lang::get('app.grade_x'),
-		);
-	}
-
-	public static function getPfGradingOptions() {
-		return array(
-			'P' => Lang::get('app.grade_p'),
-			'F' => Lang::get('app.grade_f'),
-			'X' => Lang::get('app.grade_x'),
-		);
-	}
-
-	public static function getGradeText($input) {
-		if ($input === 'P') {
-			return Lang::get('app.grade_p');
-		} else if ($input === 'F') {
-			return Lang::get('app.grade_f');
-		} else if ($input === 'X') {
-			return Lang::get('app.grade_x');
-		} else {
-			return $input;
-		}
-	}
-
-	public static function getRawGradeByText($input) {
-		switch ($input) {
-			case Lang::get('app.grade_p'):
-				return 'P';
-			case Lang::get('app.grade_f'):
-				return 'F';
-			case Lang::get('app.grade_x'):
-				return 'X';
-			default:
-				return $input;
-		}
-	}
-
-	public static function getGradingOptionArray($gradingPattern) {
-		if ($gradingPattern === 'PF') {
-			return Course::getPfGradingOptions();
-		} else if ($gradingPattern === 'STD-PF') {
-			return Course::getStdPfGradingOptions();
-		} else {
-			return Course::getStdGradingOptions();
-		}
-	}
+	}	
 
 	public static function checkCourseCode($courseCode) {
 		$courseCode = strtoupper($courseCode);
@@ -134,25 +24,6 @@ class Course extends BaseModel {
 			return $course;
 		}
 		return false;
-	}
-
-	public static function getGradeStyle($grade) {
-		$gradeStyle = array(
-			'A+' => 'ap',
-			'A' => 'a',
-			'A-' => 'am',
-			'B+' => 'bp',
-			'B' => 'b',
-			'B-' => 'bm',
-			'C+' => 'cp',
-			'C' => 'c',
-			'C-' => 'cm',
-			'D' => 'd',
-			'Fail' => 'f',
-			'Dropped' => 'dropped',
-			'Pass' => 'ap',
-			);
-		return $gradeStyle[$grade];
 	}
 
 	public static function getSearchTypeaheadList() {

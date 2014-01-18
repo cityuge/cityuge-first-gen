@@ -1,3 +1,4 @@
+// Make background image with different density
 .density-bg-img(@width, @height, @posX, @posY, @url-ldpi, @url-mdpi, @url-hdpi, @url-xhdpi, @url-xxhdpi) {
 	background: url(@url-mdpi) no-repeat @posX @posY;
 	@media screen and (-webkit-device-pixel-ratio: 3.0) {
@@ -15,5 +16,14 @@
 	@media screen and (-webkit-device-pixel-ratio: 0.75) {
 		background: url(@url-ldpi) no-repeat @posX @posY;
 		background-size: @width @height;
+	}
+}
+
+// Make jumbotron colors by different course category
+.jumbotron-course-theme(@theme) {
+	background-color: @theme;
+	color: #fff;
+	.jumbotron-course-meta {
+		color: tint(@theme, 75%);
 	}
 }

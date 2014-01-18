@@ -1,7 +1,7 @@
 <div class="comment-wrapper">
 	<article class="panel panel-default panel-comment">
 		<header class="panel-comment-heading">
-			<a href="{{ URL::route('courses.show', array(strtolower($comment->course->code))) }}" class="panel-comment-heading-{{ Course::getGradeStyle($comment->grade) }}">
+			<a href="{{ URL::route('courses.show', array(strtolower($comment->course->code))) }}" class="{{ CourseHelper::getGradeStyle('panel-comment-heading-', $comment->grade) }}">
 				<h3 class="panel-title" itemprop="name">
 					<span class="panel-course-code">{{{ $comment->course->code }}}</span>
 
@@ -10,7 +10,7 @@
 						<span class="panel-course-title">{{{ $comment->course->title_zh }}}</span>
 					@endif
 				</h3>
-				<span class="panel-comment-grade panel-comment-grade-{{ Course::getGradeStyle($comment->grade) }}" data-toggle="tooltip" title="{{ trans('app.comment_grade_tooltip', array('grade' => $comment->grade)) }}">{{ Course::getRawGradeByText($comment->grade) }}</span>
+				<span class="panel-comment-grade {{ CourseHelper::getGradeStyle('panel-comment-grade-', $comment->grade) }}" data-toggle="tooltip" title="{{ trans('app.comment_grade_tooltip', array('grade' => CourseHelper::getGradeText($comment->grade))) }}">{{ $comment->grade }}</span>
 			</a>
 		</header>
 		<aside class="panel-comment-aside">
@@ -18,7 +18,7 @@
 				<li>
 					<dl>
 						<dt>{{ trans('app.comment_semester') }}</dt>
-						<dd>{{ $comment->semester }}</dd>
+						<dd>{{ SemesterHelper::getSemesterText($comment->semester) }}</dd>
 					</dl>
 				</li>
 				<li>
@@ -30,7 +30,7 @@
 				<li>
 					<dl>
 						<dt>{{ trans('app.comment_workload') }}</dt>
-						<dd>{{ $comment->workload }}</dd>
+						<dd>{{ CommentHelper::getWorkloadText($comment->workload) }}</dd>
 					</dl>
 				</li>
 			</ul>
@@ -43,13 +43,13 @@
 			</p>
 			<div class="btn-group btn-group-comment-footer">
 				<a href="{{ URL::route('comments.show', array($comment->id)) }}" class="btn btn-comment-footer" role="button"><i class="fa fa-link"></i> <span class="sr-only">{{ trans('app.comment_permalink') }}</span></a>
-				<div class="btn-group dropup ">
-					<ul class="dropdown-menu pull-right" role="menu" aria-labelledby="comment-dropup-menu-{{ $comment->id }}">
-						<li><a href="#"><i class="fa fa-fw fa-facebook"></i> Facebook</a></li>
-						<li><a href="#"><i class="fa fa-fw fa-twitter"></i> Twitter</a></li>
-						<li><a href="#"><i class="fa fa-fw fa-google-plus"></i> Google+</a></li>
-						<li><a href="#"><i class="fa fa-fw fa-renren"></i> Renren</a></li>
-						<li><a href="#"><i class="fa fa-fw fa-weibo"></i> Weibo</a></li>
+				<div class="btn-group dropup">
+					<ul class="dropdown-menu pull-right" role="menu" data-share-list="share" aria-labelledby="comment-dropup-menu-{{ $comment->id }}">
+						<li><a rel="nofollow" data-share="facebook" href="http://facebook.com/share.php?u={{ urlencode(URL::route('comments.show', array($comment->id))) }}"><i class="fa fa-fw fa-facebook"></i> {{ trans('app.socialMedia_facebook') }}</a></li>
+						<li><a rel="nofollow" data-share="twitter" href="https://twitter.com/intent/tweet?url={{ urlencode(URL::route('comments.show', array($comment->id))) }}"><i class="fa fa-fw fa-twitter"></i> {{ trans('app.socialMedia_twitter') }}</a></li>
+						<li><a rel="nofollow" data-share="googlePlus" href="http://plus.google.com/share?url={{ urlencode(URL::route('comments.show', array($comment->id))) }}"><i class="fa fa-fw fa-google-plus"></i> {{ trans('app.socialMedia_googlePlus') }}</a></li>
+						<li><a rel="nofollow" data-share="renren" href="http://share.renren.com/share/buttonshare?link={{ urlencode(URL::route('comments.show', array($comment->id))) }}"><i class="fa fa-fw fa-renren"></i> {{ trans('app.socialMedia_renren') }}</a></li>
+						<li><a rel="nofollow" data-share="sinaWeibo" href="http://v.t.sina.com.cn/share/share.php?url={{ urlencode(URL::route('comments.show', array($comment->id))) }}"><i class="fa fa-fw fa-weibo"></i> {{ trans('app.socialMedia_sinaWeibo') }}</a></li>
 					</ul>
 					<button type="button" id="comment-dropup-menu-{{ $comment->id }}" class="btn btn-comment-footer dropdown-toggle" data-toggle="dropdown">
 						<i class="fa fa-share"></i> <span class="sr-only">{{ trans('app.comment_share') }}</span> <span class="caret"></span>

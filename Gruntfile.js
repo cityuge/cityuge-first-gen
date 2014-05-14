@@ -27,31 +27,6 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		requirejs: {
-			options: {
-				appDir: 'js',
-				baseUrl: '.',
-				dir: 'public/js',
-				optimize: 'none',
-				optimizeCss: 'none',
-				mainConfigFile: 'js/config.js'
-			},
-			development: {
-				generateSourceMaps: true,
-				skipDirOptimize: true
-			},
-			production: {
-				options: {
-					inlineText: true,
-					findNestedDependencies: true,
-					fileExclusionRegExp: /^\.|^config\.js/,
-					removeCombined: true,
-					modules: [{
-						name: 'default'
-					}]
-				}
-			}
-		},
 		clean: [
 			'public/js/vendor',
 			'public/js/build.txt'
@@ -138,28 +113,28 @@ module.exports = function(grunt) {
 		},
 		watch: {
 			options: {
-				livereload: true,
+				livereload: true
 			},
 			images: {
 				files: ['public/img/**/*.{png,jpg,gif}'],
 				tasks: ['imagemin'],
 				options: {
 					spawn: false
-				},
+				}
 			},
 			scripts: {
 				files: ['js/**/*.{js,html}'],
 				tasks: ['requirejs:development', 'concat'],
 				options: {
 					spawn: false
-				},
+				}
 			},
 			styles: {
 				files: ['less/**/*.less'],
 				tasks: ['less:development'],
 				options: {
 					spawn: true
-				},
+				}
 			}
 		}
 
@@ -169,7 +144,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-imagemin');
 	grunt.loadNpmTasks('grunt-contrib-less');
@@ -177,7 +151,7 @@ module.exports = function(grunt) {
 
 	// Where we tell Grunt what to do when we type "grunt" into the terminal.
 	grunt.registerTask('default', ['watch']);
-	grunt.registerTask('prod', ['requirejs:production', 'clean', 'uglify', 'imagemin', 'less:production']);
-	grunt.registerTask('test', ['jshint', 'requirejs:development', 'concat']);
+	grunt.registerTask('prod', ['clean', 'uglify', 'imagemin', 'less:production']);
+	grunt.registerTask('test', ['jshint', 'concat']);
 
 };

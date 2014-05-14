@@ -43,7 +43,7 @@
 			{{ HTML::alert(Session::get('alertType'), Session::get('alertBody')) }}
 		@endif
 		
-		{{ Form::open(array('route' => 'loggingIn', 'method' => 'post')) }}
+		{{ Form::open(array('route' => 'loggingIn', 'method' => 'post', 'autocomplete' => 'off')) }}
 		
 			{{ Form::text('username', Input::old('username'), array('placeholder' => trans('app.user_username'), 'class' => 'form-control input-lg', 'required', 'autofocus', 'autocomplete' => 'off')) }}
 			{{ Form::password('password', array('placeholder' => trans('app.user_password'), 'class' => 'form-control input-lg', 'required', 'autocomplete' => 'off')) }}

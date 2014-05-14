@@ -122,13 +122,6 @@ module.exports = function(grunt) {
 					spawn: false
 				}
 			},
-			scripts: {
-				files: ['js/**/*.{js,html}'],
-				tasks: ['requirejs:development', 'concat'],
-				options: {
-					spawn: false
-				}
-			},
 			styles: {
 				files: ['less/**/*.less'],
 				tasks: ['less:development'],

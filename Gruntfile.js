@@ -27,30 +27,42 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		clean: [
-			'public/js/vendor',
-			'public/js/build.txt'
-		],
 		concat: {
-			development: {
-				files: {
-					'public/js/default.js': ['public/js/config.js', 'public/js/default.js'],
-					'public/js/comments-all.js': ['public/js/config.js', 'public/js/comments-all.js']
-				}
+			vendorCommon: {
+				src: [
+					'public/js/vendor/jquery-1.11.1.js',
+					'public/js/vendor/bootstrap.js',
+					'public/js/vendor/underscore.js',
+					'public/js/vendor/typeahead.bundle.js'
+				],
+				dest: 'public/js/vendor-common.min.js'
+			},
+			homeCommon: {
+				src: [
+					'public/js/home/config.js',
+					'public/js/home/lang.js',
+					'public/js/home/headerQuickSearch.js'
+				],
+				dest: 'public/js/home-common.min.js'
 			}
 		},
 		uglify: {
 			options: {
 				// Put a banner on each uglified file
-				banner: '/*! <%= pkg.description %> - <%= grunt.template.today("ddd, mmm d, yyyy, h:MM:ss Z") %> */\n'
+				banner: '/*! <%= pkg.description %> - <%= grunt.template.today("ddd, mmm d, yyyy, h:MM:ss Z") %> */\n',
+				sourceMap: true,
+				mangle: {
+					except: ['jQuery']
+				},
+				compress: {
+					drop_console: true
+				}
 			},
 			build: {
-				files: [{
-					expand: true,
-					cwd: 'public/js',
-					src: '**/*.js',
-					dest: 'public/js'
-				}]
+				files: {
+					'public/js/vendor-common.min.js': ['public/js/vendor-common.min.js'],
+					'public/js/home-common.min.js': ['public/js/home-common.min.js']
+				}
 			}
 		},
 		imagemin: {
@@ -128,6 +140,13 @@ module.exports = function(grunt) {
 				options: {
 					spawn: true
 				}
+			},
+			scripts: {
+				files: ['public/js/**/*.js'],
+				tasks: ['concat'],
+				options: {
+					spawn: true
+				}
 			}
 		}
 
@@ -135,7 +154,6 @@ module.exports = function(grunt) {
 
 	// Where we tell Grunt we plan to use this plug-in.
 	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-imagemin');
@@ -144,7 +162,6 @@ module.exports = function(grunt) {
 
 	// Where we tell Grunt what to do when we type "grunt" into the terminal.
 	grunt.registerTask('default', ['watch']);
-	grunt.registerTask('prod', ['clean', 'uglify', 'imagemin', 'less:production']);
-	grunt.registerTask('test', ['jshint', 'concat']);
-
+	grunt.registerTask('prod', ['concat', 'uglify', 'imagemin', 'less:production']);
+	grunt.registerTask('js', ['concat', 'uglify']);
 };

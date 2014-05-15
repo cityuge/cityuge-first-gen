@@ -6,7 +6,7 @@
 	<div class="row">
 		<div class="col-md-6" lang="en">
 			<h1>Under Maintenance</h1>
-			<p>The website is under maintenance now, please visit later. We apologize for any inconvenience caused.</p>
+			<p>The website is currently under maintenance, please visit later. We apologize for any inconvenience caused.</p>
 		</div>
 
 		<div class="col-md-6" lang="zh-HK">

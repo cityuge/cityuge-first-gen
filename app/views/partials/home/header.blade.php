@@ -31,7 +31,7 @@
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
 	
@@ -79,8 +79,11 @@
 	<meta name="msapplication-TileColor" content="#FF9900">
 
 	@section('headerScript')
-		<!-- Require.JS -->
-		<script data-main="{{ URL::to('') }}/js/default" src="http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.9/require.min.js"></script>
+		<script>
+			var APP_BASE_URL = '{{ URL::to('') }}';
+		</script>
+		<script src="{{ URL::to('') }}/js/vendor-common.min.js"></script>
+		<script src="{{ URL::to('') }}/js/home-common.min.js"></script>
 	@show
 
 </head>
@@ -133,7 +136,7 @@
 				{{ Form::open(array('route' => 'courses.processSearch', 'method' => 'POST', 'id' => 'header-quick-search', 'class' => 'navbar-form navbar-right', 'role' => 'search')) }}
 					<div class="form-group">
 						<label for="header-quick-search-keyword" class="sr-only">{{ trans('app.nav_searchPlaceholder') }}</label>
-						{{ Form::text('keyword', isset($search_result) ? $keyword : '', array('id' => 'header-quick-search-keyword', 'class' => 'form-control', 'placeholder' => trans('app.nav_searchPlaceholder'), 'x-webkit-speech' => '', 'x-webkit-grammar' => 'builtin:search', 'lang' => 'en')) }}
+						{{ Form::text('keyword', isset($search_result) ? $keyword : '', array('id' => 'header-quick-search-keyword', 'class' => 'form-control', 'placeholder' => trans('app.nav_searchPlaceholder'))) }}
 					</div>
 					<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> <span class="sr-only">{{ trans('app.nav_search') }}</span></button>
 					{{ Form::hidden('type', 'quick') }}

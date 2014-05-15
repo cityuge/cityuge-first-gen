@@ -33,6 +33,10 @@
 	</script>
 @endif
 
-@yield('footerScript')
+@section('footerScript')
+<script>
+headerQuickSearch.init();
+</script>
+@show
 </body>
 </html>

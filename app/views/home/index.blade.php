@@ -34,33 +34,60 @@
 	</div>
 	
 	<div class="row">
-		<div class="col-sm-6">
-			<blockquote>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-				<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
-			</blockquote>
-			<blockquote>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-				<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
-			</blockquote>
-		</div>
-		<!-- Facebook like box plug-in -->
+		<!-- Facebook social plugin -->
 		<div class="col-sm-6">
 			<div class="fb-like-box" data-href="http://www.facebook.com/cityuge" data-width="380" data-height="270" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
+		</div>
+		
+		<div id="testimonial" class="col-sm-6">
+			<blockquote>
+				<p>Quite useful and systematic.</p>
+				<small><cite>Christine (<abbr title="BEng - Information Engineering">BEIE</abbr>)</cite></small>
+			</blockquote>
+			<blockquote>
+				<p>The website is a useful reference for us to choose favorable GE courses by providing detailed information.</p>
+				<small><cite>Stephen (<abbr title="BBA - Electronic Commerce">BBAEC</abbr>)</cite></small>
+			</blockquote>
+			<blockquote>
+				<p>It is very useful and help us to know more about GE courses.</p>
+				<small><cite>Kasu (<abbr title="BBA - Human Resources Management">BBAHRM</abbr>)</cite></small>
+			</blockquote>
+			<blockquote>
+				<p>The website is good and well-organized.</p>
+				<small><cite>Jay (<abbr title="BEng (Undeclared Major)">BENG</abbr>)</cite></small>
+			</blockquote>
+			<blockquote>
+				<p>很有參考價值，選科時可作參考。</p>
+				<small><cite>Ling (<abbr title="BSocSc - Social Work">BSSSW</abbr>)</cite></small>
+			</blockquote>
 		</div>
 	</div>
 </section>
 
 
-<!-- For Facebook like box plug-in -->
+<!-- For Facebook social plugin -->
 <div id="fb-root"></div>
 
 @stop
 
 
 @section('footerScript')
-
+	@parent
 <script>
+// Testimonial
+function fadeTestimonial(index, $elements) {
+	$elements.eq(index)
+		.fadeIn(1000)
+		.delay(4000)
+		.fadeOut(1000, function() {
+			fadeTestimonial((index + 1) % $elements.length, $elements);
+		});
+}
+var testimonials = $('#testimonial > blockquote');
+testimonials.hide();
+fadeTestimonial(0, testimonials);
+
+// Facebook social plugin
 (function(d, s, id) {
 	var js, fjs = d.getElementsByTagName(s)[0];
 	if (d.getElementById(id)) return;

@@ -15,6 +15,7 @@
 	<h2>聯絡我們</h2>
 	<p>如欲聯絡我們，請電郵至 <a href="mailto:cityuge@swiftzer.net">cityuge@swiftzer.net</a>。若在操作上遇上任何困難（如誤填資料、網站故障等）或資料錯誤，亦歡迎來函，我們將儘快跟進。此外，我們亦開設了 <a href="http://www.facebook.com/cityuge">Facebook 專頁</a>，歡迎「讚好」並關注本網站的最新動向。</p>
 	
+	<p>為防冒認，凡在電郵中聲稱自己是香港城市大學之職員，寄件人電郵地址必須使用 <i>@staff.cityu.edu.hk</i> 或 <i>@my.cityu.edu.hk</i> 並必須使用其電郵伺服器寄出，否則恕不受理。我們會在收到電郵後仔細檢查 Header。CityU GE 指南及 Swiftzer.net 所發出的電郵均能通過 SPF 及 DKIM 驗證。如未能通過驗證，則很大機會是偽冒電郵。</p>
 </article>
 
 </div>

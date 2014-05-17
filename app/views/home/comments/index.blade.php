@@ -1,10 +1,5 @@
 @extends('layouts.home')
 
-@section('headerScript')
-	@parent
-	<script data-main="{{ URL::to('') }}/js/comments-all" src="http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.9/require.min.js"></script>
-@stop
-
 @section('content')
 
 <div id="content" class="container">
@@ -28,4 +23,11 @@
 
 </div>
 
+@stop
+
+@section('footerScript')
+	@parent
+	<script>
+		comment.init();
+	</script>
 @stop

@@ -54,19 +54,14 @@
 
 
 @section('footerScript')
-{{ HTML::script('js/masonry.pkgd.min.js') }}
 <script>
 $(document).ready(function () {
-	
-
 	// Masonry
 	$('#course-container').masonry({
 		transitionDuration: 0,
 		itemSelector: '.course-wrapper',
 		columnWidth: '.course-wrapper-dummy'
 	});
-
-
 });
 </script>
 @stop

@@ -33,7 +33,8 @@ module.exports = function(grunt) {
 					'public/js/vendor/jquery-1.11.1.js',
 					'public/js/vendor/bootstrap.js',
 					'public/js/vendor/underscore.js',
-					'public/js/vendor/typeahead.bundle.js'
+					'public/js/vendor/typeahead.bundle.js',
+					'public/js/vendor/masonry.pkgd.js'
 				],
 				dest: 'public/js/vendor-common.min.js'
 			},
@@ -41,7 +42,8 @@ module.exports = function(grunt) {
 				src: [
 					'public/js/home/config.js',
 					'public/js/home/lang.js',
-					'public/js/home/headerQuickSearch.js'
+					'public/js/home/headerQuickSearch.js',
+					'public/js/home/comment.js'
 				],
 				dest: 'public/js/home-common.min.js'
 			}

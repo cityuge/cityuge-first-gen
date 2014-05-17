@@ -82,8 +82,8 @@
 		<script>
 			var APP_BASE_URL = '{{ URL::to('') }}';
 		</script>
-		<script src="{{ URL::to('') }}/js/vendor-common.min.js"></script>
-		<script src="{{ URL::to('') }}/js/home-common.min.js"></script>
+		{{ HTML::script('js/vendor-common.min.js') }}
+		{{ HTML::script('js/home-common.min.js') }}
 	@show
 
 </head>

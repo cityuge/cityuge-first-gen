@@ -83,7 +83,7 @@ return array(
 	'comment_show_title'=> '留言 #:id (:courseCode - :courseTitle)',
 	'comment_show_admin' => '管理专用',
 	'comment_whois' => 'WHOIS',
-	'comment_show_shareDesc' => '<p>你可以用分享按钮 <i class="icon-share-alt"></i> 将这则留言分享到各大社交平台，亦可以将本页的网址直接分享给朋友。</p>',
+	'comment_show_shareDesc' => '<p>你可以用分享按钮 <i class="fa fa-share"></i> 将这则留言分享到各大社交平台，亦可以将本页的网址直接分享给朋友。</p>',
 
 	// Grade
 	'grade_p' => 'Pass',

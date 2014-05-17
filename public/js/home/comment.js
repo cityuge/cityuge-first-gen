@@ -1,11 +1,4 @@
 var comment = (function() {
-	var masonryLayout = function() {
-		new Masonry('#comment-container', {
-			transitionDuration: 0,
-			itemSelector: '.comment-wrapper',
-			columnWidth: '.comment-wrapper-dummy'
-		});
-	}
 	var socialMediaLink = function() {
 		$('ul[data-share-list] a').click(function(e) {
 			e.preventDefault();
@@ -22,9 +15,16 @@ var comment = (function() {
 	}
 
 	return {
-		init: function() {
-			masonryLayout();
+		initMasonry: function() {
+			new Masonry('#comment-container', {
+				transitionDuration: 0,
+				itemSelector: '.comment-wrapper',
+				columnWidth: '.comment-wrapper-dummy'
+			});
+		},
+		initComment: function() {
 			socialMediaLink();
+			$('[data-toggle="tooltip"]').tooltip();
 		}
 	}
 })();

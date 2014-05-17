@@ -33,7 +33,7 @@
 			<div class="btn-group btn-group-comment-footer">
 				<a href="{{ URL::route('comments.show', array($comment->id)) }}" class="btn btn-comment-footer" role="button"><i class="fa fa-link"></i> <span class="sr-only">{{ trans('app.comment_permalink') }}</span></a>
 				<div class="btn-group dropup ">
-					<ul class="dropdown-menu pull-right" role="menu" aria-labelledby="comment-dropup-menu-{{ $comment->id }}">
+					<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="comment-dropup-menu-{{ $comment->id }}">
 						<li><a href="#"><i class="fa fa-fw fa-facebook"></i> Facebook</a></li>
 						<li><a href="#"><i class="fa fa-fw fa-twitter"></i> Twitter</a></li>
 						<li><a href="#"><i class="fa fa-fw fa-google-plus"></i> Google+</a></li>

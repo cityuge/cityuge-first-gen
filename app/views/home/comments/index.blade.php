@@ -28,6 +28,7 @@
 @section('footerScript')
 	@parent
 	<script>
-		comment.init();
+		comment.initMasonry();
+		comment.initComment();
 	</script>
 @stop

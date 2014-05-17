@@ -131,7 +131,7 @@ return array(
 	'comment_show_title'=> 'Comment #:id (:courseCode - :courseTitle)',
 	'comment_show_admin' => 'Admin Only',
 	'comment_whois' => 'WHOIS',
-	'comment_show_shareDesc' => '<p>You may use Share button <i class="icon-share-alt"></i> to share this comment to social networks or share the link of this page to your friends.</p>',
+	'comment_show_shareDesc' => '<p>You may use Share button <i class="fa fa-share"></i> to share this comment to social networks or share the link of this page to your friends.</p>',
 
 	// Grade
 	'grade_p' => 'Pass',

@@ -10,7 +10,7 @@
 						<span class="panel-course-title">{{{ $comment->course->title_zh }}}</span>
 					@endif
 				</h3>
-				<span class="panel-comment-grade {{ CourseHelper::getGradeStyle('panel-comment-grade-', $comment->grade) }}" data-toggle="tooltip" title="{{ trans('app.comment_grade_tooltip', array('grade' => CourseHelper::getGradeText($comment->grade))) }}">{{ $comment->grade }}</span>
+				<span class="panel-comment-grade {{ CourseHelper::getGradeStyle('panel-comment-grade-', $comment->grade) }}" data-toggle="tooltip" data-placement="left" title="{{ trans('app.comment_grade_tooltip', array('grade' => CourseHelper::getGradeText($comment->grade))) }}">{{ $comment->grade }}</span>
 			</a>
 		</header>
 		<aside class="panel-comment-aside">
@@ -42,9 +42,11 @@
 				<time pubdate datetime="{{ $comment->created_at->format(DateTime::ISO8601) }}" itemprop="commentTime">{{ $comment->created_at->format('M j, Y H:i') }}</time>
 			</p>
 			<div class="btn-group btn-group-comment-footer">
-				<a href="{{ URL::route('comments.show', array($comment->id)) }}" class="btn btn-comment-footer" role="button"><i class="fa fa-link"></i> <span class="sr-only">{{ trans('app.comment_permalink') }}</span></a>
+				@if (Route::getCurrentRoute()->getName() != 'comments.show')
+					<a href="{{ URL::route('comments.show', array($comment->id)) }}" class="btn btn-comment-footer" role="button"><i class="fa fa-link"></i> <span class="sr-only">{{ trans('app.comment_permalink') }}</span></a>
+				@endif
 				<div class="btn-group dropup">
-					<ul class="dropdown-menu pull-right" role="menu" data-share-list="share" aria-labelledby="comment-dropup-menu-{{ $comment->id }}">
+					<ul class="dropdown-menu dropdown-menu-right" role="menu" data-share-list="share" aria-labelledby="comment-dropup-menu-{{ $comment->id }}">
 						<li><a rel="nofollow" data-share="facebook" href="http://facebook.com/share.php?u={{ urlencode(URL::route('comments.show', array($comment->id))) }}"><i class="fa fa-fw fa-facebook"></i> {{ trans('app.socialMedia_facebook') }}</a></li>
 						<li><a rel="nofollow" data-share="twitter" href="https://twitter.com/intent/tweet?url={{ urlencode(URL::route('comments.show', array($comment->id))) }}"><i class="fa fa-fw fa-twitter"></i> {{ trans('app.socialMedia_twitter') }}</a></li>
 						<li><a rel="nofollow" data-share="googlePlus" href="http://plus.google.com/share?url={{ urlencode(URL::route('comments.show', array($comment->id))) }}"><i class="fa fa-fw fa-google-plus"></i> {{ trans('app.socialMedia_googlePlus') }}</a></li>

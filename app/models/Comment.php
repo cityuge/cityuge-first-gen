@@ -36,16 +36,16 @@ class Comment extends BaseModel {
 	}
 
 	public static function getGradeDistribution($courseId, $gradingPattern) {
-		$grades = CourseHelper::getGradingOptionArray($gradingPattern);
+		$grades = CourseHelper::getGradingArray($gradingPattern);
 
 		$query = DB::select('SELECT grade, COUNT(*) AS count FROM comments WHERE course_id = ? AND deleted_at IS NULL GROUP BY grade', array($courseId));
 
 		$distrubution = array();
-		foreach ($grades as $key => $value) {
-			$distrubution[$value] = 0;
+		foreach ($grades as $grade) {
+			$distrubution[$grade] = 0;
 			foreach ($query as $row) {
-				if ($row->grade === $key) {
-					$distrubution[$value] = $row->count;
+				if ($row->grade === $grade) {
+					$distrubution[$grade] = $row->count;
 					break;
 				}
 			}

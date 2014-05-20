@@ -17,8 +17,6 @@ return array(
 	'nav_advancedSearch' => '進階搜尋',
 	'nav_comment' => '留言',
 	'nav_department' => '學術部門',
-	'nav_rssSite' => '網站的最新留言',
-	'nav_rssCourse' => ':courseCode 的最新留言',
 	'nav_stat' => '統計',
 
 	'nav_search' => '搜尋',
@@ -184,6 +182,7 @@ return array(
 	// Footer
 	'footer_disclaimer' => '本網站是以即時上載留言的方式運作，所有資料僅供參考，並不構成任何推薦、保證或協議。Swiftzer 對所有留言的真實性、完整性及立場等，不負任何法律責任。<br />本網站與香港城市大學 (City University of Hong Kong, CityU) 並無任何關連。',
 	'footer_nav_about' => '關於',
+	'footer_nav_rss' => 'RSS',
 	'footer_nav_facebookFanPage' => 'Facebook 專頁',
 	'footer_nav_devBlog' => '開發日誌',
 	'footer_nav_acp' => '管理控制台',

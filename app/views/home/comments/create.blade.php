@@ -22,7 +22,7 @@
 					@endif
 				</dd>
 				<dt>{{ trans('app.course_category') }}</dt>
-				<dd>{{ $course->category }}</dd>
+				<dd>{{ CourseHelper::getCategoryText($course->category) }}</dd>
 				<dt>{{ trans('app.course_department') }}</dt>
 				<dd>
 					{{{ $course->department->title_en }}}<br />

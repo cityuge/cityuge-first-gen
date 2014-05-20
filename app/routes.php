@@ -85,7 +85,6 @@ Route::get('logout', array('as' => 'logout', 'uses' => 'UserController@getLogout
 
 // RSS feed
 Route::get('feed', array('as' => 'feed', 'uses' => 'FeedController@siteLatestComments'));
-Route::get('courses/{code}/feed', array('as' => 'courses.feed', 'uses' => 'FeedController@courseLatestComments'));
 
 // Sitemap
 Route::get('sitemap', array('as' => 'sitemap', 'uses' => 'SitemapController@index'));

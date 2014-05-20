@@ -5,7 +5,7 @@
 				<h3 class="panel-title">
 					{{ SemesterHelper::getSemesterText($comment->semester) }}
 				</h3>
-				<span class="panel-comment-grade {{ CourseHelper::getGradeStyle('panel-comment-grade-', $comment->grade) }}" data-toggle="tooltip" title="{{ trans('app.comment_grade_tooltip', array('grade' => CourseHelper::getGradeText($comment->grade))) }}">{{ $comment->grade }}</span>
+				<span class="panel-comment-grade {{ CourseHelper::getGradeStyle('panel-comment-grade-', $comment->grade) }}" data-toggle="tooltip" data-placement="left" title="{{ trans('app.comment_grade_tooltip', array('grade' => CourseHelper::getGradeText($comment->grade))) }}">{{ $comment->grade }}</span>
 			</div>
 		</header>
 		<aside class="panel-comment-aside">
@@ -33,12 +33,12 @@
 			<div class="btn-group btn-group-comment-footer">
 				<a href="{{ URL::route('comments.show', array($comment->id)) }}" class="btn btn-comment-footer" role="button"><i class="fa fa-link"></i> <span class="sr-only">{{ trans('app.comment_permalink') }}</span></a>
 				<div class="btn-group dropup ">
-					<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="comment-dropup-menu-{{ $comment->id }}">
-						<li><a href="#"><i class="fa fa-fw fa-facebook"></i> Facebook</a></li>
-						<li><a href="#"><i class="fa fa-fw fa-twitter"></i> Twitter</a></li>
-						<li><a href="#"><i class="fa fa-fw fa-google-plus"></i> Google+</a></li>
-						<li><a href="#"><i class="fa fa-fw fa-renren"></i> Renren</a></li>
-						<li><a href="#"><i class="fa fa-fw fa-weibo"></i> Weibo</a></li>
+					<ul class="dropdown-menu dropdown-menu-right" role="menu" data-share-list="share" aria-labelledby="comment-dropup-menu-{{ $comment->id }}" >
+						<li><a rel="nofollow" data-share="facebook" href="http://facebook.com/share.php?u={{ urlencode(URL::route('comments.show', array($comment->id))) }}"><i class="fa fa-fw fa-facebook"></i> {{ trans('app.socialMedia_facebook') }}</a></li>
+						<li><a rel="nofollow" data-share="twitter" href="https://twitter.com/intent/tweet?url={{ urlencode(URL::route('comments.show', array($comment->id))) }}"><i class="fa fa-fw fa-twitter"></i> {{ trans('app.socialMedia_twitter') }}</a></li>
+						<li><a rel="nofollow" data-share="googlePlus" href="http://plus.google.com/share?url={{ urlencode(URL::route('comments.show', array($comment->id))) }}"><i class="fa fa-fw fa-google-plus"></i> {{ trans('app.socialMedia_googlePlus') }}</a></li>
+						<li><a rel="nofollow" data-share="renren" href="http://share.renren.com/share/buttonshare?link={{ urlencode(URL::route('comments.show', array($comment->id))) }}"><i class="fa fa-fw fa-renren"></i> {{ trans('app.socialMedia_renren') }}</a></li>
+						<li><a rel="nofollow" data-share="sinaWeibo" href="http://v.t.sina.com.cn/share/share.php?url={{ urlencode(URL::route('comments.show', array($comment->id))) }}"><i class="fa fa-fw fa-weibo"></i> {{ trans('app.socialMedia_sinaWeibo') }}</a></li>
 					</ul>
 					<button type="button" id="comment-dropup-menu-{{ $comment->id }}" class="btn btn-comment-footer dropdown-toggle" data-toggle="dropdown">
 						<i class="fa fa-share"></i> <span class="sr-only">{{ trans('app.comment_share') }}</span> <span class="caret"></span>

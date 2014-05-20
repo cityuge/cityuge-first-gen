@@ -10,6 +10,7 @@ class CourseController extends BaseController {
 	public function index()
 	{
 		$courses = DB::table('courses')
+							->remember(Config::get('cityuge.cache_courseList'))
 							->select(array(
 								'courses.*',
 								'departments.initial',
@@ -162,31 +163,32 @@ class CourseController extends BaseController {
 	public function show($courseCode)
 	{
 		$courseCode = strtoupper($courseCode);
-		$course = Course::with('department')
-						->where('code', '=', $courseCode)
-						->first();
+		$course = Cache::get('course_' . $courseCode);
+		// Miss in cache
 		if (!$course) {
-			return App::abort(404);
+			// Retrieve it from database
+			$course = Course::with('department', 'offerings')
+							->where('code', '=', $courseCode)
+							->first();
+			// Nothing return from database, Error 404
+			if (!$course) {
+				return App::abort(404);
+			}
+			Cache::forever('course_' . $courseCode, $course);
 		}
 
+		$stats = Course::getCourseStats($course);
+
 		$comments = Comment::where('course_id', '=', $course->id)
-						->orderBy('created_at', 'DESC')
-						->paginate(Config::get('cityuge.paginate_commentPerPage'));
-
-		$workloadRate = DB::table('comments')
-						->where('course_id', '=', $course->id)
-						->where('deleted_at', null, DB::raw('is null'))
-						->avg('workload') / 5 * 100;
-
-		$gradeDistribution = Comment::getGradeDistribution($course->id, $course->grading_pattern);
+					->orderBy('created_at', 'DESC')
+					->paginate(Config::get('cityuge.paginate_commentPerPage'));
+		
 
 		$data = array(
 			'title' => Lang::choice('app.course_detail_title', $comments->getCurrentPage(), array('courseCode' => $courseCode, 'page' => $comments->getCurrentPage())),
 			'course' => $course,
 			'comments' => $comments,
-			'workloadRate' => $workloadRate,
-			'totalComment' => $comments->getTotal(),
-			'gradeDistribution' => $gradeDistribution,
+			'stats' => $stats,
 			'metaKeywords' => array($courseCode, $course->category, $course->department->initial, e($course->department->title_en), e($course->department->title_zh)),
 			'metaDescription' => Lang::get('app.course_detail_metaDesc', array('courseCode' => $courseCode, 'courseTitle' => e($course->title_en))),
 		);
@@ -344,7 +346,7 @@ class CourseController extends BaseController {
 		$rules = array(
 			'semester' => 'in:' . implode(',', SemesterHelper::getSemesterOptions(false, Config::get('cityuge.latestAcademicYearForOffering') . $configSemesters[2])),
 			'department' => 'alpha',
-			'category' => 'in:' . implode(',', Course::$category),
+			'category' => 'in:' . implode(',', CourseHelper::$category),
 			'exam' => 'in:0,1',
 			'quiz' => 'in:0,1',
 			'report' => 'in:0,1',
@@ -396,8 +398,8 @@ class CourseController extends BaseController {
 						$query->where('assess_project', '=', Input::get('project'));
 					}
 					$results = $query->groupBy('courses.id')
-					->orderBy('courses.code', 'ASC')
-					->paginate(Config::get('cityuge.paginate_perPage'));
+						->orderBy('courses.code', 'ASC')
+						->paginate(Config::get('cityuge.paginate_perPage'));
 		
 		$data = array(
 			'title' => Lang::choice('app.course_search_resultTitle', $results->getCurrentPage(), array('page' => $results->getCurrentPage())),

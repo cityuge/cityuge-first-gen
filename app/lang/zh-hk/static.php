@@ -3,9 +3,9 @@
 return array(
 
 	// Home
-	'home_jumboTitle' => 'GE Add/drop 最新政策',
-	'home_jumboDesc' => '在一月二日至三日期間，只可報讀一科 Area 1-3 精進教育 (GE) 課程。',
-	'home_jumboMore' => '教務處 (ARRO) 網頁 <i class="fa fa-external-link"></i>',
+	'home_jumboTitle' => 'Summer GE Add/drop',
+	'home_jumboDesc' => '2013/14 Summer Term 的 GE 指定 Add/drop 日為五月廿八及卅日。',
+	'home_jumboMore' => '教務處 <small>(ARRO)</small> 網頁 <i class="fa fa-external-link"></i>',
 
 	'home_leadParagraph' => '專為城大學生而設的精進教育課程分享平台。',
 	'home_featureSearchTitle' => '搜尋課程',

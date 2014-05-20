@@ -47,7 +47,7 @@
 			<fieldset>
 				<legend>
 					{{ trans('app.course_search_assess') }}
-					<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assess-explain-modal"><i class="fa fa-info-circle"></i> {{ trans('app.course_assess_explain') }}</button>
+					<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#assess-explain-modal"><i class="fa fa-info-circle"></i> {{ trans('app.course_assess_explain') }}</button>
 				</legend>
 				
 				

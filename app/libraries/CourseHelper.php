@@ -187,4 +187,15 @@ class CourseHelper {
 				return static::getStdGradingOptions();
 		}
 	}
+
+	public static function getGradingArray($gradingPattern) {
+		switch ($gradingPattern) {
+			case 'PF':
+				return static::$pfGrading;
+			case 'STD-PF':
+				return static::$stdPFGrading;
+			default:
+				return static::$stdGrading;
+		}
+	}
 }

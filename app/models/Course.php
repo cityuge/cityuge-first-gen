@@ -19,16 +19,40 @@ class Course extends BaseModel {
 
 	public static function checkCourseCode($courseCode) {
 		$courseCode = strtoupper($courseCode);
-		$course = Course::where('code', '=', $courseCode)->first();
+		$course = static::where('code', '=', $courseCode)->first();
 		if ($course) {
 			return $course;
 		}
 		return false;
 	}
 
+	/**
+	 * Get the statistics of a course.
+	 * @param  Course  $course course object
+	 * @return array           associative array with workload rate and grade distribution
+	 */
+	public static function getCourseStats(Course $course) {
+		return Cache::rememberForever('courseStats_' . $course->id, function() use ($course) {
+			$workloadRate = DB::table('comments')
+					->where('course_id', '=', $course->id)
+					->where('deleted_at', null, DB::raw('IS NULL'))
+					->avg('workload') / 5 * 100;
+			$gradeDistribution = Comment::getGradeDistribution($course->id, $course->grading_pattern);
+			return array(
+				'workloadRate' => $workloadRate,
+				'gradeDistribution' => $gradeDistribution,
+			);
+		});
+	}
+
+	/**
+	 * Get the JSON for course search typeahead.
+	 * @return string course list
+	 */
 	public static function getSearchTypeaheadList() {
-		if (!Cache::has('courseTypeahead')) {
-			$courses = static::orderBy('code', 'ASC')->get(array('title_en', 'category', 'code'))->toArray();
+		$self = __CLASS__;
+		return Cache::rememberForever('courseTypeahead', function() use ($self) {
+			$courses = $self::orderBy('code', 'ASC')->get(array('title_en', 'category', 'code'))->toArray();
 			$list = array();
 			foreach ($courses as $course) {
 				$list[] = array(
@@ -42,39 +66,39 @@ class Course extends BaseModel {
 					),
 				);
 			}
-			// Save the queries in cache
-			Cache::forever('courseTypeahead', json_encode($list));
-		}
-		return Cache::get('courseTypeahead');
+			return json_encode($list);
+		});
 	}
 
+	/**
+	 * Get statistics from database.
+	 * @return array statistics
+	 */
 	public static function getHomeStats() {
-		if (!Cache::has('homeStats')) {
-			$stats = array(
-				'hotCoursesArea1' => static::getHotCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
-				'hotCoursesArea2' => static::getHotCourses('AREA2', Config::get('cityuge.home_statsMaxItem')),
-				'hotCoursesArea3' => static::getHotCourses('AREA3', Config::get('cityuge.home_statsMaxItem')),
+		$self = __CLASS__;
+		return Cache::rememberForever('homeStats', function() use ($self) {
+			return array(
+				'hotCoursesArea1' => $self::getHotCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
+				'hotCoursesArea2' => $self::getHotCourses('AREA2', Config::get('cityuge.home_statsMaxItem')),
+				'hotCoursesArea3' => $self::getHotCourses('AREA3', Config::get('cityuge.home_statsMaxItem')),
 
-				'goodGradeCoursesArea1' => static::getGoodGradeCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
-				'goodGradeCoursesArea2' => static::getGoodGradeCourses('AREA2', Config::get('cityuge.home_statsMaxItem')),
-				'goodGradeCoursesArea3' => static::getGoodGradeCourses('AREA3', Config::get('cityuge.home_statsMaxItem')),
+				'goodGradeCoursesArea1' => $self::getGoodGradeCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
+				'goodGradeCoursesArea2' => $self::getGoodGradeCourses('AREA2', Config::get('cityuge.home_statsMaxItem')),
+				'goodGradeCoursesArea3' => $self::getGoodGradeCourses('AREA3', Config::get('cityuge.home_statsMaxItem')),
 
-				'badGradeCoursesArea1' => static::getBadGradeCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
-				'badGradeCoursesArea2' => static::getBadGradeCourses('AREA2', Config::get('cityuge.home_statsMaxItem')),
-				'badGradeCoursesArea3' => static::getBadGradeCourses('AREA3', Config::get('cityuge.home_statsMaxItem')),
+				'badGradeCoursesArea1' => $self::getBadGradeCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
+				'badGradeCoursesArea2' => $self::getBadGradeCourses('AREA2', Config::get('cityuge.home_statsMaxItem')),
+				'badGradeCoursesArea3' => $self::getBadGradeCourses('AREA3', Config::get('cityuge.home_statsMaxItem')),
 
-				'lightWorkloadCoursesArea1' => static::getLightWorkloadCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
-				'lightWorkloadCoursesArea2' => static::getLightWorkloadCourses('AREA2', Config::get('cityuge.home_statsMaxItem')),
-				'lightWorkloadCoursesArea3' => static::getLightWorkloadCourses('AREA3', Config::get('cityuge.home_statsMaxItem')),
+				'lightWorkloadCoursesArea1' => $self::getLightWorkloadCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
+				'lightWorkloadCoursesArea2' => $self::getLightWorkloadCourses('AREA2', Config::get('cityuge.home_statsMaxItem')),
+				'lightWorkloadCoursesArea3' => $self::getLightWorkloadCourses('AREA3', Config::get('cityuge.home_statsMaxItem')),
 
-				'heavyWorkloadCoursesArea1' => static::getHeavyWorkloadCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
-				'heavyWorkloadCoursesArea2' => static::getHeavyWorkloadCourses('AREA2', Config::get('cityuge.home_statsMaxItem')),
-				'heavyWorkloadCoursesArea3' => static::getHeavyWorkloadCourses('AREA3', Config::get('cityuge.home_statsMaxItem')),
+				'heavyWorkloadCoursesArea1' => $self::getHeavyWorkloadCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
+				'heavyWorkloadCoursesArea2' => $self::getHeavyWorkloadCourses('AREA2', Config::get('cityuge.home_statsMaxItem')),
+				'heavyWorkloadCoursesArea3' => $self::getHeavyWorkloadCourses('AREA3', Config::get('cityuge.home_statsMaxItem')),
 			);
-			// Save the queries in cache
-			Cache::forever('homeStats', $stats);
-		}
-		return Cache::get('homeStats');
+		});
 	}
 
 	/**

@@ -41,6 +41,11 @@
 </section>
 
 <div class="container">
+    <ul class="nav nav-pills visible-xs" id="phone-tab">
+        <li><a href="#info">{{ trans('app.course_detail_info') }}</a></li>
+        <li><a href="#stats">{{ trans('app.course_detail_stats') }}</a></li>
+        <li class="active"><a href="#comments">{{ trans('app.course_detail_comment') }}</a></li>
+    </ul>
 
 	<!-- Info -->
 	<div class="row">
@@ -49,7 +54,7 @@
 			<dl>				
 				<dt>
 					{{ trans('app.course_assess') }}
-					<button type="button" class="btn btn-default btn-sm"><i class="fa fa-info-circle"></i> {{ trans('app.course_assess_explain') }}</button>
+					<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#assess-explain-modal"><i class="fa fa-info-circle"></i> {{ trans('app.course_assess_explain') }}</button>
 				</dt>
 				<dd>
 					<ul class="fa-ul">
@@ -82,7 +87,9 @@
 		</section><!-- /.span6 -->
 
 		<!-- Stats -->
-		<section id="stats" class="col-sm-6">Stats</section>
+		<section id="stats" class="col-sm-6">
+			@include('partials.courses.stats')
+		</section>
 		
 		<!-- Links -->
 		<nav id="links" class="col-sm-3">
@@ -98,48 +105,126 @@
 		
 	</div><!-- /.row -->
 
+	<hr class="hidden-xs">
 
 	<div>
-		<h2>{{ trans_choice('app.course_comment', $comments->getTotal(), array('count' => $comments->getTotal())) }}
+		<h2 id="comments">{{ trans_choice('app.course_comment', $comments->getTotal(), array('count' => $comments->getTotal())) }}
 			<a href="{{ URL::route('comments.create', array(strtolower($course->code))) }}" role="button" class="btn btn-primary">
-				<i class="icon-comment"></i> {{ Lang::get('app.comment_new') }}
+				<i class="fa fa-pencil"></i> {{ Lang::get('app.comment_new') }}
 			</a>
 		</h2>
 	</div>
-	<section id="comment-container" class="row" itemscope itemtype="http://schema.org/UserComments">
-		<!-- Create a dummy div for Masonry to get the correct column width in IE9 or above -->
-		<div class="comment-wrapper-dummy"></div>
-		@if (!$comments->getTotal())
-			{{ HTML::alert('info', Lang::get('app.course_noComment')) }}
-		@else
+	@if (!$comments->getTotal())
+		{{ HTML::alert('info', Lang::get('app.course_noComment')) }}
+	@else
+		<section id="comment-container" class="row" itemscope itemtype="http://schema.org/UserComments">
+			<!-- Create a dummy div for Masonry to get the correct column width in IE9 or above -->
+			<div class="comment-wrapper-dummy"></div>
 			<div id="comment-container" class="row">
 				@foreach ($comments as $comment)
 					@include('partials.comments.courseCommentItem')
 				@endforeach
 			</div>
-		@endif
-
-	</section>
+		</section>
+	@endif
+	{{ $comments->fragment('comments')->links() }}
 
 </div>
+
+
+{{-- Assessment Task Definitions --}}
+<div class="modal fade" id="assess-explain-modal" tabindex="-1" role="dialog" aria-labelledby="assess-explain-modal-title" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="assess-explain-modal-title">{{ trans('app.course_assess_model_title') }}</h4>
+			</div>
+			<div class="modal-body">
+				<dl>
+					<dt>{{ trans('app.course_assess_exam') }}</dt>
+					<dd>{{ trans('app.course_assess_def_exam') }}</dd>
+					<dt>{{ trans('app.course_assess_quiz') }}</dt>
+					<dd>{{ trans('app.course_assess_def_quiz') }}</dd>
+					<dt>{{ trans('app.course_assess_report') }}</dt>
+					<dd>{{ trans('app.course_assess_def_report') }}</dd>
+					<dt>{{ trans('app.course_assess_project') }}</dt>
+					<dd>{{ trans('app.course_assess_def_project') }}</dd>
+				</dl>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('app.close') }}</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 
 @stop
 
 @section('footerScript')
-{{ HTML::script('js/masonry.pkgd.min.js') }}
-{{-- HTML::script('js/jquery.sharrre.js') --}}
-{{-- HTML::script('js/comment-box.min.js') --}}
-{{-- HTML::script('js/course-detail.min.js') --}}
+	@parent
 
-<script>
-$(document).ready(function () {
-	// Masonry
-	$('#comment-container').masonry({
-		transitionDuration: 0,
-		itemSelector: '.comment-wrapper',
-		columnWidth: '.comment-wrapper-dummy'
-	});
-});
-</script>
+	<script>
+        // Comments
+        comment.initMasonry();
+        comment.initComment();
+
+        // Phone layout
+        $info = $('#info');
+        $stats = $('#stats');
+        $links = $('#links');
+        $comments = $('#comments, #comment-container');
+
+        function resize() {
+            if ($(window).width() < config.grid.lgMin) {
+                var activeTab = $('#phone-tab .active a').attr('href');
+                $info.hide();
+                $stats.hide();
+                $links.hide();
+                $comments.hide();
+                if (activeTab === '#info') {
+                    $info.show();
+                    $links.show();
+                } else if (activeTab === '#comments') {
+                    $comments.show();
+                } else {
+                    $(activeTab).show();
+                }
+            } else {
+                $info.show();
+                $stats.show();
+                $links.show();
+                $comments.show();
+            }
+        }
+
+        // run the resize function when the page is loaded as it can be a mobile device
+        resize();
+
+        $(window).resize(function(){
+            resize();
+        });
+
+        // handle the click event of the pills shown in mobile device
+        $('#phone-tab a').click(function (e) {
+            e.preventDefault();
+            $(e.target).parent().siblings().removeClass('active');
+            $(e.target).parent().addClass('active');
+            var clickedTab = $(e.target).attr('href');
+            $info.hide();
+            $stats.hide();
+            $links.hide();
+            $comments.hide();
+            if (clickedTab === '#info') {
+                $info.show();
+                $links.show();
+            } else if (clickedTab === '#comments') {
+                $comments.show();
+            } else {
+                $(clickedTab).show();
+            }
+        });
+	</script>
 
 @stop

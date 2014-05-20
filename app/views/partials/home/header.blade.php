@@ -66,9 +66,7 @@
 
 	<!-- RSS feeds -->
 	<link rel="alternate" type="application/rss+xml" title="{{ trans('app.feed_metaTitle') }}" href="{{ route('feed') }}">
-	@if ($currentRoute === 'courses.show')
-		<link rel="alternate" type="application/rss+xml" title="{{ trans('app.feed_course_metaTitle', array('courseCode' => $course->code)) }}" href="{{ route('courses.feed', array(strtolower($course->code))) }}">
-	@endif
+
 	<!-- favicon and Apple touch icons -->
 	<link rel="shortcut icon" href="{{ URL::to('') }}/ico/favicon.ico">
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ URL::to('') }}/ico/apple-touch-icon-144-precomposed.png">
@@ -90,7 +88,7 @@
 <body>
 <a class="sr-only" href="#content">{{ trans('app.nav_skipNav') }}</a>
 <header id="overall-header">
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<nav class="navbar navbar-default navbar-static-top" role="navigation">
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">

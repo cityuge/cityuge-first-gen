@@ -13,6 +13,7 @@
 		<nav class="hidden-print">
 			<ul class="list-inline">
 				<li>{{ link_to_route('about', trans('app.footer_nav_about')) }}</li>
+				<li>{{ link_to_route('feed', trans('app.footer_nav_rss')) }}</li>
 				<li><a href="http://facebook.com/cityuge">{{ trans('app.footer_nav_facebookFanPage') }}</a></li>
 				<li><a href="http://swiftzer.net/category/cityuge">{{ trans('app.footer_nav_devBlog') }}</a></li>
 			</ul>

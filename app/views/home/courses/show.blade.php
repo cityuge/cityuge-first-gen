@@ -177,7 +177,7 @@
         $comments = $('#comments, #comment-container');
 
         function resize() {
-            if ($(window).width() < config.grid.lgMin) {
+            if ($(window).width() < config.grid.smMin) {
                 var activeTab = $('#phone-tab .active a').attr('href');
                 $info.hide();
                 $stats.hide();

@@ -12,15 +12,18 @@ HTML::macro('alert', function($type = null, $message, $dismiss = false, $title =
 		case 'info':
 			$class = 'alert-info';
 			break;
-		case 'error':
-			$class = 'alert-error';
+		case 'danger':
+			$class = 'alert-danger';
+			break;
+		case 'warning':
+			$class = 'alert-warning';
 			break;
 		default:
-			$class = '';
+			$class = 'alert-warning';
 			break;
 	}
 
-	$html = '<div class="alert ' . $class . '">';
+	$html = "<div class=\"alert {$class}\">";
 
 	if ($dismiss) {
 		$html .= '<button type="button" class="close" data-dismiss="alert">&times;</button>';

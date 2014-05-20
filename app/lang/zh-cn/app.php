@@ -11,7 +11,7 @@ return array(
 	'nav_otherCategory' => '其他',
 	'nav_comment' => '留言',
 	'nav_category' => '分类',
-	'nav_department' => '学系',
+	'nav_department' => '学术部门',
 	'nav_rss' => 'RSS',
 	'nav_rssSite' => '网站的最新留言',
 	'nav_rssCourse' => ':courseCode 的最新留言',
@@ -25,14 +25,14 @@ return array(
 	// Admin menu
 	'admin_nav_site' => '网站主页',
 
-	// Home
-	'home_hotCourse' => '热门课程',
-	'home_goodGradeCourse' => '好 Grade 课程',
-	'home_goodGradeCourseNote' => '平均成绩高于或等于 B- 的首 :limit 个课程。',
-	'home_badGradeCourse' => '烂 Grade 课程',
-	'home_badGradeCourseNote' => '平均成绩低于 B- 的首 :limit 个课程。',
-	'home_lightWorkloadCourse' => '轻松之选',
-	'home_heavyWorkloadCourse' => '繁重之选',
+	// Stat
+	'stat_hotCourse' => '热门课程',
+	'stat_goodGradeCourse' => '好 Grade 课程',
+	'stat_goodGradeCourseNote' => '平均成绩高于或等于 B- 的首 :limit 个课程。',
+	'stat_badGradeCourse' => '烂 Grade 课程',
+	'stat_badGradeCourseNote' => '平均成绩低于 B- 的首 :limit 个课程。',
+	'stat_lightWorkloadCourse' => '轻松之选',
+	'stat_heavyWorkloadCourse' => '繁重之选',
 
 	// Course
 	'course' => '{1} 所有课程|[2,Inf] 所有课程：第 :page 页',
@@ -83,7 +83,7 @@ return array(
 	'comment_show_title'=> '留言 #:id (:courseCode - :courseTitle)',
 	'comment_show_admin' => '管理专用',
 	'comment_whois' => 'WHOIS',
-	'comment_show_shareDesc' => '<p>你可以用分享按钮 <i class="icon-share-alt"></i> 将这则留言分享到各大社交平台，亦可以将本页的网址直接分享给朋友。</p>',
+	'comment_show_shareDesc' => '<p>你可以用分享按钮 <i class="fa fa-share"></i> 将这则留言分享到各大社交平台，亦可以将本页的网址直接分享给朋友。</p>',
 
 	// Grade
 	'grade_p' => 'Pass',

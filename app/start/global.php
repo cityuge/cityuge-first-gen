@@ -55,11 +55,8 @@ App::error(function(Exception $exception, $code)
 });
 
 
-App::missing(function() {
-	return Response::view('errors.error', array(
-			'title' => trans('app.error_404'),  
-			'heading' => trans('app.error_404'), 
-			'body' => trans('app.error_404_detail')), 404);
+App::missing(function($exception) {
+	return Response::view('errors.404', array('title' => trans('app.error_404'), 'errorCode' => 404), 404);
 });
 
 /*
@@ -75,12 +72,7 @@ App::missing(function() {
 
 App::down(function()
 {
-	return Response::view('errors.error', array(
-			'title' => trans('app.error_maintenance'), 
-			'errorIcon' => 'wrench', 
-			'heading' => trans('app.error_maintenance'), 
-			'body' => trans('app.error_maintenance_detail')), 503);
-	//return Response::make("Be right back!", 503);
+	return Response::view('errors.down', array('title' => trans('app.error_maintenance')), 503);
 });
 
 /*

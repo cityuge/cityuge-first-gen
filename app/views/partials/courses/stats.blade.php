@@ -1,25 +1,22 @@
-<!-- <h2>{{ Lang::get('app.course_stats') }}</h2> -->
-
-
 <div class="row">
-	<div class="span2">
+	<div class="col-sm-12">
 		{{ Lang::get('app.course_avgWorkload') }}
 		<div class="progress">
-			<div class="bar" style="width: {{ $workloadRate }}%"></div>
+			<div class="progress-bar" role="progressbar" aria-valuenow="{{ $stats['workloadRate'] }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $stats['workloadRate'] }}%;"></div>
 		</div>
-	</div><!-- /.span3 -->
+	</div>
 </div>
 
 {{-- Only show grade distribution when there is at least one comment --}}
 <div class="row">
-	@foreach ($gradeDistribution as $grade => $count)
-		<div class="span2">
-			{{ $grade }} ({{ $count }})
+	@foreach ($stats['gradeDistribution'] as $grade => $count)
+		<div class="col-sm-4">
+			{{ CourseHelper::getGradeText($grade) }} ({{ $count }})
 			<div class="progress">
-				@if ($totalComment > 0)
-					<div class="bar bar-{{ Course::getGradeStyle($grade) }}" style="width: {{ $count / $totalComment * 100 }}%"></div>
+				@if ($comments->count() > 0)
+					<div class="progress-bar {{ CourseHelper::getGradeStyle('progress-bar-', $grade) }}" role="progressbar" aria-valuenow="{{ $count / $comments->getTotal() * 100 }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $count / $comments->count() * 100 }}%;"></div>
 				@endif
 			</div>
-		</div><!-- /.span3 -->
+		</div>
 	@endforeach
 </div>

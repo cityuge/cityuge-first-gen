@@ -14,7 +14,7 @@ class CreateDepartmentsTable extends Migration {
 	{
 		Schema::create('departments', function(Blueprint $table)
 		{
-			$table->engine = 'MyISAM';
+			$table->engine = 'InnoDB';
 
 			$table->increments('id')->unsigned();
 			$table->string('initial', 8);

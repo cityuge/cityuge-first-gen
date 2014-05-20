@@ -1,0 +1,206 @@
+// Course Masonry wrapper, set width to 100% on extra small devices for Masonry layout
+.comment-wrapper {
+	.make-sm-column(6);
+	@media (max-width: @screen-xs-max) {
+		width: 100%;
+	}
+}
+
+// Create a dummy div for Masonry to get the correct column width in IE9 or above
+.comment-wrapper-dummy {
+	float: left;
+	width: percentage((6 / @grid-columns));
+	@media (max-width: @screen-xs-max) {
+		width: 100%;
+	}
+}
+
+.panel-comment-heading {
+	.border-top-radius(@panel-border-radius - 1);
+	overflow: hidden; // clip the border top of the course title
+	padding: 0;
+	position: relative;
+	& > a {
+		display: block;
+		padding: 10px 15px;
+		margin-bottom: -1px;
+		color: @list-group-link-heading-color;
+
+		&:hover,
+		&:focus {
+			text-decoration: none;
+			background-color: @list-group-hover-bg;
+		}
+
+		// Active class on item itself, not parent
+		&.active,
+		&.active:hover,
+		&.active:focus {
+			z-index: 2; // Place active items above their siblings for proper border styling
+			color: @list-group-active-color;
+			background-color: @list-group-active-bg;
+			border-color: @list-group-active-border;
+		}
+	}
+	// For showing only the semester in header
+	& > div {
+		padding: 10px 15px;
+		margin-bottom: -1px;
+	}
+}
+
+.panel-comment-grade {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: @padding-xs-vertical @padding-small-horizontal;
+	color: #fff;
+	font-size: ceil(@font-size-base * 1.5);
+	font-weight: bold;
+	border-bottom-left-radius: @panel-border-radius;
+}
+
+.panel-comment-aside {
+	padding: 10px 15px;
+	background-color: @panel-footer-bg;
+	border-top: 1px solid @panel-inner-border;
+	border-bottom: 1px solid @panel-inner-border;
+	ul, dl {
+		margin-bottom: 0;
+	}
+	dt {
+		font-size: @font-size-small;
+		font-weight: normal;
+	}
+}
+.panel-comment-aside-meta {
+	.list-unstyled();
+
+	> li {
+		display: inline-block;
+		padding-left: 0;
+		padding-right: @padding-large-vertical;
+
+		&:last-child {
+			padding-right: 0;
+		}
+	}
+}
+
+.panel-comment-body {
+	min-height: 70px;
+	> p:last-child {
+		margin: 0;
+	}
+}
+
+.panel-comment-footer {
+	.clearfix();
+	padding: 0;
+	p {
+		padding-top: @padding-base-vertical;
+		margin: 0 0 0 15px;
+	}
+}
+
+.btn-group-comment-footer {
+	.pull-right();
+	margin: -1px -1px -1px 0;
+	.btn {
+		border-radius: 0;
+	}
+	// Make the border radius of the last item
+	& > .btn:last-child:not(:first-child),
+	.btn-group > .dropdown-toggle:not(:first-child) {
+		border-bottom-right-radius: @panel-border-radius !important;
+	}
+}
+.btn-comment-footer {
+	.button-variant(@text-color; @panel-footer-bg; @panel-inner-border);
+}
+
+
+
+// // New comment button
+// .btn-new-comment {
+// 	margin-left: 20px;
+// 	margin-top: 16px;
+// }
+
+
+
+// Grade color strip at the top of the comment card
+.panel-comment-heading-ap {
+	border-top: @card-color-strip-width solid @grade-ap;
+}
+.panel-comment-heading-a {
+	border-top: @card-color-strip-width solid @grade-a;
+}
+.panel-comment-heading-am {
+	border-top: @card-color-strip-width solid @grade-am;
+}
+.panel-comment-heading-bp {
+	border-top: @card-color-strip-width solid @grade-bp;
+}
+.panel-comment-heading-b {
+	border-top: @card-color-strip-width solid @grade-b;
+}
+.panel-comment-heading-bm {
+	border-top: @card-color-strip-width solid @grade-bm;
+}
+.panel-comment-heading-cp {
+	border-top: @card-color-strip-width solid @grade-cp;
+}
+.panel-comment-heading-c {
+	border-top: @card-color-strip-width solid @grade-c;
+}
+.panel-comment-heading-cm {
+	border-top: @card-color-strip-width solid @grade-cm;
+}
+.panel-comment-heading-d {
+	border-top: @card-color-strip-width solid @grade-d;
+}
+.panel-comment-heading-f {
+	border-top: @card-color-strip-width solid @grade-f;
+}
+.panel-comment-heading-dropped {
+	border-top: @card-color-strip-width solid @grade-dropped;
+}
+
+// Grade color background
+.panel-comment-grade-ap {
+	background-color: @grade-ap;
+}
+.panel-comment-grade-a {
+	background-color: @grade-a;
+}
+.panel-comment-grade-am {
+	background-color: @grade-am;
+}
+.panel-comment-grade-bp {
+	background-color: @grade-bp;
+}
+.panel-comment-grade-b {
+	background-color: @grade-b;
+}
+.panel-comment-grade-bm {
+	background-color: @grade-bm;
+}
+.panel-comment-grade-cp {
+	background-color: @grade-cp;
+}
+.panel-comment-grade-c {
+	background-color: @grade-c;
+}
+.panel-comment-grade-cm {
+	background-color: @grade-cm;
+}
+.panel-comment-grade-d {
+	background-color: @grade-d;
+}
+.panel-comment-grade-f {
+	background-color: @grade-f;
+}
+.panel-comment-grade-dropped {
+	background-color: @grade-dropped;
+}

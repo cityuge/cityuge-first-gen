@@ -1,0 +1,44 @@
+body {
+	background-color: @brand-grey-light;
+	border-top: 15px solid @navbar-default-bg;
+	background-color: @brand-grey-light;
+	padding-top: 30px;
+}
+
+.simp-logo {
+	.hide-text();
+	display: block;
+	width: 180px;
+	height: 60px;
+	margin: 15px 0 @padding-large-vertical;
+	.density-bg-img(180px, 60px, 0, 0,
+		'../img/logo-simp-en-ldpi.png',
+		'../img/logo-simp-en.png',
+		'../img/logo-simp-en-hdpi.png',
+		'../img/logo-simp-en-xhdpi.png',
+		'../img/logo-simp-en-xxhdpi.png');
+	.center-block();
+}
+
+h1 {
+	font-size: @font-size-h3;
+	text-align: center;
+}
+
+input[type="text"] {
+	.border-bottom-radius(0);
+	margin-bottom: -1px;
+}
+
+input[type="password"] {
+	.border-top-radius(0);
+}
+
+.checkbox {
+	font-weight: normal;
+	margin: (@line-height-computed / 2) 0 @line-height-computed;
+}
+
+input[type="submit"] {
+	margin-bottom: 20px;
+}

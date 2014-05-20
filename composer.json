@@ -1,12 +1,13 @@
 {
 	"require": {
-		"laravel/framework": "4.0.*",
+		"laravel/framework": "4.1.*",
 		"greggilbert/recaptcha": "dev-master",
 		"suin/php-rss-writer": "1.2",
 		"thepixeldeveloper/sitemap": "2.0.0"
 	},
 	"require-dev": {
-		"juy/profiler": "dev-master"
+		"sebklaus/profiler": "dev-master",
+		"phpunit/phpunit": "3.7.*"
 	},
 	"autoload": {
 		"classmap": [

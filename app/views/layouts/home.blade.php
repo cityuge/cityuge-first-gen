@@ -1,13 +1,11 @@
 @include('partials.home.header')
 
-<div class="row">
-		<div class="span12">
-			@if (Session::has('alertType') && Session::has('alertBody'))
-				{{ HTML::alert(Session::get('alertType'), Session::get('alertBody'), true) }}
-			@endif
+@if (Session::has('alertType') && Session::has('alertBody'))
+    <div class="container">
+	    {{ HTML::alert(Session::get('alertType'), Session::get('alertBody'), true) }}
+    </div>
+@endif
 
-			@yield('content')
-		</div><!--/span-->
-</div>
+@yield('content')
 
 @include('partials.home.footer')

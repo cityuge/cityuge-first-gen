@@ -4,7 +4,7 @@ use \Sitemap\Sitemap\SitemapEntry;
 use \Sitemap\Collection;
 use \Sitemap\Formatter\XML\URLSet;
 
-class SitemapController extends \BaseController {
+class SitemapController extends BaseController {
 
 	/**
 	 * Sitemap for the site.

@@ -79,12 +79,12 @@ class SemesterHelper {
 
 	public static function getQuickAccessCategoryLinks($semester) {
 		$result = array();
-		$categoryCodes = Course::$category;
-		$categoryUrls = Course::$categoryUrl;
+		$categoryCodes = CourseHelper::$category;
+		$categoryUrls = CourseHelper::$categoryUrl;
 		
 		for ($i = 0; $i < count($categoryCodes); $i++) {
 			$result[] = array(
-				'text' => Course::getCategoryTitle($categoryCodes[$i]),
+				'text' => CourseHelper::getCategoryText($categoryCodes[$i]),
 				'url' => route('courses.category', array($categoryUrls[$i], strtolower($semester))),
 			);
 			

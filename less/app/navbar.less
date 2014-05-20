@@ -1,0 +1,51 @@
+.navbar-brand {
+	width: 120px + @navbar-padding-horizontal;
+	height: @navbar-height;
+	padding: @navbar-padding-vertical @navbar-padding-horizontal;
+	.density-bg-img(120px, 40px, @navbar-padding-horizontal, 5px,
+		'../img/logo-zh-ldpi.png',
+		'../img/logo-zh.png',
+		'../img/logo-zh-hdpi.png',
+		'../img/logo-zh-xhdpi.png',
+		'../img/logo-zh-xxhdpi.png');
+}
+// Hide the brand text (put it here due to Android 2.3)
+.navbar-header .navbar-brand,
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+	.hide-text();
+}
+.navbar-brand-en {
+	.density-bg-img(120px, 40px, @navbar-padding-horizontal, 5px,
+		'../img/logo-en-ldpi.png',
+		'../img/logo-en.png',
+		'../img/logo-en-hdpi.png',
+		'../img/logo-en-xhdpi.png',
+		'../img/logo-en-xxhdpi.png');
+}
+@media (max-width: @grid-float-breakpoint-max) {
+	// Make it like Bootstrap 2.3 when the navbar view in mobile (no nested scrolling)
+	// http://stackoverflow.com/a/20637626/813369
+	body {
+		padding-top: 0;
+	}
+	.navbar-fixed-top {
+		position: relative;
+		top: auto;
+	}
+	.navbar-collapse {
+		max-height: none;
+	}
+	// Remove the dropdown menu shadow in Android 2.3
+	.dropdown-menu {
+		.box-shadow(none);
+	}
+	.navbar-default {
+		.divider {
+			background-color: @navbar-default-border;
+		}
+		.dropdown-header {
+			color: darken(@navbar-default-bg, 40%);
+		}
+	}
+}

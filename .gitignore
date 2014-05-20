@@ -7,3 +7,10 @@ Thumbs.db
 ehthumbs.db
 $RECYCLE.BIN/
 Desktop.ini
+
+*.less.bak
+*.css.map
+/node_modules
+
+
+.idea/

@@ -1,5 +1,9 @@
 User-agent: *
 Disallow: /builds/
+Disallow: /js/
 Disallow: /less/
-Disallow: /js-org/
 Disallow: /packages/
+Disallow: /admin/
+Disallow: /login
+Disallow: /logout
+Disallow: /search/results

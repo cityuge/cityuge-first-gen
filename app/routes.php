@@ -48,6 +48,7 @@ Route::group(array('prefix' => $locale), function() {
 
 	Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
 	Route::get('about', array('as' => 'about', 'uses' => 'HomeController@about'));
+	Route::get('statistics', array('as' => 'stats', 'uses' => 'HomeController@stats'));
 
 	// Department
 	Route::get('departments', array('as' => 'departments.index', 'uses' => 'DepartmentController@index'));
@@ -55,7 +56,6 @@ Route::group(array('prefix' => $locale), function() {
 
 	// Course
 	Route::get('courses', array('as' => 'courses.index', 'uses' => 'CourseController@index'));
-	Route::get('courses.json', array('uses' => 'CourseController@courseListTypeahead'));
 	Route::get('courses/categories/{category}/{semester?}', array('as' => 'courses.category', 'uses' => 'CourseController@category'));
 	Route::get('courses/{code}', array('as' => 'courses.show', 'uses' => 'CourseController@show'));
 	Route::get('courses/{code}/comments/create', array('as' => 'comments.create', 'uses' => 'CommentController@create'));
@@ -64,10 +64,6 @@ Route::group(array('prefix' => $locale), function() {
 	Route::get('search', array('as' => 'courses.search', 'uses' => 'CourseController@search'));
 	Route::post('search', array('as' => 'courses.processSearch', 'uses' => 'CourseController@processSearch'));
 	Route::get('search/results', array('as' => 'courses.searchResult', 'uses' => 'CourseController@searchResult'));
-	// Redirect all the new comment links to the new url (for SEO)
-	Route::get('courses/{code}/comments/new', function($code) {
-		return Redirect::route('comments.create', array($code), 301);
-	});
 
 	// Comment
 	Route::get('comments', array('as' => 'comments.index', 'uses' => 'CommentController@index'));
@@ -89,10 +85,11 @@ Route::get('logout', array('as' => 'logout', 'uses' => 'UserController@getLogout
 
 // RSS feed
 Route::get('feed', array('as' => 'feed', 'uses' => 'FeedController@siteLatestComments'));
-Route::get('courses/{code}/feed', array('as' => 'courses.feed', 'uses' => 'FeedController@courseLatestComments'));
 
 // Sitemap
 Route::get('sitemap', array('as' => 'sitemap', 'uses' => 'SitemapController@index'));
 
-// Sharrre
-Route::get('social-media-counter', array('as' => 'sharrre', 'uses' => 'HomeController@socialMediaCounter'));
+// Web API
+Route::group(array('prefix' => 'web-api'), function() {
+	Route::get('courses/typeahead', array('uses' => 'CourseController@courseListTypeahead'));
+});

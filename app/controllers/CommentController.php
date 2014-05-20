@@ -10,8 +10,8 @@ class CommentController extends BaseController {
 	public function index()
 	{
 		$comments = Comment::with('course')
-                                ->orderBy('created_at', 'DESC')
-                                ->paginate(Config::get('cityuge.paginate_commentPerPage'));
+								->orderBy('created_at', 'DESC')
+								->paginate(Config::get('cityuge.paginate_commentPerPage'));
 		$data = array(
 			'title' => Lang::choice('app.comment', $comments->getCurrentPage(), array('page' => $comments->getCurrentPage())),
 			'comments' => $comments,
@@ -35,8 +35,8 @@ class CommentController extends BaseController {
 			return App::abort(404);
 		}
 		$semesters = array('' => '') + SemesterHelper::getSemesterOptions();
-		$workloads = array('' => '') + Comment::getWorkloadOptions();
-		$grades = array(' ' => ' ') + Course::getGradingOptionArray($course->gradingPattern);
+		$workloads = array('' => '') + CommentHelper::getWorkloadOptions();
+		$grades = array(' ' => ' ') + CourseHelper::getGradingOptionArray($course->gradingPattern);
 
 		$data = array(
 			'title' => Lang::get('app.comment_newTitle', array('courseCode' => $course->code)),
@@ -70,13 +70,13 @@ class CommentController extends BaseController {
 		Comment::$rules['semester'] .= $courseId;
 		switch ($course->gradingPattern) {
 			case 'PF':
-				Comment::$rules['grade'] .= implode(',', Course::$pfGrading);
+				Comment::$rules['grade'] .= implode(',', CourseHelper::$pfGrading);
 				break;
 			case 'STD-PF':
-				Comment::$rules['grade'] .= implode(',', Course::$stdPfGrading);
+				Comment::$rules['grade'] .= implode(',', CourseHelper::$stdPfGrading);
 				break;
 			default:
-				Comment::$rules['grade'] .= implode(',', Course::$stdGrading);
+				Comment::$rules['grade'] .= implode(',', CourseHelper::$stdGrading);
 				break;
 		}
 

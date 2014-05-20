@@ -16,11 +16,13 @@ var comment = (function() {
 
 	return {
 		initMasonry: function() {
-			new Masonry('#comment-container', {
-				transitionDuration: 0,
-				itemSelector: '.comment-wrapper',
-				columnWidth: '.comment-wrapper-dummy'
-			});
+            if ($('#comment-container').length !== 0) {
+                new Masonry('#comment-container', {
+                    transitionDuration: 0,
+                    itemSelector: '.comment-wrapper',
+                    columnWidth: '.comment-wrapper-dummy'
+                });
+            }
 		},
 		initComment: function() {
 			socialMediaLink();

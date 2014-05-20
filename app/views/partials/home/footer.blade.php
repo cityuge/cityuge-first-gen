@@ -30,6 +30,7 @@
 		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 		ga('create', ga('create', '{{ Config::get('cityuge.googleAnalyticsUA') }}', '{{ Config::get('cityuge.googleAnalyticsDomain') }}'));
+        ga('require', 'displayfeatures');
 		ga('send', 'pageview');
 	</script>
 @endif

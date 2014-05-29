@@ -13,8 +13,8 @@
 		<div class="col-sm-4">
 			{{ CourseHelper::getGradeText($grade) }} ({{ $count }})
 			<div class="progress">
-				@if ($comments->count() > 0)
-					<div class="progress-bar {{ CourseHelper::getGradeStyle('progress-bar-', $grade) }}" role="progressbar" aria-valuenow="{{ $count / $comments->getTotal() * 100 }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $count / $comments->count() * 100 }}%;"></div>
+				@if ($comments->getTotal() > 0)
+					<div class="progress-bar {{ CourseHelper::getGradeStyle('progress-bar-', $grade) }}" role="progressbar" aria-valuenow="{{ $count / $comments->getTotal() * 100 }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $count / $comments->getTotal() * 100 }}%;"></div>
 				@endif
 			</div>
 		</div>

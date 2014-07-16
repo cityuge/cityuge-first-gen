@@ -94,7 +94,7 @@
 		<!-- Links -->
 		<nav id="links" class="col-sm-3">
 			<div class="list-group">
-				<a href="http://eportal.cityu.edu.hk/bbcswebdav/institution/APPL/Course/Current/{{ $course->code }}.htm" target="_blank" class="list-group-item">{{ trans('app.course_form2b') }} <i class="fa fa-external-link"></i></a>
+				<a href="http://www.cityu.edu.hk/ug/201415/course/{{ $course->code }}.htm" target="_blank" class="list-group-item">{{ trans('app.course_form2b') }} <i class="fa fa-external-link"></i></a>
 				@if ($course->category !== 'E')
 					<a href="http://www6.cityu.edu.hk/ge_info/courses/materials/html/{{ $course->code }}.html" target="_blank" class="list-group-item">{{ trans('app.course_edgeInfo') }} <i class="fa fa-external-link"></i></a>
 				@endif

@@ -3,8 +3,8 @@
 return array(
 
 	// Home
-	'home_jumboTitle' => 'Summer GE Add/drop',
-	'home_jumboDesc' => '2013/14 Summer Term 的 GE 指定 Add/drop 日為五月廿八及卅日。',
+	'home_jumboTitle' => 'Semester A GE Add/drop',
+	'home_jumboDesc' => '2013/14 Semester A 的 GE 指定 Add/drop 日為八月廿日及廿一日。',
 	'home_jumboMore' => '教務處 <small>(ARRO)</small> 網頁 <i class="fa fa-external-link"></i>',
 
 	'home_leadParagraph' => '專為城大學生而設的精進教育課程分享平台。',

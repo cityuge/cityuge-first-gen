@@ -6,7 +6,7 @@
 	<div class="container">
 		<h1>{{ trans('static.home_jumboTitle') }}</h1>
 		<p>{{ trans('static.home_jumboDesc') }}</p>
-		<p><a class="btn btn-primary btn-lg" role="button" href="http://www6.cityu.edu.hk/arro/content.asp?cid=163" target="_blank">{{ trans('static.home_jumboMore') }}</a></p>
+		<p><a class="btn btn-primary btn-lg" role="button" href="http://www6.cityu.edu.hk/arro/whatsnew_content.asp?id=81" target="_blank">{{ trans('static.home_jumboMore') }}</a></p>
 	</div>
 </section>
 

@@ -44,4 +44,8 @@ return array(
 	'facebookInsightsAdminId' => '***REMOVED***',
 	'googleAnalyticsUA' => '***REMOVED***',
 	'googleAnalyticsDomain' => 'swiftzer.net',
+
+    // reCAPTCHA API key
+    'reCaptchaPublicKey' => '***REMOVED***',
+    'reCaptchaPrivateKey' => '***REMOVED***',
 );

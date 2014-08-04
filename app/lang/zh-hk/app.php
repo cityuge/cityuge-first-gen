@@ -205,7 +205,7 @@ return array(
 
 	// Meta
 	'meta_homeDesc' => '專為香港城市大學學生而設的精進教育 (Gateway Education) 課程留言平台。分析各課程的成績及工作量，為選科作好準備。',
-	'meta_globalKeyword' => 'GE, Gateway Education, 通識, general education, 精進教育, 好 grade, 爛 grade, E 仔班, 補底班, City University of Hong Kong, 香港城市大學, 城市大學, 城大, 又一城市大學, 神大, CityU, City U, Shitty U, ShittyU, AIMS, Hong Kong, 香港',
+	'meta_globalKeyword' => 'GE, Gateway Education, 通識, general education, 精進教育, 好 grade, 爛 grade, TLQ, E 仔班, 補底班, City University of Hong Kong, 香港城市大學, 城市大學, 城大, 又一城市大學, 神大, CityU, City U, Shitty U, ShittyU, AIMS, Hong Kong, 香港',
 	'excerptEllipse' => '[...]',
 
 	// Error page

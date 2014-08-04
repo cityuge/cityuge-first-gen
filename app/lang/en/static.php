@@ -3,8 +3,8 @@
 return array(
 
 	// Home
-	'home_jumboTitle' => 'Latest Policy on GE Course Registration',
-	'home_jumboDesc' => 'Only one GE course in Area 1-3 can be allowed to register during 2 - 3 January.',
+	'home_jumboTitle' => 'Semester A GE Add/drop',
+	'home_jumboDesc' => 'The specific GE web registration period for Semester A 2014/15 is 20-21 August.',
 	'home_jumboMore' => 'ARRO\'s website <i class="fa fa-external-link"></i>',
 
 	'home_leadParagraph' => 'CityU Gateway Education course sharing platform for all.',

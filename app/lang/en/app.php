@@ -17,14 +17,12 @@ return array(
 	'nav_advancedSearch' => 'Advanced search',
 	'nav_comment' => 'Comments',
 	'nav_department' => 'Academic units',
-	'nav_rssSite' => 'All latest comments',
-	'nav_rssCourse' => 'Latest comments for :courseCode',
 	'nav_stat' => 'Statistics',
 
 	'nav_search' => 'Search',
 	'nav_searchPlaceholder' => 'Course code or title',
 
-	'nav_acp' => 'Admin Console',
+	'nav_acp' => 'Admin console',
 	'nav_logout' => 'Log out',
 
 	// Admin menu
@@ -57,7 +55,7 @@ return array(
 	'course_category' => 'Category',
 	'course_level' => 'Level',
 	'course_offering' => 'Offering semesters',
-	'course_offering_none' => 'This course is not 本課程從未開辦',
+	'course_offering_none' => 'This course has not been offered',
 	'course_edgeInfo' => 'EDGE course catalogue',
 	'course_form2b' => 'Form 2B',
 	'course_comment' => '{0} Comments|{1} :count Comment|[2,Inf] :count Comments',
@@ -139,17 +137,17 @@ return array(
 	'grade_x' => 'Dropped',
 
 	// Workload
-	'workload_1' => '非常輕鬆',
-	'workload_2' => '輕鬆',
-	'workload_3' => '一般',
-	'workload_4' => '繁重',
-	'workload_5' => '非常繁重',
+	'workload_1' => 'Very light',
+	'workload_2' => 'Light',
+	'workload_3' => 'Okay',
+	'workload_4' => 'Heavy',
+	'workload_5' => 'Very heavy',
 
 	// Department
 	'department' => 'Academic Units',
 	'department_noCourse' => 'This academic unit does not offer any Gateway Education (GE) courses.',
 	'department_metaDesc' => 'List of academic units in CityU.',
-	'department_courseMetaDesc' => '城大:department所提供的精進教育 (GE) 課程清單。',
+	'department_courseMetaDesc' => 'List of Gateway Education (GE) courses offered by :department.',
 
 	// Category
 	'category_area1' => 'Area 1',
@@ -184,6 +182,7 @@ return array(
 	// Footer
 	'footer_disclaimer' => 'Swiftzer accepts no liability for the accuracy or completeness or use of, nor any liability to update, the information contained on this Website. It should not be construed as the giving of advice or the making of a recommendation and should not be relied on as the basis for any decision or action.<br />This website is not affiliated with, endorsed, or sponsored by City University of Hong Kong (CityU).',
 	'footer_nav_about' => 'About Us',
+	'footer_nav_rss' => 'RSS',
 	'footer_nav_facebookFanPage' => 'Facebook Fan Page',
 	'footer_nav_devBlog' => 'Developer Blog (Chinese only)',
 	'footer_nav_acp' => 'Admin Control Panel',
@@ -205,8 +204,8 @@ return array(
 	'feed_course_metaTitle' => 'Subscribe latest comments for :courseCode',
 
 	// Meta
-	'meta_homeDesc' => '專為香港城市大學學生而設的精進教育 (Gateway Education) 課程留言平台。分析各課程的成績及工作量，為選科作好準備。',
-	'meta_globalKeyword' => 'GE, Gateway Education, 通識, general education, 精進教育, 好 grade, 爛 grade, E 仔班, 補底班, City University of Hong Kong, 香港城市大學, 城市大學, 城大, 又一城市大學, 神大, CityU, City U, Shitty U, ShittyU, AIMS, Hong Kong, 香港',
+	'meta_homeDesc' => 'A online platform for sharing CityU Gateway Education (GE) course feedback, analyzing course grade and workload.',
+	'meta_globalKeyword' => 'GE, Gateway Education, 通識, general education, 精進教育, 好 grade, 爛 grade, feedback, TLQ, E 仔班, 補底班, City University of Hong Kong, 香港城市大學, 城市大學, 城大, 又一城市大學, 神大, CityU, City U, Shitty U, ShittyU, AIMS, Hong Kong, 香港',
 	'excerptEllipse' => '[...]',
 
 	// Error page

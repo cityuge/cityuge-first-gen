@@ -26,6 +26,8 @@ return array(
 
 	// Maximum number of courses shown on the statistics lists
 	'home_statsMaxItem' => 10,
+    // Minimum number of comments required to be listed in statistics
+    'bayesianAvgMinCommentNum' => 10,
 
 	// Maximum length of post excerpt (for meta description and social media sharing)
 	'excerptLength' => 250,

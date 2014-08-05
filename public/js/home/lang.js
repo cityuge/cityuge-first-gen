@@ -7,7 +7,16 @@ var lang = (function() {
 		'category.E': '補底班'
 	};
 
-	var en = {
+    var zhCN = {
+        'category.AREA1': 'Area 1',
+        'category.AREA2': 'Area 2',
+        'category.AREA3': 'Area 3',
+        'category.UNIREQ': '大学必修',
+        'category.E': '补底班'
+    };
+
+
+    var en = {
 		'category.AREA1': 'Area 1',
 		'category.AREA2': 'Area 2',
 		'category.AREA3': 'Area 3',
@@ -23,7 +32,7 @@ var lang = (function() {
 			} else if (locale === 'en') {
 				return en[key];
 			} else {
-				return '???';
+				return zhCN[key];
 			}
 		}
 	}

@@ -15,7 +15,7 @@
 					<dt>{{ trans('app.comment_ipAdress') }}</dt>
 					<dd>{{{ $comment->ip_address }}}</dd>
 					<dd>
-						<a class="btn btn-default" href="http://whois.net/ip-address-lookup/{{{ $comment->ip_address }}}" target="_blank">{{ trans('app.comment_whois') }} <i class="fa fa-external-link"></i></a>
+						<a class="btn btn-default" href="http://whois.domaintools.com/{{{ $comment->ip_address }}}" target="_blank">{{ trans('app.comment_whois') }} <i class="fa fa-external-link"></i></a>
 					</dd>
 				</dl>
 

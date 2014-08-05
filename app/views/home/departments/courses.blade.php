@@ -5,7 +5,7 @@
 <div id="content" class="container">
 
 	<div class="page-header">
-		@if (Session::get('_locale') === 'en')
+		@if (Config::get('app.locale') === 'en')
 			<h1>{{{ $department->initial }}} <small>{{{ $department->title_en }}}</small></h1>
 		@else
 			<h1>{{{ $department->initial }}} <small>{{{ $department->title_zh }}}</small></h1>
@@ -34,6 +34,7 @@
 
 
 @section('footerScript')
+@parent
 {{ HTML::script('js/masonry.pkgd.min.js') }}
 <script>
 $(document).ready(function () {

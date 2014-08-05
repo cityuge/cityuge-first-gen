@@ -54,6 +54,7 @@
 
 
 @section('footerScript')
+@parent
 <script>
 $(document).ready(function () {
 	// Masonry

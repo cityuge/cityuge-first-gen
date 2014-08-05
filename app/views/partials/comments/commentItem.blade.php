@@ -6,7 +6,7 @@
 					<span class="panel-course-code">{{{ $comment->course->code }}}</span>
 
 					<span class="panel-course-title">{{{ $comment->course->title_en }}}</span>
-					@if (!empty($comment->course->title_zh) && Session::get('_locale') !== 'en')
+					@if (!empty($comment->course->title_zh) && Config::get('app.locale') !== 'en')
 						<span class="panel-course-title">{{{ $comment->course->title_zh }}}</span>
 					@endif
 				</h3>

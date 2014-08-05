@@ -1,6 +1,6 @@
 <?php $currentRoute = Route::currentRouteName(); ?>
 <!DOCTYPE html>
-<html lang="{{ Session::get('_localeISO') }}">
+<html lang="{{ LocaleHelper::getIsoLocale() }}">
 <head>
 	<meta charset="utf-8">
 	@if (isset($title))
@@ -19,6 +19,7 @@
 	@if (isset($metaDescription))
 		<meta name="description" content="{{ $metaDescription }}">
 	@endif
+    <link type="text/plain" rel="author" href="{{ asset('humans.txt') }}">
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -98,7 +99,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				@if (Session::get('_locale') == 'en')
+				@if (Config::get('app.locale') == 'en')
 					<a class="navbar-brand navbar-brand-en" href="{{ route('home') }}" title="{{ trans('app.appTitle') }}">{{ trans('app.appTitle') }}</a>
 				@else
 					<a class="navbar-brand" href="{{ route('home') }}" title="{{ trans('app.appTitle') }}">{{ trans('app.appTitle') }}</a>
@@ -139,7 +140,7 @@
 					<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> <span class="sr-only">{{ trans('app.nav_search') }}</span></button>
 					{{ Form::hidden('type', 'quick') }}
 				{{ Form::close() }}
-				<ul class="nav navbar-nav navbar-right">
+				{{--<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe"></i> <b class="caret"></b></a>
 						<ul class="dropdown-menu">
@@ -148,7 +149,7 @@
 							<li>{{ HTML::link(LocaleHelper::getCurrentPageURLInLocale('en'), 'English') }}</li>
 						</ul>
 					</li>
-				</ul>
+				</ul>--}}
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container -->
 	</nav>

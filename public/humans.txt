@@ -1,0 +1,30 @@
+
+   ____ _ _         _   _    ____ _____    ____       _     _
+  / ___(_) |_ _   _| | | |  / ___| ____|  / ___|_   _(_) __| | ___
+ | |   | | __| | | | | | | | |  _|  _|   | |  _| | | | |/ _` |/ _ \
+ | |___| | |_| |_| | |_| | | |_| | |___  | |_| | |_| | | (_| |  __/
+  \____|_|\__|\__, |\___/   \____|_____|  \____|\__,_|_|\__,_|\___|
+              |___/
+
+
+
+/* MAIN */
+  Develop & Main Design: Eric Li
+  Site: http://eric.swiftzer.net
+  Twitter: @ericksli
+  Location: Hong Kong
+
+
+/* THANKS */
+  Abraxas Lee
+  Amelia Gao
+  Apple Ng
+  Sharon Yau
+  Zealitude
+
+
+/* SITE */
+  Doctype: HTML5 with CSS3
+  Components: Laravel, jQuery, Bootstrap, Masonry, typeahead.js, Underscore
+  Tools: Grunt, Less, Git, PHP, MariaDB, Apache, Vagrant, Photoshop, Illustrator
+  IDE: IntelliJ IDEA, Sublime Text

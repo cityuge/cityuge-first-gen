@@ -18,17 +18,12 @@ $locale = Request::segment(1);
 $localeIndex = array_search($locale, Config::get('cityuge.availableLocaleURL'));
 
 $availableLocales = Config::get('cityuge.availableLocale');
-$availableLocaleISOs = Config::get('cityuge.availableLocaleISO');
 if ($localeIndex !== false && $localeIndex !== 0) {
 	// locale is in the available locale list but not the default one
 	App::setLocale($availableLocales[$localeIndex]);
-	Session::put('_locale', $availableLocales[$localeIndex]);
-	Session::put('_localeISO', $availableLocaleISOs[$localeIndex]);
 } else {
 	// locale is invalid or the default one
 	$locale = null;
-	Session::put('_locale', $availableLocales[0]);
-	Session::put('_localeISO', $availableLocaleISOs[0]);
 }
 
 

@@ -7,7 +7,7 @@
 	<h1>
 		<span class="jumbotron-course-code">{{{ $course->code }}}</span>
 		<span class="jumbotron-course-title">{{{ $course->title_en }}}</span>
-		@if (Session::get('_locale') != 'en' && $course->title_zh)
+		@if (Config::get('app.locale') != 'en' && $course->title_zh)
 			<span class="jumbotron-course-title">{{{ $course->title_zh }}}</span>
 		@endif
 	</h1>
@@ -28,7 +28,7 @@
 			<dl>
 				<dt>{{ trans('app.course_department') }}</dt>
 				<dd>
-					@if (Session::get('_locale') == 'en')
+					@if (Config::get('app.locale') == 'en')
 						{{{ $course->department->title_en }}}
 					@else
 						{{{ $course->department->title_zh }}}

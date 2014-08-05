@@ -5,7 +5,7 @@
 				<h3 class="panel-title">
 					<span class="panel-course-code">{{{ $course->code }}}</span>
 					<span class="panel-course-title">{{{ $course->title_en }}}</span>
-					@if (!empty($course->title_zh) && Session::get('_locale') !== 'en')
+					@if (!empty($course->title_zh) && Config::get('app.locale') !== 'en')
 						<span class="panel-course-title">{{{ $course->title_zh }}}</span>
 					@endif
 				</h3>

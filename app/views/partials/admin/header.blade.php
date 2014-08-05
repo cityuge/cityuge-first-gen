@@ -1,6 +1,6 @@
 <?php $currentRoute = Route::currentRouteName(); ?>
 <!DOCTYPE html>
-<html lang="{{ Session::get('_localeISO') }}">
+<html lang="{{ LocaleHelper::getIsoLocale() }}">
 <head>
 	<meta charset="utf-8">
 	@if (isset($title))

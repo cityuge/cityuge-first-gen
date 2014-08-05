@@ -11,15 +11,13 @@
 |
 */
 
-App::before(function($request)
-{
-	//
+App::before(function ($request) {
+    //
 });
 
 
-App::after(function($request, $response)
-{
-	//
+App::after(function ($request, $response) {
+    //
 });
 
 /*
@@ -33,19 +31,17 @@ App::after(function($request, $response)
 |
 */
 
-Route::filter('auth', function()
-{				
-	if (Auth::guest()) {
-		return Redirect::route('login')
-			->with('alertType', 'error')
-			->with('alertBody', trans('app.login_authorizedOnly'));
-	}
+Route::filter('auth', function () {
+    if (Auth::guest()) {
+        return Redirect::route('login')
+            ->with('alertType', 'error')
+            ->with('alertBody', trans('app.login_authorizedOnly'));
+    }
 });
 
 
-Route::filter('auth.basic', function()
-{
-	return Auth::basic();
+Route::filter('auth.basic', function () {
+    return Auth::basic();
 });
 
 /*
@@ -59,9 +55,8 @@ Route::filter('auth.basic', function()
 |
 */
 
-Route::filter('guest', function()
-{
-	if (Auth::check()) return Redirect::to('/');
+Route::filter('guest', function () {
+    if (Auth::check()) return Redirect::to('/');
 });
 
 /*
@@ -75,10 +70,22 @@ Route::filter('guest', function()
 |
 */
 
-Route::filter('csrf', function()
-{
-	if (Session::token() != Input::get('_token'))
-	{
-		throw new Illuminate\Session\TokenMismatchException;
-	}
+Route::filter('csrf', function () {
+    if (Session::token() != Input::get('_token')) {
+        throw new Illuminate\Session\TokenMismatchException;
+    }
+});
+
+/*
+|--------------------------------------------------------------------------
+| Localization Filter
+|--------------------------------------------------------------------------
+|
+| This filter receive the URL segment for language and set the application
+| locale.
+|
+*/
+
+Route::filter('locale', function () {
+    App::setLocale(Route::input('lang'));
 });

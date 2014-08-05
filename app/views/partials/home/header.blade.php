@@ -140,14 +140,14 @@
 					{{ Form::hidden('type', 'quick') }}
 				{{ Form::close() }}
 				<ul class="nav navbar-nav navbar-right">
-					{{--<li class="dropdown">
+					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe"></i> <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li>{{ HTML::link(LocaleHelper::getCurrentPageURLInLocale('hk'), '繁體中文') }}</li>
 							<li>{{ HTML::link(LocaleHelper::getCurrentPageURLInLocale('cn'), '简体中文') }}</li>
 							<li>{{ HTML::link(LocaleHelper::getCurrentPageURLInLocale('en'), 'English') }}</li>
 						</ul>
-					</li>--}}
+					</li>
 				</ul>
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container -->

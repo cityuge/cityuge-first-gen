@@ -3,7 +3,8 @@
 		"laravel/framework": "4.1.*",
 		"greggilbert/recaptcha": "dev-master",
 		"suin/php-rss-writer": "1.2",
-		"thepixeldeveloper/sitemap": "2.0.0"
+		"thepixeldeveloper/sitemap": "2.0.0",
+		"barryvdh/laravel-ide-helper": "1.*"
 	},
 	"require-dev": {
 		"sebklaus/profiler": "dev-master",

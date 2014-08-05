@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost',
+	'url' => 'http://cityuge.dev',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -71,6 +71,7 @@ return array(
 		// 3rd party
 		'Greggilbert\Recaptcha\RecaptchaServiceProvider',
 		'Sebklaus\Profiler\Providers\ProfilerServiceProvider',
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 
 	),
 

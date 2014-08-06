@@ -206,9 +206,30 @@ class Course extends BaseModel
     }
 
     /**
+     * Update mean grade point and mean workload level of a course.
+     * @param $courseId integer Course ID
+     */
+    public static function updateMeans($courseId)
+    {
+        DB::update("UPDATE courses AS co1
+  INNER JOIN
+  (SELECT
+     course_id,
+     avg(gp)       AS mean_gp,
+     avg(workload) AS mean_workload
+   FROM comments
+   WHERE deleted_at IS NULL AND course_id = ?
+   GROUP BY course_id) AS co2
+    ON co1.id = co2.course_id
+SET co1.mean_gp     = co2.mean_gp,
+  co1.mean_workload = co2.mean_workload
+WHERE co1.id = ?", array($courseId, $courseId));
+    }
+
+    /**
      * Update mean grade point and mean workload level of all courses.
      */
-    public static function updateMeans()
+    public static function updateAllMeans()
     {
         DB::update("UPDATE courses AS co1
   INNER JOIN

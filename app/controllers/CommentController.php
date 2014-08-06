@@ -96,6 +96,10 @@ class CommentController extends BaseController
                 Request::server('HTTP_CF_CONNECTING_IP') : Request::server('REMOTE_ADDR');
             $comment->save();
 
+            // Update courses table
+            DB::table('courses')->where('id', '=', $courseId)->increment('total_comments');
+            Course::updateMeans($courseId);
+
             // Fire an event
             Event::fire('app.newComment', array(Input::get('course_id')));
 

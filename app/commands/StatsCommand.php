@@ -36,7 +36,7 @@ class StatsCommand extends Command
     public function fire()
     {
         $this->info('Update mean grade point and workload level');
-        Course::updateMeans();
+        Course::updateAllMeans();
 
         $this->info('Calculate Bayesian average, m = ' . Config::get('cityuge.bayesianAvgMinCommentNum'));
         Course::updateBayesianAverages(Config::get('cityuge.bayesianAvgMinCommentNum'));

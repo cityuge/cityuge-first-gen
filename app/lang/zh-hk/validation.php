@@ -62,7 +62,8 @@ return array(
 		"string"  => ":attribute 必須是 :size 個字符。",
 	),
 	"unique"           => ":attribute 已經用了。",
-	"url"              => ":attribute 的格式錯鋘。",
+	"url"              => ":attribute 的格式錯誤。",
+
 	"recaptcha"        => ':attribute 輸入錯誤。',
 	"offering"         => '所揀選的學期並沒有開辦本課程。',
 

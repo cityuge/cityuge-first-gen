@@ -26,10 +26,10 @@
 
     @else
 
-	<p>Founded in May 2013, CityU GE Guide provides a platform for students in CityU to share their feedbacks on Gateway Education (GE) courses and fundamental language courses they have taken in previous semesters. It organize the comments for different courses and provide statistics to students when they take a new course. Before the website is created, students take courses by sharing feedbacks with their friends and referencing others' reviews posted on Internet forums. These methods are not systematic and require students to organize the data before analysing them.</p>
+	<p>Founded in May 2013, CityU GE Guide provides a platform for students in CityU to share their feedbacks on Gateway Education (GE) courses and fundamental language courses they have taken in previous semesters. It organizes comments from students and provides statistics for reference. Before the website is created, students made decisions on selecting courses mainly based on feedback from their friends and referenced others' opinions from the Internet.</p>
 
 	<h2>Contact Us</h2>
-	<p>For enquires or difficulties (such as submitting incorrect data or out of order), email us at <a href="mailto:cityuge@swiftzer.net">cityuge@swiftzer.net</a> and we will follow up ASAP. In addition, we set up a <a href="http://www.facebook.com/cityuge">Facebook Page</a> which provides the latest news of us.</p>
+	<p>Should you have any enquiry (such as submitting incorrect data or out of order), email us at <a href="mailto:cityuge@swiftzer.net">cityuge@swiftzer.net</a> and we will follow up ASAP. In addition, we set up a <a href="http://www.facebook.com/cityuge">Facebook Page</a> which provides the latest news of us.</p>
 
     @endif
 </article>

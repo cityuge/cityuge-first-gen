@@ -13,11 +13,11 @@
 
 ClassLoader::addDirectories(array(
 
-	app_path().'/commands',
-	app_path().'/controllers',
-	app_path().'/models',
-	app_path().'/database/seeds',
-	app_path().'/libraries',
+    app_path() . '/commands',
+    app_path() . '/controllers',
+    app_path() . '/models',
+    app_path() . '/database/seeds',
+    app_path() . '/libraries',
 
 ));
 
@@ -32,9 +32,9 @@ ClassLoader::addDirectories(array(
 |
 */
 
-$logFile = 'log-'.php_sapi_name().'.txt';
+$logFile = 'log-' . php_sapi_name() . '.txt';
 
-Log::useDailyFiles(storage_path().'/logs/'.$logFile);
+Log::useDailyFiles(storage_path() . '/logs/' . $logFile);
 
 /*
 |--------------------------------------------------------------------------
@@ -49,14 +49,19 @@ Log::useDailyFiles(storage_path().'/logs/'.$logFile);
 |
 */
 
-App::error(function(Exception $exception, $code)
-{
-	Log::error($exception);
-});
+App::error(function (Exception $exception, $code) {
+    Log::error($exception);
 
-
-App::missing(function($exception) {
-	return Response::view('errors.404', array('title' => trans('app.error_404'), 'errorCode' => 404), 404);
+    if (!Config::get('app.debug')) {
+        switch ($code) {
+            case 404:
+                return Response::view('errors.404',
+                    array('title' => trans('app.error_404'), 'errorCode' => $code), $code);
+            default:
+                return Response::view('errors.generic',
+                    array('errorCode' => $code), $code);
+        }
+    }
 });
 
 /*
@@ -70,9 +75,8 @@ App::missing(function($exception) {
 |
 */
 
-App::down(function()
-{
-	return Response::view('errors.down', array('title' => trans('app.error_maintenance')), 503);
+App::down(function () {
+    return Response::view('errors.down', array('title' => trans('app.error_maintenance')), 503);
 });
 
 /*
@@ -86,9 +90,8 @@ App::down(function()
 |
 */
 
-require app_path().'/filters.php';
+require app_path() . '/filters.php';
 
 
-
-require __DIR__.'/../macros.php';
-require __DIR__.'/../listeners.php';
+require __DIR__ . '/../macros.php';
+require __DIR__ . '/../listeners.php';

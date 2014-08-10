@@ -36,7 +36,7 @@ return array(
     "image"            => ":attribute 必须是一张图片。",
     "in"               => "已选的属性 :attribute 非法。",
     "integer"          => ":attribute 必须是一个整数。",
-    "ip"               => ":attribute 必须是一个有效的IP地址。",
+    "ip"               => ":attribute 必须是一个有效的 IP 地址。",
     "max"              => array(
         "numeric" => ":attribute 必须小于 :max 。",
         "file"    => ":attribute 必须小于 :max 千字节。",

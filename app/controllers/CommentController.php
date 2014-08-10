@@ -24,8 +24,8 @@ class CommentController extends BaseController
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return Response
+     * @param $courseCode string course code
+     * @return $this|\Illuminate\View\View|void
      */
     public function create($courseCode)
     {
@@ -101,7 +101,7 @@ class CommentController extends BaseController
             Course::updateMeans($courseId);
 
             // Fire an event
-            Event::fire('app.newComment', array(Input::get('course_id')));
+            Event::fire('app.newComment', array(Input::get('course_id'), $course->code));
 
             return Redirect::route('courses.show', array(strtolower($course->code)))
                 ->with('alertType', 'success')

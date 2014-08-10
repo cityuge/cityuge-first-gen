@@ -36,7 +36,7 @@
 				<li>
 					<dl>
 						<dt>{{ trans('app.course_commentCount') }}</dt>
-						<dd>{{{ $course->comment_count }}}</dd>
+						<dd>{{{ $course->total_comments }}}</dd>
 					</dl>
 				</li>
 			</ul>

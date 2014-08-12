@@ -141,7 +141,7 @@
 					<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> <span class="sr-only">{{ trans('app.nav_search') }}</span></button>
 					{{ Form::hidden('type', 'quick') }}
 				{{ Form::close() }}
-				{{--<ul class="nav navbar-nav navbar-right">
+				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe"></i> <b class="caret"></b></a>
 						<ul class="dropdown-menu">
@@ -150,7 +150,7 @@
 							<li>{{ HTML::link(LocaleHelper::getCurrentPageURLInLocale('en'), 'English') }}</li>
 						</ul>
 					</li>
-				</ul>--}}
+				</ul>
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container -->
 	</nav>

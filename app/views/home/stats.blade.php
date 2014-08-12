@@ -7,21 +7,7 @@
         <h1>{{ $title }}</h1>
     </div>
 
-
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">{{ trans('app.stat_analysisReportTitle') }}</h3>
-        </div>
-        <div class="panel-body">
-            {{ trans('app.stat_analysisReportDesc') }}
-        </div>
-        <ul class="list-group">
-            <a href="http://issuu.com/swiftzer/docs/ge_course_analysis_report__aug_2013" class="list-group-item">{{ trans('app.stat_analysisReportRead' ) }}</a>
-            <a href="http://docs.google.com/file/d/0B1iBpnvlJzmtMERYeGUtVFo4VG8/edit" class="list-group-item">{{ trans('app.stat_analysisReportDownload' ) }}</a>
-        </ul>
-    </div>
-
+    <div class="alert alert-warning" role="alert">{{ trans('app.stat_notes' ) }}</div>
 
 
     <div class="panel panel-default">

@@ -48,9 +48,7 @@ return array(
     'stat_bayesianGradePoint' => 'Avg. Grade Point',
     'stat_bayesianWorkload' => 'Avg. Workload',
     'stat_analysisReportTitle' => 'Analysis Report',
-    'stat_analysisReportDesc' => '<p>All rankings provided on this page are using simple methodologies which are not very accurate and the rankings are for reference only. Before taking any Gateway Education (GE) course, you should read the feedback provided by others as well as the course information.</p><p>For detailed statistics and analysis, please refer to <em>Gateway Education Courses Analysis Report</em>.</p>',
-    'stat_analysisReportRead' => 'Read <small>(ISSUU)</small> <i class="fa fa-angle-right"></i>',
-    'stat_analysisReportDownload' => 'Download <small>(Google Drive)</small> <i class="fa fa-angle-right"></i>',
+    'stat_notes' => '<p>All rankings provided on this page are for reference only. Before taking any Gateway Education (GE) course, you should read the feedback provided by others as well as the course information.</p>',
 
     // Course
     'course' => '{1} All Courses|[2,Inf] All Courses: Page :page',

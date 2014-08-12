@@ -48,9 +48,7 @@ return array(
     'stat_bayesianGradePoint' => '平均积点',
     'stat_bayesianWorkload' => '平均工作量',
     'stat_analysisReportTitle' => '分析报告',
-    'stat_analysisReportDesc' => '<p>本页所提供的课程排名是以简单计算实时生成，只能作基本参考之用。在报读各精进教育 (GE) 课程前，除参考本页面排名外，亦应细阅各课程的相关留言及资料再作判断。</p><p>如要取得详尽的统计资料及分析，请参阅《精进教育课程分析报告》（仅提供英文版）。</p>',
-    'stat_analysisReportRead' => '阅读 <small>(ISSUU)</small> <i class="fa fa-angle-right"></i>',
-    'stat_analysisReportDownload' => '下载 <small>(Google Drive)</small> <i class="fa fa-angle-right"></i>',
+    'stat_notes' => '<p>本页所提供的课程排名只作参考之用。在报读各精进教育 (GE) 课程前，除参考本页面排名外，亦应细阅各课程的相关留言及资料再作判断。</p>',
 
     // Course
     'course' => '{1} 所有课程|[2,Inf] 所有课程：第 :page 页',

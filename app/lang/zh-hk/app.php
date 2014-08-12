@@ -47,10 +47,7 @@ return array(
     'stat_totalComment' => '留言',
     'stat_bayesianGradePoint' => '平均積點',
     'stat_bayesianWorkload' => '平均工作量',
-    'stat_analysisReportTitle' => '分析報告',
-    'stat_analysisReportDesc' => '<p>本頁所提供的課程排名是以簡單計算即時生成，只能作基本參考之用。在報讀各精進教育 (GE) 課程前，除參考本頁面排名外，亦應細閱各課程的相關留言及資料再作判斷。</p><p>如要取得詳盡的統計資料及分析，請參閱《精進教育課程分析報告》（僅提供英文版）。</p>',
-    'stat_analysisReportRead' => '閱讀 <small>(ISSUU)</small> <i class="fa fa-angle-right"></i>',
-    'stat_analysisReportDownload' => '下載 <small>(Google Drive)</small> <i class="fa fa-angle-right"></i>',
+    'stat_notes' => '<p>本頁所提供的課程排名只供參考之用。在報讀各精進教育 (GE) 課程前，除參考本頁面排名外，亦應細閱各課程的相關留言及資料再作判斷。</p>',
 
     // Course
     'course' => '{1} 所有課程|[2,Inf] 所有課程：第 :page 頁',

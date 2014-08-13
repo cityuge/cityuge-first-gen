@@ -224,6 +224,47 @@
         </div>
     </div>
 
+
+    <div class="well">
+        @if (Config::get('app.locale') == 'zh-hk')
+            <h4>關於平均積點及平均工作量</h4>
+            <p>各課程的平均積點及平均工作量均採用貝葉斯平均 (Bayesian average) 計算，公式為：</p>
+            <img class="center-block" src="{{ asset('img/bayesian-avg.svg') }}" alt="Bayesian average equation in LaTeX: \frac{Cm+Rv}{m+v}"/><br>
+            <p>其中：</p>
+            <ul>
+                <li><i>C</i>：所有 Area 1-3 GE 課程的算術平均積點 / 工作量</li>
+                <li><i>v</i>：該課程的留言數目</li>
+                <li><i>m</i>：排名的最低留言數目（目前為 {{ Config::get('cityuge.bayesianAvgMinCommentNum') }}）</li>
+                <li><i>R</i>：該課程的算術平均積點 / 工作量</li>
+            </ul>
+            <p>平均積點的範圍是由 0 至 4.3。平均工作量的範圍是由 1 至 5，1 為非常輕鬆，5 為非常繁重。</p>
+        @elseif (Config::get('app.locale') == 'zh-cn')
+            <h4>关于平均积点及平均工作量</h4>
+            <p>各课程的平均积点及平均工作量均采用贝叶斯平均 (Bayesian average) 计算，公式为：</p>
+            <img class="center-block" src="{{ asset('img/bayesian-avg.svg') }}" alt="Bayesian average equation in LaTeX: \frac{Cm+Rv}{m+v}"/><br>
+            <p>其中：</p>
+            <ul>
+                <li><i>C</i>：所有 Area 1-3 GE 课程的算术平均积点 / 工作量</li>
+                <li><i>v</i>：该课程的留言数目</li>
+                <li><i>m</i>：排名的最低留言数目（目前为 {{ Config::get('cityuge.bayesianAvgMinCommentNum') }}）</li>
+                <li><i>R</i>：该课程的算术平均积点 / 工作量</li>
+            </ul>
+            <p>平均积点的范围是由 0 至 4.3。平均工作量的范围是由 1 至 5，1 为非常轻松，5 为非常繁重。</p>
+        @else
+            <h4>About Average Grade Point and Average Workload Level</h4>
+            <p>The formula for calculating the average grade point and average workload level give a Bayesian average:</p>
+            <img class="center-block" src="{{ asset('img/bayesian-avg.svg') }}" alt="Bayesian average equation in LaTeX: \frac{Cm+Rv}{m+v}"/><br>
+            <p>Where:</p>
+            <ul>
+                <li><i>C</i>: arithmetic mean grade point / workload level across all Area 1-3 GE courses</li>
+                <li><i>v</i>: number of comments for that course</li>
+                <li><i>m</i>: minimum number of comments required to be listed (now is {{ Config::get('cityuge.bayesianAvgMinCommentNum') }})</li>
+                <li><i>R</i>: arithmetic mean grade point / workload level for that course</li>
+            </ul>
+            <p>The average grade point ranges between 0 to 4.3. The average workload level ranges between 1 to 5, where 1 for very light while 5 for very heavy.</p>
+        @endif
+    </div>
+
 </section>
 
 @stop

@@ -13,6 +13,6 @@ return array(
     'home_featureBrowseTitle' => 'Read Reviews',
     'home_featureBrowseDesc' => '<p>Before taking the course, read the reviews from others to understand the course content, workload, grading criteria and grade distribution.</p>',
     'home_featureWriteTitle' => 'Give Feedback',
-    'home_featureWriteDesc' => '<p>Provide your comments once the grade is released. By sharing your comments to us, others can know the course more when they choose the course. Also, more comments means more accurate.</p>',
+    'home_featureWriteDesc' => '<p>Provide your comments once the grade is released. By sharing your comments to us, other users can have a better understanding on the course.</p>',
 
 );

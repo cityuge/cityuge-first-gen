@@ -9,6 +9,7 @@
 
     <div class="alert alert-warning" role="alert">{{ trans('app.stat_notes' ) }}</div>
 
+    {{ trans('app.stat_updateAt', ['timestamp' => $stats['updatedAt']->format('M j, Y H:i')]) }}
 
     <div class="panel panel-default">
         <div class="panel-heading">

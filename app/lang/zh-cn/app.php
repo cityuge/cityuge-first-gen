@@ -49,6 +49,7 @@ return array(
     'stat_bayesianWorkload' => '平均工作量',
     'stat_analysisReportTitle' => '分析报告',
     'stat_notes' => '<p>本页所提供的课程排名只作参考之用。在报读各精进教育 (GE) 课程前，除参考本页面排名外，亦应细阅各课程的相关留言及资料再作判断。</p>',
+    'stat_updateAt' => '<p>最后更新：:timestamp</p>',
 
     // Course
     'course' => '{1} 所有课程|[2,Inf] 所有课程：第 :page 页',

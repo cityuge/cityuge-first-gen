@@ -44,6 +44,9 @@ class StatsCommand extends Command
         if ($this->argument('purge')) {
             $this->info('Purge cache');
             Cache::forget('homeStats');
+            // Run the queries and stored in cache
+            $this->info('Re-create cache');
+            Course::getCourseStats();
         }
     }
 

@@ -64,6 +64,8 @@ Route::group(array('prefix' => $locale), function() {
 	Route::get('comments', array('as' => 'comments.index', 'uses' => 'CommentController@index'));
 	Route::get('comments/{id}', array('as' => 'comments.show', 'uses' => 'CommentController@show'))->where('id', '[0-9]+');
 	Route::post('comments', array('as' => 'comments.store', 'uses' => 'CommentController@store'));
+	Route::delete('comments/{id}', array('as' => 'comments.destroy', 'uses' => 'CommentController@destroy', 'before' => 'auth|csrf'));
+	Route::post('comments/restore/{id}', array('as' => 'comments.restore', 'uses' => 'CommentController@restore', 'before' => 'auth|csrf'));
 
 	// Admin
 	Route::get('login', array('as' => 'login', 'uses' => 'UserController@getLogin'));

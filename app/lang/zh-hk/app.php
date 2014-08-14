@@ -48,6 +48,7 @@ return array(
     'stat_bayesianGradePoint' => '平均積點',
     'stat_bayesianWorkload' => '平均工作量',
     'stat_notes' => '<p>本頁所提供的課程排名只供參考之用。在報讀各精進教育 (GE) 課程前，除參考本頁面排名外，亦應細閱各課程的相關留言及資料再作判斷。</p>',
+    'stat_updateAt' => '<p>最後更新：:timestamp</p>',
 
     // Course
     'course' => '{1} 所有課程|[2,Inf] 所有課程：第 :page 頁',

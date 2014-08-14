@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 class Course extends BaseModel
 {
     protected $guarded = array();
@@ -73,7 +75,7 @@ class Course extends BaseModel
      * Get statistics from database.
      * @return array statistics
      */
-    public static function getHomeStats()
+    public static function getCourseStats()
     {
         $self = __CLASS__;
         return Cache::rememberForever('homeStats', function () use ($self) {
@@ -97,6 +99,8 @@ class Course extends BaseModel
                 'heavyWorkloadCoursesArea1' => $self::getHeavyWorkloadCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
                 'heavyWorkloadCoursesArea2' => $self::getHeavyWorkloadCourses('AREA2', Config::get('cityuge.home_statsMaxItem')),
                 'heavyWorkloadCoursesArea3' => $self::getHeavyWorkloadCourses('AREA3', Config::get('cityuge.home_statsMaxItem')),
+
+                'updatedAt' => Carbon::now(),
             );
         });
     }

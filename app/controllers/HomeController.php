@@ -21,7 +21,7 @@ class HomeController extends BaseController {
 		$data = array(
 			'title' => trans('app.stat_title'),
 			'metaDescription' => Lang::get('app.stat_metaDesc'),
-			'stats' => Course::getHomeStats(),
+			'stats' => Course::getCourseStats(),
 		);
 		return View::make('home.stats')->with($data);
 	}

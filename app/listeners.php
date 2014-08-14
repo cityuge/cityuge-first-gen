@@ -7,7 +7,7 @@ Event::listen('app.newComment', function($courseId, $courseCode) {
 	// XML sitemap
 	Cache::forget('sitemap');
 	// Stats on home page
-	Cache::forget('homeStats');
+//	Cache::forget('homeStats');
 	// Stats for that course
 	Cache::forget('courseStats_' . $courseId);
     // Course data (mean workload is outdated)
@@ -21,7 +21,7 @@ Event::listen('app.editComment', function($courseId, $courseCode) {
 	// XML sitemap
 	Cache::forget('sitemap');
 	// Stats on home page
-	Cache::forget('homeStats');
+//	Cache::forget('homeStats');
 	// Stats for that course
 	Cache::forget('courseStats_' . $courseId);
     // Course data (mean workload is outdated)

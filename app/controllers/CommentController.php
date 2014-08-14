@@ -171,15 +171,50 @@ class CommentController extends BaseController
     {
         $comment = Comment::find($id);
         if ($comment) {
-            $courseId = $comment->course_id;
             $comment->delete();
-            return Redirect::route('courses.show', array($courseId))
+
+            // Update courses table
+            DB::table('courses')->where('id', '=', $comment->course_id)->decrement('total_comments');
+            Course::updateMeans($comment->course_id);
+
+            // Fire an event
+            Event::fire('app.editComment', array($comment->course_id, $comment->course->code));
+
+            return Redirect::back()
                 ->with('alertType', 'success')
-                ->with('alertBody', Lang::get('app.comment_deleted'));
+                ->with('alertBody', 'Comment deleted!');
         } else {
             return Redirect::back()
                 ->with('alertType', 'error')
-                ->with('alertBody', Lang::get('app.comment_delete_notFound'));
+                ->with('alertBody', 'Cannot delete this comment.');
+        }
+    }
+
+    /**
+     * Undo delete comment.
+     * @param $id int comment ID
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function restore($id)
+    {
+        $comment = Comment::withTrashed()->find($id);
+        if ($comment) {
+            $comment->restore();
+
+            // Update courses table
+            DB::table('courses')->where('id', '=', $comment->course_id)->increment('total_comments');
+            Course::updateMeans($comment->course_id);
+
+            // Fire an event
+            Event::fire('app.editComment', array($comment->course_id, $comment->course->code));
+
+            return Redirect::back()
+                ->with('alertType', 'success')
+                ->with('alertBody', 'Comment restored!');
+        } else {
+            return Redirect::back()
+                ->with('alertType', 'error')
+                ->with('alertBody', 'Cannot restore this comment.');
         }
     }
 

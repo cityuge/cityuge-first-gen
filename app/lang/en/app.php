@@ -49,6 +49,7 @@ return array(
     'stat_bayesianWorkload' => 'Avg. Workload',
     'stat_analysisReportTitle' => 'Analysis Report',
     'stat_notes' => '<p>All rankings provided on this page are for reference only. Before taking any Gateway Education (GE) course, you should read the feedback provided by others as well as the course information.</p>',
+    'stat_updateAt' => '<p>Last update at :timestamp</p>',
 
     // Course
     'course' => '{1} All Courses|[2,Inf] All Courses: Page :page',

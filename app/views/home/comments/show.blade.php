@@ -17,7 +17,19 @@
 					<dd>
 						<a class="btn btn-default" href="http://whois.domaintools.com/{{{ $comment->ip_address }}}" target="_blank">{{ trans('app.comment_whois') }} <i class="fa fa-external-link"></i></a>
 					</dd>
+                    <dt>Admin Notes</dt>
+                    <dd>{{ $comment->admin_note }}</dd>
 				</dl>
+
+                @if ($comment->deleted_at == null)
+                    {{ Form::open(['route' => ['comments.destroy', $comment->id], 'method' => 'DELETE']) }}
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i> Delete</button>
+                    {{ Form::close() }}
+                @else
+                    {{ Form::open(['route' => ['comments.restore', $comment->id], 'method' => 'POST']) }}
+                    <button type="submit" class="btn btn-success"><i class="fa fa-trash-o"></i> Restore</button>
+                    {{ Form::close() }}
+                @endif
 
 			@endif
 			

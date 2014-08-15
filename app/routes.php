@@ -75,6 +75,8 @@ Route::group(array('prefix' => $locale), function() {
 	Route::get('login', array('as' => 'login', 'uses' => 'UserController@getLogin'));
 	Route::group(array('before' => 'auth', 'prefix' => 'admin'), function() {
 		Route::get('/', array('as' => 'admin.dashboard', 'uses' => 'AdminController@index'));
+		Route::get('comments/deleted', array('as' => 'admin.comments.deleted', 'uses' => 'AdminController@deletedComment'));
+		Route::get('cache', array('as' => 'admin.cache', 'uses' => 'AdminController@cache'));
 		Route::post('purge-cache', array('as' => 'admin.cache.purge', 'uses' => 'AdminController@purgeCache', 'before' => 'csrf'));
 	});
 

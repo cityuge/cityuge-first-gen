@@ -53,4 +53,19 @@ class CommentHelper
                 return null;
         }
     }
+
+    /**
+     * Convert HTML escaped comment to unescaped text
+     * @param $escaped
+     * @return string unescaped string
+     */
+    public static function unescapeComment($escaped) {
+        $result = preg_replace("/(\n|\r\n|\r)+/m", "", $escaped);
+        $result = preg_replace("/<\/p>/m", "", $result);
+        $result = preg_replace("/<p>/m", "\n\n", $result);
+        $result = preg_replace("/<br \/>/m", "\n", $result);
+        $result = trim($result);
+        $result = html_entity_decode($result, ENT_QUOTES, "UTF-8");
+        return $result;
+    }
 }

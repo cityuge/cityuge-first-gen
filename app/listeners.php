@@ -6,10 +6,8 @@ Event::listen('app.newComment', function($courseId, $courseCode) {
 	Cache::forget('feed');
 	// XML sitemap
 	Cache::forget('sitemap');
-	// Stats on home page
-//	Cache::forget('homeStats');
-	// Stats for that course
-	Cache::forget('courseStats_' . $courseId);
+	// Stats for that course (grade distribution)
+	Cache::forget('courseGradeDist_' . $courseId);
     // Course data (mean workload is outdated)
 	Cache::forget('course_' . $courseCode);
 });
@@ -20,10 +18,8 @@ Event::listen('app.editComment', function($courseId, $courseCode) {
 	Cache::forget('feed');
 	// XML sitemap
 	Cache::forget('sitemap');
-	// Stats on home page
-//	Cache::forget('homeStats');
-	// Stats for that course
-	Cache::forget('courseStats_' . $courseId);
+	// Stats for that course (grade distribution)
+	Cache::forget('courseGradeDist_' . $courseId);
     // Course data (mean workload is outdated)
     Cache::forget('course_' . $courseCode);
 });

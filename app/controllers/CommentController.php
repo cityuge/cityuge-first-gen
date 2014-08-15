@@ -147,18 +147,58 @@ class CommentController extends BaseController
      */
     public function edit($id)
     {
-        //
+        $comment = Comment::withTrashed()->with('course')->find($id);
+        if (!$comment || $comment->trashed() && !Auth::check()) {
+            return App::abort(404);
+        }
+
+        $semesters = array('' => '') + SemesterHelper::getSemesterOptions();
+        $workloads = array('' => '') + CommentHelper::getWorkloadOptions();
+        $grades = array(' ' => ' ') + CourseHelper::getGradingOptionArray($comment->course->gradingPattern);
+
+        $data = [
+            'comment' => $comment,
+            'semesters' => $semesters,
+            'workloads' => $workloads,
+            'grades' => $grades,
+        ];
+        return View::make('home.comments.edit')->with($data);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  int $id
-     * @return Response
+     * @return Response|null
      */
     public function update($id)
     {
-        //
+        $comment = Comment::find($id);
+
+        if (!$comment) {
+            App::abort(400);
+            return;
+        }
+
+        $comment->semester = Input::get('semester');
+        $comment->instructor = Input::get('instructor');
+        $comment->grade = Input::get('grade');
+        $comment->gp = CommentHelper::getGradePoint(Input::get('grade'));
+        $comment->workload = Input::get('workload');
+        $comment->body = Input::get('body');
+        $comment->admin_note = Input::get('admin_note');
+        $comment->save();
+
+        // Update courses table
+        Course::updateMeans($comment->course_id);
+
+        // Fire an event
+        Event::fire('app.editComment', array($comment->course_id, $comment->course->code));
+
+        return Redirect::route('comments.show', array($comment->id))
+            ->with('alertType', 'success')
+            ->with('alertBody', 'Comment edited.');
+
     }
 
     /**

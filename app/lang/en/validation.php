@@ -15,11 +15,11 @@ return array(
 
 	"accepted"         => "The :attribute must be accepted.",
 	"active_url"       => "The :attribute is not a valid URL.",
-	"after"            => "The :attribute must be after :date.",
-	"alpha"            => "The :attribute can only contain letters.",
-	"alpha_dash"       => "The :attribute can only contain letters, numbers, and dashes.",
-	"alpha_num"        => "The :attribute can only contain letters and numbers.",
-	"before"           => "The :attribute must be before :date.",
+	"after"            => "The :attribute must be a date after :date.",
+	"alpha"            => "The :attribute may only contain letters.",
+	"alpha_dash"       => "The :attribute may only contain letters, numbers, and dashes.",
+	"alpha_num"        => "The :attribute may only contain letters and numbers.",
+	"before"           => "The :attribute must be a date before :date.",
 	"between"          => array(
 		"numeric" => "The :attribute must be between :min - :max.",
 		"file"    => "The :attribute must be between :min - :max kilobytes.",
@@ -38,9 +38,9 @@ return array(
 	"integer"          => "The :attribute must be an integer.",
 	"ip"               => "The :attribute must be a valid IP address.",
 	"max"              => array(
-		"numeric" => "The :attribute must not be greater than :max.",
-		"file"    => "The :attribute must not be greater than :max kilobytes.",
-		"string"  => "The :attribute must not be greater than :max characters.",
+		"numeric" => "The :attribute may not be greater than :max.",
+		"file"    => "The :attribute may not be greater than :max kilobytes.",
+		"string"  => "The :attribute may not be greater than :max characters.",
 	),
 	"mimes"            => "The :attribute must be a file of type: :values.",
 	"min"              => array(

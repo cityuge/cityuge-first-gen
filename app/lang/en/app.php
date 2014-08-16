@@ -89,7 +89,7 @@ return array(
     'course_assess_explain' => 'Explanations',
     'course_assess_model_title' => 'Explanations on Assessment Tasks',
     'course_assess_def_exam' => 'It is listed in Master Examination Schedule in AIMS or stated explicitly in Form 2B. This does not include any quizzes or tests held during teaching period of a semester.',
-    'course_assess_def_quiz' => 'Either in individual or group form or combination of both, format may varies in different courses. Some common formats includes multiple choice questions and essay writings. Tests are also referred as quizzes.',
+    'course_assess_def_quiz' => 'Either in individual or group form or combination of both, the format may vary in different courses. Some common formats include multiple choice questions and essays. Tests are also referred as quizzes.',
     'course_assess_def_report' => 'It refers to individual paperwork like reports, essays, compositions and journals. This does not cover the report part of a group project and short writing tasks like online discussion and article reading.',
     'course_assess_def_project' => 'Group projects contain presentations, reports, leaflets and posters done by a group of students. However, it does not include group discussion, role-plays, peer-reviews and games during lessons.',
 
@@ -97,9 +97,9 @@ return array(
     'course_quickAccessCurrentSemester' => 'Lookup Courses Offer in :semester',
     'course_search_title' => 'Search Courses',
     'course_search_metaDesc' => 'Search for CityU Gateway Education (GE) courses information.',
-    'course_search_empty' => 'Please enter keyword to search.',
+    'course_search_empty' => 'Please enter a keyword.',
     'course_search_keyword' => 'Course code / title',
-    'course_search_misc' => 'Category, Department &amp; Semester',
+    'course_search_misc' => 'Category, Department & Semester',
     'course_search_category' => 'Category',
     'course_search_department' => 'Offering academic unit',
     'course_search_semester' => 'Offering semester',
@@ -113,7 +113,7 @@ return array(
 
     // Comment
     'comment' => '{1} All Comments|[2,Inf] All Comments: Page :page',
-    'comment_desc' => '<p>There are :count comments right now.</p>',
+    'comment_desc' => '<p>There are :count comments currently.</p>',
     'comment_new' => 'Leave a comment',
     'comment_newTitle' => 'Post a Comment for :courseCode',
     'comment_warning' => '<h4>Before You Post</h4>No personal attacks and fraud comments. They will be removed after posting without prior notice.',
@@ -128,7 +128,7 @@ return array(
     'comment_recaptcha' => 'reCAPTCHA',
     'comment_createdAt' => 'Posted at',
     'comment_submit' => 'Submit',
-    'comment_created' => 'Comment is submitted, thanks your support!',
+    'comment_created' => 'Comment is submitted, thanks for your support!',
     'comment_metaDesc' => 'Latest comments from CityU GE Guide.',
     'comment_permalink' => 'Permalink',
     'comment_share' => 'Share this comment',
@@ -211,7 +211,7 @@ return array(
     'feed_course_metaTitle' => 'Subscribe latest comments for :courseCode',
 
     // Meta
-    'meta_homeDesc' => 'A online platform for sharing CityU Gateway Education (GE) course feedback, analyzing course grade and workload.',
+    'meta_homeDesc' => 'An online platform for sharing CityU Gateway Education (GE) course feedback, analyzing course grade and workload.',
     'meta_globalKeyword' => 'GE, Gateway Education, 通識, general education, 精進教育, 好 grade, 爛 grade, feedback, TLQ, E 仔班, 補底班, City University of Hong Kong, 香港城市大學, 城市大學, 城大, 又一城市大學, 神大, CityU, City U, Shitty U, ShittyU, AIMS, Hong Kong, 香港',
     'excerptEllipse' => '[...]',
 

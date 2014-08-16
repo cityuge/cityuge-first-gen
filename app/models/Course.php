@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 class Course extends BaseModel
 {
     protected $guarded = array();
@@ -36,18 +38,10 @@ class Course extends BaseModel
      * @param  Course $course course object
      * @return array           associative array with workload rate and grade distribution
      */
-    public static function getCourseStats(Course $course)
+    public static function getCourseGradeDistribution(Course $course)
     {
-        return Cache::rememberForever('courseStats_' . $course->id, function () use ($course) {
-            $workloadRate = DB::table('comments')
-                    ->where('course_id', '=', $course->id)
-                    ->where('deleted_at', null, DB::raw('IS NULL'))
-                    ->avg('workload') / 5 * 100;
-            $gradeDistribution = Comment::getGradeDistribution($course->id, $course->grading_pattern);
-            return array(
-                'workloadRate' => $workloadRate,
-                'gradeDistribution' => $gradeDistribution,
-            );
+        return Cache::rememberForever('courseGradeDist_' . $course->id, function () use ($course) {
+            return Comment::getGradeDistribution($course->id, $course->grading_pattern);
         });
     }
 
@@ -81,7 +75,7 @@ class Course extends BaseModel
      * Get statistics from database.
      * @return array statistics
      */
-    public static function getHomeStats()
+    public static function getCourseStats()
     {
         $self = __CLASS__;
         return Cache::rememberForever('homeStats', function () use ($self) {
@@ -105,6 +99,8 @@ class Course extends BaseModel
                 'heavyWorkloadCoursesArea1' => $self::getHeavyWorkloadCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
                 'heavyWorkloadCoursesArea2' => $self::getHeavyWorkloadCourses('AREA2', Config::get('cityuge.home_statsMaxItem')),
                 'heavyWorkloadCoursesArea3' => $self::getHeavyWorkloadCourses('AREA3', Config::get('cityuge.home_statsMaxItem')),
+
+                'updatedAt' => Carbon::now(),
             );
         });
     }
@@ -117,98 +113,94 @@ class Course extends BaseModel
      */
     public static function getHotCourses($category, $limit)
     {
-        $query = DB::select('SELECT courses.code, courses.title_en FROM courses '
-            . 'INNER JOIN comments ON comments.course_id = courses.id '
-            . 'WHERE courses.category = ? '
-            . 'GROUP BY courses.id '
-            . 'ORDER BY COUNT(*) DESC '
-            . 'LIMIT ?',
-            array($category, $limit));
+        $query = DB::select("SELECT
+  code,
+  title_en,
+  total_comments
+FROM courses
+WHERE category = ?
+ORDER BY total_comments DESC
+LIMIT ?", array($category, $limit));
         return $query;
     }
 
     public static function getGoodGradeCourses($category, $limit)
     {
-        $query = DB::select('SELECT * FROM (SELECT courses.code, courses.title_en, '
-            . 'AVG(CASE comments.grade '
-            . "WHEN 'A+' THEN 4.3 "
-            . "WHEN 'A' THEN 4 "
-            . "WHEN 'A-' THEN 3.7 "
-            . "WHEN 'B+' THEN 3.3 "
-            . "WHEN 'B' THEN 3 "
-            . "WHEN 'B-' THEN 2.7 "
-            . "WHEN 'C+' THEN 2.3 "
-            . "WHEN 'C' THEN 2 "
-            . "WHEN 'C-' THEN 1.7 "
-            . "WHEN 'D' THEN 1 "
-            . "WHEN 'F' THEN 0 "
-            . 'ELSE NULL END) AS gpa '
-            . 'FROM courses '
-            . 'INNER JOIN comments on comments.course_id = courses.id '
-            . 'WHERE courses.category = ? '
-            . 'GROUP BY courses.id '
-            . 'ORDER BY gpa DESC'
-            . ') AS t WHERE gpa IS NOT NULL AND gpa >= 3.3 LIMIT ?',
-            array($category, $limit));
+        $query = DB::select("SELECT
+  code,
+  title_en,
+  bayesian_gp
+FROM courses
+WHERE category = ? AND bayesian_gp >= 3.3
+ORDER BY bayesian_gp DESC
+LIMIT ?", array($category, $limit));
         return $query;
     }
 
     public static function getBadGradeCourses($category, $limit)
     {
-        $query = DB::select('SELECT * FROM (SELECT courses.code, courses.title_en, '
-            . 'AVG(CASE comments.grade '
-            . "WHEN 'A+' THEN 4.3 "
-            . "WHEN 'A' THEN 4 "
-            . "WHEN 'A-' THEN 3.7 "
-            . "WHEN 'B+' THEN 3.3 "
-            . "WHEN 'B' THEN 3 "
-            . "WHEN 'B-' THEN 2.7 "
-            . "WHEN 'C+' THEN 2.3 "
-            . "WHEN 'C' THEN 2 "
-            . "WHEN 'C-' THEN 1.7 "
-            . "WHEN 'D' THEN 1 "
-            . "WHEN 'F' THEN 0 "
-            . 'ELSE NULL END) AS gpa '
-            . 'FROM courses '
-            . 'INNER JOIN comments on comments.course_id = courses.id AND comments.deleted_at IS NULL '
-            . 'WHERE courses.category = ? '
-            . 'GROUP BY courses.id '
-            . 'ORDER BY gpa ASC'
-            . ') AS t WHERE gpa IS NOT NULL AND gpa < 2.7 LIMIT ?',
-            array($category, $limit));
+        $query = DB::select("SELECT
+  code,
+  title_en,
+  bayesian_gp
+FROM courses
+WHERE category = ? AND bayesian_gp < 2.7 AND bayesian_gp > 0
+ORDER BY bayesian_gp DESC
+LIMIT ?", array($category, $limit));
         return $query;
     }
 
     public static function getLightWorkloadCourses($category, $limit)
     {
-        $query = DB::select('SELECT courses.code, courses.title_en FROM courses '
-            . 'INNER JOIN comments ON courses.id = comments.course_id AND comments.deleted_at IS NULL '
-            . 'WHERE courses.category = ? '
-            . 'GROUP BY courses.id '
-            . 'HAVING AVG(comments.workload) <= 2 '
-            . 'ORDER BY AVG(comments.workload) ASC '
-            . 'LIMIT ?',
-            array($category, $limit));
+        $query = DB::select("SELECT
+  code,
+  title_en,
+  bayesian_workload
+FROM courses
+WHERE category = ? AND bayesian_workload <= 2.7 AND bayesian_workload > 0
+ORDER BY bayesian_workload ASC
+LIMIT ?", array($category, $limit));
         return $query;
     }
 
     public static function getHeavyWorkloadCourses($category, $limit)
     {
-        $query = DB::select('SELECT courses.code, courses.title_en FROM courses '
-            . 'INNER JOIN comments ON courses.id = comments.course_id AND comments.deleted_at IS NULL '
-            . 'WHERE courses.category = ? '
-            . 'GROUP BY courses.id '
-            . 'HAVING AVG(comments.workload) >= 4 '
-            . 'ORDER BY AVG(comments.workload) DESC '
-            . 'LIMIT ?',
-            array($category, $limit));
+        $query = DB::select("SELECT
+  code,
+  title_en,
+  bayesian_workload
+FROM courses
+WHERE category = ? AND bayesian_workload >= 3.3
+ORDER BY bayesian_workload DESC
+LIMIT ?", array($category, $limit));
         return $query;
+    }
+
+    /**
+     * Update mean grade point and mean workload level of a course.
+     * @param $courseId integer Course ID
+     */
+    public static function updateMeans($courseId)
+    {
+        DB::update("UPDATE courses AS co1
+  INNER JOIN
+  (SELECT
+     course_id,
+     avg(gp)       AS mean_gp,
+     avg(workload) AS mean_workload
+   FROM comments
+   WHERE deleted_at IS NULL AND course_id = ?
+   GROUP BY course_id) AS co2
+    ON co1.id = co2.course_id
+SET co1.mean_gp     = co2.mean_gp,
+  co1.mean_workload = co2.mean_workload
+WHERE co1.id = ?", array($courseId, $courseId));
     }
 
     /**
      * Update mean grade point and mean workload level of all courses.
      */
-    public static function updateMeans()
+    public static function updateAllMeans()
     {
         DB::update("UPDATE courses AS co1
   INNER JOIN

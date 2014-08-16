@@ -1,5 +1,3 @@
-
-
 <footer id="overall-footer">
 	<div class="container">
 		<div class="clearfix">
@@ -16,6 +14,10 @@
 				<li>{{ link_to_route('feed', trans('app.footer_nav_rss')) }}</li>
 				<li><a href="http://facebook.com/cityuge">{{ trans('app.footer_nav_facebookFanPage') }}</a></li>
 				<li><a href="http://swiftzer.net/category/cityuge">{{ trans('app.footer_nav_devBlog') }}</a></li>
+                @if (Auth::check())
+                    <li>{{ link_to_route('admin.dashboard', trans('app.nav_acp')) }}</li>
+                    <li>{{ link_to_route('logout', trans('app.nav_logout')) }}</li>
+                @endif
 			</ul>
 		</nav>
 	</div><!-- /.container -->
@@ -34,6 +36,11 @@
 		ga('send', 'pageview');
 	</script>
 @endif
+
+<!-- Scrollback.io -->
+<script>
+    window.scrollback = {room:"cityuge",embed:"toast",theme:"dark",minimize:true};(function(d,s,h,e){e=d.createElement(s);e.async=1;e.src=(location.protocol === "https:" ? "https:" : "http:") + "//scrollback.io/client.min.js";d.getElementsByTagName(s)[0].parentNode.appendChild(e);}(document,"script"));
+</script>
 
 @section('footerScript')
 <script>

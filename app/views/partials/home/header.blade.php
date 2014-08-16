@@ -19,7 +19,6 @@
 	@if (isset($metaDescription))
 		<meta name="description" content="{{ $metaDescription }}">
 	@endif
-    <link type="text/plain" rel="author" href="{{ asset('humans.txt') }}">
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -76,6 +75,8 @@
 	<link rel="apple-touch-icon-precomposed" href="{{ URL::to('') }}/ico/apple-touch-icon-57-precomposed.png">
 	<meta name="msapplication-TileImage" content="{{ URL::to('') }}/ico/metro-tile.png">
 	<meta name="msapplication-TileColor" content="#FF9900">
+
+    <link type="text/plain" rel="author" href="{{ asset('humans.txt') }}">
 
 	@section('headerScript')
 		<script>
@@ -140,7 +141,7 @@
 					<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> <span class="sr-only">{{ trans('app.nav_search') }}</span></button>
 					{{ Form::hidden('type', 'quick') }}
 				{{ Form::close() }}
-				{{--<ul class="nav navbar-nav navbar-right">
+				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe"></i> <b class="caret"></b></a>
 						<ul class="dropdown-menu">
@@ -149,7 +150,7 @@
 							<li>{{ HTML::link(LocaleHelper::getCurrentPageURLInLocale('en'), 'English') }}</li>
 						</ul>
 					</li>
-				</ul>--}}
+				</ul>
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container -->
 	</nav>

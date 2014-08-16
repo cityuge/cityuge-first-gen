@@ -38,6 +38,8 @@ if ($localeIndex !== false && $localeIndex !== 0) {
 |
 */
 
+Route::pattern('id', '[0-9]+');
+
 // Language route group
 Route::group(array('prefix' => $locale), function() {
 
@@ -62,13 +64,19 @@ Route::group(array('prefix' => $locale), function() {
 
 	// Comment
 	Route::get('comments', array('as' => 'comments.index', 'uses' => 'CommentController@index'));
-	Route::get('comments/{id}', array('as' => 'comments.show', 'uses' => 'CommentController@show'))->where('id', '[0-9]+');
-	Route::post('comments', array('as' => 'comments.store', 'uses' => 'CommentController@store'));
+	Route::get('comments/{id}', array('as' => 'comments.show', 'uses' => 'CommentController@show'));
+    Route::post('comments', array('as' => 'comments.store', 'uses' => 'CommentController@store'));
+    Route::get('comments/{id}/edit', array('as' => 'comments.edit', 'uses' => 'CommentController@edit', 'before' => 'auth'));
+    Route::put('comments/{id}', array('as' => 'comments.update', 'uses' => 'CommentController@update', 'before' => 'auth|csrf'));
+    Route::delete('comments/{id}', array('as' => 'comments.destroy', 'uses' => 'CommentController@destroy', 'before' => 'auth|csrf'));
+	Route::post('comments/restore/{id}', array('as' => 'comments.restore', 'uses' => 'CommentController@restore', 'before' => 'auth|csrf'));
 
 	// Admin
 	Route::get('login', array('as' => 'login', 'uses' => 'UserController@getLogin'));
 	Route::group(array('before' => 'auth', 'prefix' => 'admin'), function() {
 		Route::get('/', array('as' => 'admin.dashboard', 'uses' => 'AdminController@index'));
+		Route::get('comments/deleted', array('as' => 'admin.comments.deleted', 'uses' => 'AdminController@deletedComment'));
+		Route::get('cache', array('as' => 'admin.cache', 'uses' => 'AdminController@cache'));
 		Route::post('purge-cache', array('as' => 'admin.cache.purge', 'uses' => 'AdminController@purgeCache', 'before' => 'csrf'));
 	});
 

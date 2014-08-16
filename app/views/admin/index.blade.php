@@ -2,10 +2,10 @@
 
 @section('content')
 
-{{-- Clear all cache --}}
-{{ Form::open(array('route' => 'admin.cache.purge')) }}
-	{{ Form::token() }}
-	{{ Form::submit(trans('app.cache_purge'), array('class' => 'btn')) }}
-{{ Form::close() }}
+<div class="container">
+    <div class="page-header">
+        <h1>Admin Console</h1>
+    </div>
+</div>
 
 @stop

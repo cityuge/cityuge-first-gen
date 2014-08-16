@@ -1,7 +1,5 @@
 User-agent: *
-Disallow: /builds/
-Disallow: /js/
-Disallow: /less/
+
 Disallow: /packages/
 Disallow: /admin/
 Disallow: /login

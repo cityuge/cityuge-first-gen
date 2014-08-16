@@ -36,7 +36,7 @@ class StatsCommand extends Command
     public function fire()
     {
         $this->info('Update mean grade point and workload level');
-        Course::updateMeans();
+        Course::updateAllMeans();
 
         $this->info('Calculate Bayesian average, m = ' . Config::get('cityuge.bayesianAvgMinCommentNum'));
         Course::updateBayesianAverages(Config::get('cityuge.bayesianAvgMinCommentNum'));
@@ -44,6 +44,9 @@ class StatsCommand extends Command
         if ($this->argument('purge')) {
             $this->info('Purge cache');
             Cache::forget('homeStats');
+            // Run the queries and stored in cache
+            $this->info('Re-create cache');
+            Course::getCourseStats();
         }
     }
 

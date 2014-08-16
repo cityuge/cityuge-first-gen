@@ -17,11 +17,6 @@ class CourseController extends BaseController {
 								'departments.title_en AS department_title_en',
 								DB::raw('COUNT(comments.id) AS comment_count')))
 							->join('departments', 'courses.department_id', '=', 'departments.id')
-							->leftJoin('comments', function($join) {
-								$join->on('courses.id', '=', 'comments.course_id');
-								$join->on('comments.deleted_at', null, DB::raw('IS NULL'));
-							})
-							->groupBy('courses.id')
 							->orderBy('courses.code', 'ASC')
 							->paginate(Config::get('cityuge.paginate_perPage'));
 
@@ -157,7 +152,7 @@ class CourseController extends BaseController {
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  string  $id
+	 * @param  string  $courseCode
 	 * @return Response
 	 */
 	public function show($courseCode)
@@ -177,7 +172,9 @@ class CourseController extends BaseController {
 			Cache::forever('course_' . $courseCode, $course);
 		}
 
-		$stats = Course::getCourseStats($course);
+        // Statistics
+        $avgWorkload = $course->mean_workload / 5 * 100;
+		$gradeDistribution = Course::getCourseGradeDistribution($course);
 
 		$comments = Comment::where('course_id', '=', $course->id)
 					->orderBy('created_at', 'DESC')
@@ -188,7 +185,8 @@ class CourseController extends BaseController {
 			'title' => Lang::choice('app.course_detail_title', $comments->getCurrentPage(), array('courseCode' => $courseCode, 'page' => $comments->getCurrentPage())),
 			'course' => $course,
 			'comments' => $comments,
-			'stats' => $stats,
+            'avgWorkload' => $avgWorkload,
+			'gradeDistribution' => $gradeDistribution,
 			'metaKeywords' => array($courseCode, $course->category, $course->department->initial, e($course->department->title_en), e($course->department->title_zh)),
 			'metaDescription' => Lang::get('app.course_detail_metaDesc', array('courseCode' => $courseCode, 'courseTitle' => e($course->title_en))),
 		);
@@ -364,10 +362,8 @@ class CourseController extends BaseController {
 					->select(array(
 						'courses.*',
 						'departments.initial',
-						'departments.title_en AS department_title_en',
-						DB::raw('COUNT(comments.id) AS comment_count')))
-					->join('departments', 'courses.department_id', '=', 'departments.id')
-					->leftJoin('comments', 'courses.id', '=', 'comments.course_id');
+						'departments.title_en AS department_title_en'))
+					->join('departments', 'courses.department_id', '=', 'departments.id');
 					if (Input::get('semester')) {
 						$query->join('offerings', 'courses.id', '=', 'offerings.course_id');
 						$query->where('offerings.semester', '=', Input::get('semester'));

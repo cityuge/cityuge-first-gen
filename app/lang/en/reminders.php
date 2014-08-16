@@ -13,7 +13,7 @@ return array(
 	|
 	*/
 
-	"password" => "Please input two identical passwords with at least six characters.",
+	"password" => "Passwords must be at least six characters and match the confirmation.",
 
 	"user" => "We can't find a user with that e-mail address.",
 

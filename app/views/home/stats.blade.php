@@ -253,14 +253,14 @@
             <p>平均积点的范围是由 0 至 4.3。平均工作量的范围是由 1 至 5，1 为非常轻松，5 为非常繁重。</p>
         @else
             <h4>About Average Grade Point and Average Workload Level</h4>
-            <p>The formula for calculating the average grade point and average workload level give a Bayesian average:</p>
+            <p>The formula for calculating the average grade point and average workload level gives a Bayesian average:</p>
             <img class="center-block" src="{{ asset('img/bayesian-avg.svg') }}" alt="Bayesian average equation in LaTeX: \frac{Cm+Rv}{m+v}"/><br>
             <p>Where:</p>
             <ul>
-                <li><i>C</i>: arithmetic mean grade point / workload level across all Area 1-3 GE courses</li>
+                <li><i>C</i>: arithmetic mean of grade point / workload level across all Area 1-3 GE courses</li>
                 <li><i>v</i>: number of comments for that course</li>
                 <li><i>m</i>: minimum number of comments required to be listed (now is {{ Config::get('cityuge.bayesianAvgMinCommentNum') }})</li>
-                <li><i>R</i>: arithmetic mean grade point / workload level for that course</li>
+                <li><i>R</i>: arithmetic mean of grade point / workload level for that course</li>
             </ul>
             <p>The average grade point ranges between 0 to 4.3. The average workload level ranges between 1 to 5, where 1 for very light while 5 for very heavy.</p>
         @endif

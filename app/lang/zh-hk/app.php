@@ -36,7 +36,7 @@ return array(
     'stat_goodGradeCourse' => '好 Grade 課程',
     'stat_goodGradeCourseNote' => '平均成績高於或等於 B+ 的首 :limit 個課程。',
     'stat_badGradeCourse' => '爛 Grade 課程',
-    'stat_badGradeCourseNote' => '平均成績低於 B- 的首 :limit 個課程。',
+    'stat_badGradeCourseNote' => '平均成績低於 B 的首 :limit 個課程。',
     'stat_lightWorkloadCourse' => '輕鬆之選',
     'stat_lightWorkloadCourseNote' => '平均工作量低於或等於 2.7 的首 :limit 個課程。',
     'stat_heavyWorkloadCourse' => '繁重之選',

@@ -36,7 +36,7 @@ return array(
     'stat_hotCourseNote' => 'Courses with most comments.',
     'stat_goodGradeCourseNote' => 'First :limit courses with average grade greater than or equal to B+.',
     'stat_badGradeCourse' => 'Bad Grade Courses',
-    'stat_badGradeCourseNote' => 'First :limit courses with average grade below B-.',
+    'stat_badGradeCourseNote' => 'First :limit courses with average grade below B.',
     'stat_lightWorkloadCourse' => 'Low Workload Courses',
     'stat_lightWorkloadCourseNote' => 'First :limit courses with average workload level greater than or equal to 2.7.',
     'stat_heavyWorkloadCourse' => 'High Workload Courses',

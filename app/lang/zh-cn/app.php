@@ -36,7 +36,7 @@ return array(
     'stat_goodGradeCourse' => '好 Grade 课程',
     'stat_goodGradeCourseNote' => '平均成绩高于或等于 B+ 的首 :limit 个课程。',
     'stat_badGradeCourse' => '烂 Grade 课程',
-    'stat_badGradeCourseNote' => '平均成绩低于 B- 的首 :limit 个课程。',
+    'stat_badGradeCourseNote' => '平均成绩低于 B 的首 :limit 个课程。',
     'stat_lightWorkloadCourse' => '轻松之选',
     'stat_lightWorkloadCourseNote' => '平均工作量低于或等于 2.7 的首 :limit 个课程。',
     'stat_heavyWorkloadCourse' => '繁重之选',

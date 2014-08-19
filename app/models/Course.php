@@ -144,7 +144,7 @@ LIMIT ?", array($category, $limit));
   title_en,
   bayesian_gp
 FROM courses
-WHERE category = ? AND bayesian_gp < 2.7 AND bayesian_gp > 0
+WHERE category = ? AND bayesian_gp < 3 AND bayesian_gp > 0
 ORDER BY bayesian_gp DESC
 LIMIT ?", array($category, $limit));
         return $query;

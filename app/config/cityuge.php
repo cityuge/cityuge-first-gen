@@ -10,7 +10,7 @@ return array(
     'availableLocaleISO' => array('zh-HK', 'zh-CN', 'en'),
 
     // Latest semester which allowed to use when posting a comment
-    'currentAllowedSemester' => '1314B',
+    'currentAllowedSemester' => '1314S',
     // First semester which allowed to use when posting a comment
     'firstAllowedSemester' => '1112A',
     // Latest academic year which the course offerings data is available

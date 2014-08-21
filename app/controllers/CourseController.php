@@ -25,11 +25,13 @@ class CourseController extends BaseController
             'courses' => $courses,
             'metaDescription' => Lang::get('app.course_metaDesc'),
         );
+
         return View::make('home.courses.index')->with($data);
     }
 
     /**
      * JSON course list for typeahead.
+     *
      * @return Response JSON feed
      */
     public function courseListTypeahead()
@@ -94,7 +96,7 @@ class CourseController extends BaseController
                     'courses.*',
                     'departments.initial',
                     'departments.title_en AS department_title_en',
-                    ))
+                ))
                 ->join('departments', 'courses.department_id', '=', 'departments.id')
                 ->where('category', '=', $category)
                 ->groupBy('courses.id')
@@ -117,6 +119,7 @@ class CourseController extends BaseController
             'categoryDesc' => $categoryDesc,
             'semesters' => SemesterHelper::getSemesterOptions(true, Config::get('cityuge.latestAcademicYearForOffering') . $configSemesters[2]),
         );
+
         return View::make('home.courses.index')->with($data);
     }
 
@@ -171,7 +174,6 @@ class CourseController extends BaseController
             ->orderBy('created_at', 'DESC')
             ->paginate(Config::get('cityuge.paginate_commentPerPage'));
 
-
         $data = array(
             'title' => Lang::choice('app.course_detail_title', $comments->getCurrentPage(), array('courseCode' => $courseCode, 'page' => $comments->getCurrentPage())),
             'course' => $course,
@@ -181,6 +183,7 @@ class CourseController extends BaseController
             'metaKeywords' => array($courseCode, $course->category, $course->department->initial, e($course->department->title_en), e($course->department->title_zh)),
             'metaDescription' => Lang::get('app.course_detail_metaDesc', array('courseCode' => $courseCode, 'courseTitle' => e($course->title_en))),
         );
+
         return View::make('home.courses.show')->with($data);
     }
 
@@ -219,6 +222,7 @@ class CourseController extends BaseController
 
     /**
      * Show the advanced search form.
+     *
      * @return View search form page
      */
     public function search()
@@ -241,11 +245,13 @@ class CourseController extends BaseController
             'departments' => $departments,
             'categories' => $categories,
         );
+
         return View::make('home.courses.search')->with($data);
     }
 
     /**
      * Process the search form.
+     *
      * @return Redirect redirect to the search result page
      */
     public function processSearch()
@@ -259,6 +265,7 @@ class CourseController extends BaseController
 
     /**
      * Prepare the query string for quick search form submission.
+     *
      * @return Redirect redirect to search result page
      */
     private function processQuickSearchForm()
@@ -275,6 +282,7 @@ class CourseController extends BaseController
 
     /**
      * Prepare the query string for advanced search form submission.
+     *
      * @return Redirect redirect to search result page
      */
     private function processAdvancedSearchForm()
@@ -326,7 +334,8 @@ class CourseController extends BaseController
 
     /**
      * Display the search results.
-     * @return View            search result view
+     *
+     * @return View search result view
      */
     public function searchResult()
     {
@@ -394,6 +403,7 @@ class CourseController extends BaseController
             'keyword' => Input::get('q'),
             'searchResult' => true,
         );
+
         return View::make('home.courses.index')->with($data);
     }
 

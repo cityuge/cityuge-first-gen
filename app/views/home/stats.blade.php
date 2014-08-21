@@ -26,8 +26,7 @@
         <div class="tab-content">
             @for ($area = 1; $area <= 3; $area++)
                 <div class="tab-pane fade {{ $area == 1 ? 'in active' : '' }}" id="hot-course-area{{ $area }}" role="tabpanel">
-                    @if (!$stats['hotCoursesArea' . $area])
-                        {{ HTML::alert('info', trans('app.stat_emptyList')) }}
+                    @if (!$stats['hotCoursesArea' . $area]) {{ HTML::alert('info', trans('app.stat_emptyList')) }}
                     @else
                         <table class="table table-condensed table-hover table-stats">
                             <thead>
@@ -69,8 +68,7 @@
         <div class="tab-content">
             @for ($area = 1; $area <= 3; $area++)
             <div class="tab-pane fade {{ $area == 1 ? 'in active' : '' }}" id="good-grade-course-area{{ $area }}" role="tabpanel">
-                @if (!$stats['goodGradeCoursesArea' . $area])
-                {{ HTML::alert('info', trans('app.stat_emptyList')) }}
+                @if (!$stats['goodGradeCoursesArea' . $area]) {{ HTML::alert('info', trans('app.stat_emptyList')) }}
                 @else
                 <table class="table table-condensed table-hover table-stats">
                     <thead>
@@ -112,8 +110,7 @@
         <div class="tab-content">
             @for ($area = 1; $area <= 3; $area++)
             <div class="tab-pane fade {{ $area == 1 ? 'in active' : '' }}" id="bad-grade-course-area{{ $area }}" role="tabpanel">
-                @if (!$stats['badGradeCoursesArea' . $area])
-                {{ HTML::alert('info', trans('app.stat_emptyList')) }}
+                @if (!$stats['badGradeCoursesArea' . $area]) {{ HTML::alert('info', trans('app.stat_emptyList')) }}
                 @else
                 <table class="table table-condensed table-hover table-stats">
                     <thead>
@@ -155,8 +152,7 @@
         <div class="tab-content">
             @for ($area = 1; $area <= 3; $area++)
             <div class="tab-pane fade {{ $area == 1 ? 'in active' : '' }}" id="light-workload-course-area{{ $area }}" role="tabpanel">
-                @if (!$stats['lightWorkloadCoursesArea' . $area])
-                {{ HTML::alert('info', trans('app.stat_emptyList')) }}
+                @if (!$stats['lightWorkloadCoursesArea' . $area]) {{ HTML::alert('info', trans('app.stat_emptyList')) }}
                 @else
                 <table class="table table-condensed table-hover table-stats">
                     <thead>
@@ -198,8 +194,7 @@
         <div class="tab-content">
             @for ($area = 1; $area <= 3; $area++)
             <div class="tab-pane fade {{ $area == 1 ? 'in active' : '' }}" id="heavy-workload-course-area{{ $area }}" role="tabpanel">
-                @if (!$stats['heavyWorkloadCoursesArea' . $area])
-                {{ HTML::alert('info', trans('app.stat_emptyList')) }}
+                @if (!$stats['heavyWorkloadCoursesArea' . $area]) {{ HTML::alert('info', trans('app.stat_emptyList')) }}
                 @else
                 <table class="table table-condensed table-hover table-stats">
                     <thead>

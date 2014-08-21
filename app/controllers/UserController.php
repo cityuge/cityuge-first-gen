@@ -1,123 +1,126 @@
 <?php
 
-class UserController extends BaseController {
+class UserController extends BaseController
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        //
+    }
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        //
+    }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store()
+    {
+        //
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+    /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        //
+    }
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        //
+    }
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function update($id)
+    {
+        //
+    }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
+    public function getLogin()
+    {
+        if (Auth::check()) {
+            return Redirect::route('admin.dashboard');
+        }
 
-	public function getLogin()
-	{
-		if (Auth::check()) {
-			return Redirect::route('admin.dashboard');
-		}
-		return View::make('admin.login');
-	}
+        return View::make('admin.login');
+    }
 
-	/**
-	 * Handle the log in.
-	 *
-	 * Verify the username and password.
-	 * 
-	 * @return Response Admin panel dashboard or log in page
-	 */
-	public function postLogin()
-	{
-		$username = Input::get('username');
-		$password = Input::get('password');
-		$remember = Input::get('remember') ? true : false;
+    /**
+     * Handle the log in.
+     *
+     * Verify the username and password.
+     *
+     * @return Response Admin panel dashboard or log in page
+     */
+    public function postLogin()
+    {
+        $username = Input::get('username');
+        $password = Input::get('password');
+        $remember = Input::get('remember') ? true : false;
 
-		if (Auth::attempt(array('username' => $username, 'password' => $password), $remember)) {
-			return Redirect::intended('/admin')
-				->with('alertType', 'success')
-				->with('alertBody', trans('app.login_successful'));
-		}
+        if (Auth::attempt(array('username' => $username, 'password' => $password), $remember)) {
+            return Redirect::intended('/admin')
+                ->with('alertType', 'success')
+                ->with('alertBody', trans('app.login_successful'));
+        }
 
-		return Redirect::back()->withInput()
-				->with('alertType', 'danger')
-				->with('alertBody', trans('app.login_unsuccessful'));
-	}
+        return Redirect::back()->withInput()
+            ->with('alertType', 'danger')
+            ->with('alertBody', trans('app.login_unsuccessful'));
+    }
 
-	/**
-	 * Log out the system.
-	 * @return Response Home page
-	 */
-	public function getLogout()
-	{
-		if (Auth::check()) {
-			Auth::logout();
-		}
-		return Redirect::route('home');
-	}
+    /**
+     * Log out the system.
+     *
+     * @return Response Home page
+     */
+    public function getLogout()
+    {
+        if (Auth::check()) {
+            Auth::logout();
+        }
+
+        return Redirect::route('home');
+    }
 
 }

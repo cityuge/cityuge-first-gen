@@ -92,6 +92,5 @@ App::down(function () {
 
 require app_path() . '/filters.php';
 
-
 require __DIR__ . '/../macros.php';
 require __DIR__ . '/../listeners.php';

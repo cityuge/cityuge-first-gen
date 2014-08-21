@@ -19,6 +19,7 @@ class CommentController extends BaseController
             'metaKeywords' => array('comments', '意見', '評論', '評價'),
             'metaDescription' => Lang::get('app.comment_metaDesc'),
         );
+
         return View::make('home.comments.index')->with($data);
     }
 
@@ -46,6 +47,7 @@ class CommentController extends BaseController
             'workloads' => $workloads,
             'grades' => $grades,
         );
+
         return View::make('home.comments.create')->with($data);
     }
 
@@ -81,7 +83,7 @@ class CommentController extends BaseController
                 break;
         }
 
-        $comment = new Comment;
+        $comment = new Comment();
         $validation = $comment->validate(Input::all());
         if ($validation->passes()) {
             $comment->course_id = Input::get('course_id');
@@ -107,13 +109,14 @@ class CommentController extends BaseController
                 ->with('alertType', 'success')
                 ->with('alertBody', Lang::get('app.comment_created'));
         }
+
         return Redirect::back()->withInput()->withErrors($validation);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  int      $id
      * @return Response
      */
     public function show($id)
@@ -136,13 +139,14 @@ class CommentController extends BaseController
             'metaDescription' => e($this->excerpt($comment->body)),
             'comment' => $comment,
         );
+
         return View::make('home.comments.show')->with($data);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param  int      $id
      * @return Response
      */
     public function edit($id)
@@ -162,13 +166,14 @@ class CommentController extends BaseController
             'workloads' => $workloads,
             'grades' => $grades,
         ];
+
         return View::make('home.comments.edit')->with($data);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int $id
+     * @param  int           $id
      * @return Response|null
      */
     public function update($id)
@@ -177,6 +182,7 @@ class CommentController extends BaseController
 
         if (!$comment) {
             App::abort(400);
+
             return;
         }
 
@@ -204,7 +210,7 @@ class CommentController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  int      $id
      * @return Response
      */
     public function destroy($id)
@@ -261,7 +267,7 @@ class CommentController extends BaseController
     /**
      * Generate excerpt form a long text.
      * @param  string $text original text
-     * @return string       excerpt
+     * @return string excerpt
      */
     private function excerpt($text)
     {
@@ -270,6 +276,7 @@ class CommentController extends BaseController
         if (mb_strlen($text) > Config::get('cityuge.excerptLength')) {
             return mb_substr($text, 0, Config::get('cityuge.excerptLength'), 'UTF-8') . trans('app.excerptEllipse');
         }
+
         return $text;
     }
 

@@ -88,6 +88,7 @@ return array(
     |
     */
 
+    // TODO: translate the attributes
     'attributes' => array(),
 
 );

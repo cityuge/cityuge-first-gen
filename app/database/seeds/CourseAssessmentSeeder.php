@@ -1,15 +1,15 @@
 <?php
 
-class CourseAssessmentSeeder extends Seeder {
-
-	/**
-	 * Run the database seeds.
-	 *
-	 * @return void
-	 */
-	public function run()
-	{
-		$assessmentStr = <<<EOD
+class CourseAssessmentSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $assessmentStr = <<<EOD
 1	0	0	1	1
 2	0	1	1	0
 3	0	0	1	1
@@ -213,19 +213,19 @@ class CourseAssessmentSeeder extends Seeder {
 201	0	1	1	1
 EOD;
 
-		$rows = explode("\n", $assessmentStr);
+        $rows = explode("\n", $assessmentStr);
 
-		foreach ($rows as $row) {
-			$cols = explode("\t", $row);
-			
-			DB::table('courses')->where('id', $cols[0])->update(array(
-				'assess_exam' => $cols[1],
-				'assess_quiz' => $cols[2],
-				'assess_report' => $cols[3],
-				'assess_project' => $cols[4],
-			));
-		}
+        foreach ($rows as $row) {
+            $cols = explode("\t", $row);
 
-	}
+            DB::table('courses')->where('id', $cols[0])->update(array(
+                'assess_exam' => $cols[1],
+                'assess_quiz' => $cols[2],
+                'assess_report' => $cols[3],
+                'assess_project' => $cols[4],
+            ));
+        }
+
+    }
 
 }

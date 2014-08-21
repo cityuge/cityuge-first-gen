@@ -5,7 +5,7 @@ class LocaleHelper
     /**
      * Generate the URL of this page with the locale you want.
      * @param  string $locale locale you want
-     * @return string         URL with locale
+     * @return string URL with locale
      */
     public static function getCurrentPageURLInLocale($locale)
     {
@@ -28,6 +28,7 @@ class LocaleHelper
             if (count($segments) === 0) {
                 return URL::to('/') . '/' . ($locale == null ? '' : $locale);
             }
+
             return URL::to('/') . '/' . ($locale == null ? '' : $locale . '/') . implode('/', $segments);
         }
         // we are not in home page and the URL don't contain locale

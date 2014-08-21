@@ -30,13 +30,15 @@ class Course extends BaseModel
         if ($course) {
             return $course;
         }
+
         return false;
     }
 
     /**
      * Get the statistics of a course.
+     *
      * @param  Course $course course object
-     * @return array           associative array with workload rate and grade distribution
+     * @return array  associative array with workload rate and grade distribution
      */
     public static function getCourseGradeDistribution(Course $course)
     {
@@ -47,11 +49,13 @@ class Course extends BaseModel
 
     /**
      * Get the JSON for course search typeahead.
+     *
      * @return string course list
      */
     public static function getSearchTypeaheadList()
     {
         $self = __CLASS__;
+
         return Cache::rememberForever('courseTypeahead', function () use ($self) {
             $courses = $self::orderBy('code', 'ASC')->get(array('title_en', 'category', 'code'))->toArray();
             $list = array();
@@ -67,17 +71,20 @@ class Course extends BaseModel
                     ),
                 );
             }
+
             return json_encode($list);
         });
     }
 
     /**
      * Get statistics from database.
+     *
      * @return array statistics
      */
     public static function getCourseStats()
     {
         $self = __CLASS__;
+
         return Cache::rememberForever('homeStats', function () use ($self) {
             return array(
                 'hotCoursesArea1' => $self::getHotCourses('AREA1', Config::get('cityuge.home_statsMaxItem')),
@@ -107,9 +114,10 @@ class Course extends BaseModel
 
     /**
      * Get the courses which have most comments.
+     *
      * @param  string $category category like AREA1, AREA2...
-     * @param  int $limit max number of courses return
-     * @return array            list of courses
+     * @param  int    $limit    max number of courses return
+     * @return array  list of courses
      */
     public static function getHotCourses($category, $limit)
     {
@@ -121,6 +129,7 @@ FROM courses
 WHERE category = ?
 ORDER BY total_comments DESC
 LIMIT ?", array($category, $limit));
+
         return $query;
     }
 
@@ -134,6 +143,7 @@ FROM courses
 WHERE category = ? AND bayesian_gp >= 3.3
 ORDER BY bayesian_gp DESC
 LIMIT ?", array($category, $limit));
+
         return $query;
     }
 
@@ -147,6 +157,7 @@ FROM courses
 WHERE category = ? AND bayesian_gp < 3 AND bayesian_gp > 0
 ORDER BY bayesian_gp DESC
 LIMIT ?", array($category, $limit));
+
         return $query;
     }
 
@@ -160,6 +171,7 @@ FROM courses
 WHERE category = ? AND bayesian_workload <= 2.7 AND bayesian_workload > 0
 ORDER BY bayesian_workload ASC
 LIMIT ?", array($category, $limit));
+
         return $query;
     }
 
@@ -173,11 +185,13 @@ FROM courses
 WHERE category = ? AND bayesian_workload >= 3.3
 ORDER BY bayesian_workload DESC
 LIMIT ?", array($category, $limit));
+
         return $query;
     }
 
     /**
      * Update mean grade point and mean workload level of a course.
+     *
      * @param $courseId integer Course ID
      */
     public static function updateMeans($courseId)
@@ -219,6 +233,7 @@ SET co1.mean_gp     = co2.mean_gp,
     /**
      * Calculate and store the Bayesian average of grade point and workload level for courses under Area 1-3.
      * Remember to calculate the mean grade point and mean workload level first.
+     *
      * @param $minCommentNum integer minimum number of comments required to be listed
      */
     public static function updateBayesianAverages($minCommentNum)

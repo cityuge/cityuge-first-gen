@@ -11,5 +11,5 @@
 |
 */
 
-Artisan::add(new StatsCommand);
-Artisan::add(new ResetCommentCountCommand);
+Artisan::add(new StatsCommand());
+Artisan::add(new ResetCommentCountCommand());

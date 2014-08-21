@@ -1,9 +1,11 @@
 <?php
 
-class Offering extends BaseModel {
-	public $timestamps = false;
+class Offering extends BaseModel
+{
+    public $timestamps = false;
 
-	public function course() {
-		return $this->belongsTo('Course');
-	}
+    public function course()
+    {
+        return $this->belongsTo('Course');
+    }
 }

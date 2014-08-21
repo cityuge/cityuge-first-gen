@@ -22,6 +22,7 @@ class AdminController extends BaseController
         $data = [
             'comments' => $comments,
         ];
+
         return View::make('admin.comment.deleted', $data);
     }
 
@@ -37,6 +38,7 @@ class AdminController extends BaseController
     public function purgeCache()
     {
         Cache::flush();
+
         return Redirect::route('admin.dashboard')
             ->with('alertType', 'success')
             ->with('alertBody', Lang::get('app.cache_purged'));

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('content')\
+@section('content')
 <div class="container">
     <div class="page-header">
         <h1>Cache</h1>

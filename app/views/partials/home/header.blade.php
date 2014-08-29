@@ -35,7 +35,7 @@
     <![endif]-->
 
 
-    <!-- Social network -->
+    <!-- Social networks -->
     <!-- Facebook -->
     <meta property="fb:admins" content="{{ Config::get('cityuge.facebookInsightsAdminId') }}">
     @if (isset($title))
@@ -66,6 +66,11 @@
 
     <!-- RSS feeds -->
     <link rel="alternate" type="application/rss+xml" title="{{ trans('app.feed_metaTitle') }}" href="{{ route('feed') }}">
+
+    <!-- Locale links for this page -->
+    <link rel="alternate" hreflang="zh-hk" href="{{ LocaleHelper::getCurrentPageURLInLocale('hk') }}">
+    <link rel="alternate" hreflang="zh-cn" href="{{ LocaleHelper::getCurrentPageURLInLocale('cn') }}">
+    <link rel="alternate" hreflang="en" href="{{ LocaleHelper::getCurrentPageURLInLocale('en') }}">
 
     <!-- favicon and Apple touch icons -->
     <link rel="shortcut icon" href="{{ URL::to('') }}/ico/favicon.ico">

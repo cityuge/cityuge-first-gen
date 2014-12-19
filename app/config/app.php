@@ -120,9 +120,6 @@ return array(
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
 
-        // 3rd party
-        'Greggilbert\Recaptcha\RecaptchaServiceProvider',
-
     ),
 
     /*

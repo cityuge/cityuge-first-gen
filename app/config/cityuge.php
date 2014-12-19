@@ -2,7 +2,7 @@
 
 return array(
     // App version shown in footer
-    'version' => '1.0.1',
+    'version' => '1.0.2',
 
     // Locale
     'availableLocale' => array('zh-hk', 'zh-cn', 'en'),
@@ -16,7 +16,7 @@ return array(
     // Latest academic year which the course offerings data is available
     'latestAcademicYearForOffering' => '1415',
     // Current quick access semester
-    'currentQuickAccessSemester' => '1415A',
+    'currentQuickAccessSemester' => '1415B',
     // Semester codes
     'semesters' => array('A', 'B', 'S'),
 

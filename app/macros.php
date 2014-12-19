@@ -50,3 +50,29 @@ Validator::extend('offering', function ($attribute, $value, $parameters) {
 
     return in_array(array('semester' => $value), $validSemesters) && in_array($value, $allowedSemesters);
 });
+
+/**
+ * Validation rule for reCAPTCHA.
+ */
+Validator::extend('recaptcha', function ($attribute, $value, $parameters) {
+    $secret = Config::get('cityuge.reCaptchaPrivateKey');
+    $ip = Request::server('HTTP_CF_CONNECTING_IP') ?
+        Request::server('HTTP_CF_CONNECTING_IP') : Request::server('REMOTE_ADDR');
+
+    $ch = curl_init("https://www.google.com/recaptcha/api/siteverify" .
+        "?secret={$secret}&response={$value}&remoteip={$ip}");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+    $response = curl_exec($ch);
+    $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    if ($response === false || $statusCode !== 200) {
+        return false;
+    }
+
+    $responseJson = json_decode($response);
+
+    return $responseJson->success;
+});

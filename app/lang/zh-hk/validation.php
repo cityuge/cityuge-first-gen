@@ -111,7 +111,7 @@ return array(
         'grade' => '成績',
         'workload' => '工作量',
         'body' => '留言',
-        'recaptcha_response_field' => 'reCAPTCHA',
+        'g-recaptcha-response' => 'reCAPTCHA',
     ),
 
 );

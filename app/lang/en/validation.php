@@ -110,7 +110,7 @@ return array(
         'grade' => 'Grade',
         'workload' => 'Workload',
         'body' => 'Comment',
-        'recaptcha_response_field' => 'reCAPTCHA',
+        'g-recaptcha-response' => 'reCAPTCHA',
     ),
 
 );

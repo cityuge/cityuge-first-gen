@@ -1,5 +1,11 @@
 @extends('layouts.home')
 
+@section('headerScript')
+    @parent
+    <!-- reCAPTCHA -->
+    <script src='https://www.google.com/recaptcha/api.js?hl={{ LocaleHelper::getIsoLocale() }}'></script>
+@stop
+
 @section('content')
 
 <div id="content" class="container">
@@ -76,15 +82,12 @@
             </div>
 
             <!-- reCAPTCHA -->
-            <div class="form-group {{ $errors->has('recaptcha_response_field') ? 'has-error' : '' }}">
-                {{ Form::label('recaptcha_response_field', trans('app.comment_recaptcha'), array('class' => 'col-sm-3 control-label')) }}
+            <div class="form-group {{ $errors->has('g-recaptcha-response') ? 'has-error' : '' }}">
+                <label class="col-sm-3 control-label">{{ trans('app.comment_recaptcha') }}</label>
                 <div class="col-sm-9">
-                    {{ Form::captcha(array('theme' => 'white')) }}
-                    {{ $errors->first('recaptcha_response_field', '<span class="help-block">:message</span>') }}
+                    <div class="g-recaptcha" data-sitekey="{{ Config::get('cityuge.reCaptchaPublicKey') }}"></div>
+                    {{ $errors->first('g-recaptcha-response', '<span class="help-block">:message</span>') }}
                 </div>
-            </div>
-
-            <div class="form-actions">
             </div>
 
             <div class="form-group">

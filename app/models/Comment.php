@@ -13,7 +13,7 @@ class Comment extends BaseModel
         'grade' => 'required|in:',  // must append value
         'workload' => 'required|integer|between:1,5',
         'body' => 'required|between:10,3000',
-        'recaptcha_response_field' => 'required|recaptcha',
+        'g-recaptcha-response' => 'required|recaptcha',
     );
 
     public function course()

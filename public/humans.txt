@@ -28,5 +28,5 @@
 /* SITE */
   Doctype: HTML5 with CSS3
   Components: Laravel, jQuery, Bootstrap, Masonry, typeahead.js, Underscore
-  Tools: Grunt, Less, Git, PHP, MariaDB, Apache, Vagrant, Photoshop, Illustrator
+  Tools: Grunt, Less, Git, PHP, MariaDB, Nginx, Vagrant, Photoshop, Illustrator
   IDE: IntelliJ IDEA, Sublime Text

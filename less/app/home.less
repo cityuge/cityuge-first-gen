@@ -1,46 +1,85 @@
 .jumbotron-home {
-	margin-top: -@navbar-margin-bottom;
-	background: @brand-grey-light url('../img/home-jumbotron-bg.png');
-	background-repeat: no-repeat;
-	background-position: 75% 100%;
-	@media screen and (max-width: @screen-md-max) {
-		background-position: 90% 100%;
-	}
-	@media screen and (max-width: @screen-sm-max) {
-		background-position: 50% 100%;
-	}
-	
-	//-webkit-background-size: cover;
-	//background-size: cover;
+  margin-top: -@navbar-margin-bottom;
+  padding: 0;
+  background-image: url('../img/hero-bg.jpg');
+  background-size: cover;
+  background-position-y: 10%;
+  color: #fff;
+  h1 {
+    font-size: @font-size-h1;
+    margin-bottom: 20px;
+  }
+  p {
+    font-size: @font-size-large;
+  }
+  @media screen and (max-width: @screen-md-max) {
+    background-position-y: 20%;
+  }
+  @media screen and (max-width: @screen-sm-max) {
+    background-position-y: 0%;
+    p {
+      font-size: @font-size-base;
+    }
+  }
+  @media screen and (max-width: @screen-xs-max) {
+    background-position-y: 0%;
+    h1 {
+      font-size: @font-size-h2;
+    }
+    p {
+      font-size: @font-size-base;
+    }
+  }
 }
+
+.jumbotron-home-wrap {
+  background-color: rgba(0, 0, 0, 0.75);
+  border-top: 8px solid @navbar-default-bg;
+  padding: @padding-large-vertical @padding-large-horizontal;
+  margin-top: 260px;
+  margin-bottom: 80px;
+  @media screen and (max-width: @screen-sm-max) {
+    margin-top: 80px;
+    margin-bottom: 40px;
+  }
+  @media screen and (max-width: @screen-xs-max) {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+}
+
 .home-feature-container {
-	padding-top: @padding-large-vertical;
-	padding-bottom: @padding-large-vertical;
+  padding-top: @padding-large-vertical;
+  padding-bottom: @padding-large-vertical;
 }
+
 .home-feature-icon {
-	width: 90px;
-	height: 90px;
-	margin: 0 auto;
-	border-radius: 45px;
-	text-align: center;
-	& > i {
-		color: #fff;
-		font-size: 50px;
-		line-height: 90px;
-	}
+  width: 90px;
+  height: 90px;
+  margin: 0 auto;
+  border-radius: 45px;
+  text-align: center;
+  & > i {
+    color: #fff;
+    font-size: 50px;
+    line-height: 90px;
+  }
 }
+
 .home-feature-icon-search {
-	background-color: #25a0ca;
+  background-color: #25a0ca;
 }
+
 .home-feature-icon-browse {
-	background-color: #e66000;
+  background-color: #e66000;
 }
+
 .home-feature-icon-write {
-	background-color: #4e6252;
+  background-color: #4e6252;
 }
 
 // Make Facebook like box responsive
 // http://fundesigner.net/fb-fluid-likebox/
 .fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe {
-    width: 100% !important;
+      width: 100% !important;
 }

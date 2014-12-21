@@ -15,6 +15,9 @@
         <h2>聯絡我們</h2>
         <p>如欲聯絡我們，請電郵至 <a href="mailto:cityuge@swiftzer.net">cityuge@swiftzer.net</a>。若在操作上遇上任何困難（如誤填資料、網站故障等）或資料錯誤，亦歡迎來函，我們將儘快跟進。此外，我們亦開設了 <a href="http://www.facebook.com/cityuge">Facebook 專頁</a>，歡迎「讚好」並關注本網站的最新動向。</p>
 
+        <h2>了解更多</h2>
+        <p>有關本網站所使用的技術、工具及致謝名單，請參閱本網站的 <a href="{{ asset('humans.txt') }}">Humans.txt</a>。</p>
+
     @elseif (Config::get('app.locale') == 'zh-cn')
 
         <p>「CityU GE 指南」于 2013 年 5 月建立，旨在为香港城市大学的同学提供一个平台，对各精进教育课程（即 Gateway Education，简称 GE）及中英文补底班（俗称「E 仔班」或「三仔班」）发表意见。以往同学选科时，仅与朋辈交流，或于讨论区上参考他人对有关课程的感想，这种有欠系统性分析的途径，令同学需自行加以整理，稍添不便。有见及此，本网站之建立，实为同学提供一个交流的平台及机会，让大家可以提供各项课程资料（如修读学期、工作量、所得成绩）及感想，供其他同学在选科时参考。</p>
@@ -22,6 +25,8 @@
         <h2>联络我们</h2>
         <p>如欲联络我们，请电邮至 <a href="mailto:cityuge@swiftzer.net">cityuge@swiftzer.net</a>。若在操作上遇上任何困难（如误填数据、网站故障等）或数据错误，亦欢迎来函，我们将尽快跟进。此外，我们亦开设了 <a href="http://www.facebook.com/cityuge">Facebook 专页</a>，欢迎「赞好」并关注本网站的最新动向。</p>
 
+        <h2>了解更多</h2>
+        <p>有关本网站所使用的技术、工具及致谢名单，请参阅本网站的 <a href="{{ asset('humans.txt') }}">Humans.txt</a>。</p>
 
     @else
 
@@ -29,6 +34,9 @@
 
         <h2>Contact Us</h2>
         <p>Should you have any enquiry (such as submitting incorrect data or out of order), email us at <a href="mailto:cityuge@swiftzer.net">cityuge@swiftzer.net</a> and we will follow up ASAP. In addition, we set up a <a href="http://www.facebook.com/cityuge">Facebook Page</a> which provides our latest news.</p>
+
+        <h2>Learn More</h2>
+        <p>See our <a href="{{ asset('humans.txt') }}">Humans.txt</a> for tools and technologies used to create this website as well as acknowledgements.</p>
 
     @endif
 </article>

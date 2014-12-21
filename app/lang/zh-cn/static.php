@@ -3,8 +3,8 @@
 return array(
 
     // Home
-    'home_jumboTitle' => 'Semester A GE Add/drop',
-    'home_jumboDesc' => '2013/14 Semester A 的 GE 指定 Add/drop 日为八月二十日及二十一日。',
+    'home_jumboTitle' => 'Semester B GE Add/drop',
+    'home_jumboDesc' => '2014/15 Semester B 的 GE 指定 Add/drop 日为十二月二十九日及三十日。',
     'home_jumboMore' => '教务处 <small>(ARRO)</small> 网页 <i class="fa fa-external-link"></i>',
 
     'home_leadParagraph' => '专为城大学生而设的精进教育课程分享平台。',

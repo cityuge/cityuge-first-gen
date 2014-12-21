@@ -3,8 +3,8 @@
 return array(
 
     // Home
-    'home_jumboTitle' => 'Semester A GE Add/drop',
-    'home_jumboDesc' => 'The specific GE web registration period for Semester A 2014/15 is 20-21 August.',
+    'home_jumboTitle' => 'Semester B GE Add/drop',
+    'home_jumboDesc' => 'The specific GE web registration period for Semester B 2014/15 is 29-30 December.',
     'home_jumboMore' => 'ARRO\'s website <i class="fa fa-external-link"></i>',
 
     'home_leadParagraph' => 'CityU Gateway Education course sharing platform for all.',

@@ -95,3 +95,22 @@ Route::get('sitemap', array('as' => 'sitemap', 'uses' => 'SitemapController@inde
 Route::group(array('prefix' => 'web-api'), function () {
     Route::get('courses/typeahead', array('uses' => 'CourseController@courseListTypeahead'));
 });
+
+// API for updating the database
+Route::group(array('prefix' => 'api', 'before' => 'api'), function () {
+    Route::get('courses/semester/{semester}', array('uses' => 'ApiCourseController@semester'));
+    Route::post('offerings', array('uses' => 'ApiCourseController@batchAdd'));
+    Route::delete('offerings', array('uses' => 'ApiCourseController@batchDelete'));
+    Route::get('departments', array('uses' => 'ApiDepartmentController@index'));
+});
+
+// Filter for API authentication
+Route::filter('api', function ($route, $request) {
+    $credentials = [
+        'username' =>$request->headers->get('x-username'),
+        'password' => $request->headers->get('x-password'),
+    ];
+    if (!Auth::validate($credentials)) {
+        App::abort(401, 'Unauthorized');
+    }
+});

@@ -92,6 +92,8 @@ return array(
     'course_assess_def_quiz' => '可以是以个人、小组或混合形式进行。设题方式可以是多项选择题、问答题等。此亦包括期中测验。',
     'course_assess_def_report' => '此包括各种个人文书课业如报告、论文、文章写作及学习历程记录 (Journal)。但不包括小组报告、网上讨论及文章阅读等简短文书课业。',
     'course_assess_def_project' => '此包括小组课业如口头汇报、小组报告、海报或单张设计等。但不包括小组讨论、角色扮演 (Role-play)、组员互评 (Peer-review) 及课堂游戏。',
+    'course_youtubeVideo' => '简介视频<br><small>（由 CityU GE Community 提供）</small>',
+    'course_youtubeVideo_model_title' => '简介视频<small>（由 <a href="http://www.cityugecommunity.com" target="_blank">CityU GE Community</a> 提供）</small>',
 
     // Search
     'course_quickAccessCurrentSemester' => '快速查阅于 :semester 开办的课程',

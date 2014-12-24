@@ -58,7 +58,7 @@ return array(
     'course_title' => 'Title',
     'course_department' => 'Department',
     'course_department_course' => 'Other courses',
-    'course_department_website' => 'Website',
+    'course_department_website' => "Department's website",
     'course_category' => 'Category',
     'course_level' => 'Level',
     'course_offering' => 'Offering semesters',
@@ -92,6 +92,8 @@ return array(
     'course_assess_def_quiz' => 'Either in individual or group form or combination of both, the format may vary in different courses. Some common formats include multiple choice questions and essays. Tests are also referred as quizzes.',
     'course_assess_def_report' => 'It refers to individual paperwork like reports, essays, compositions and journals. This does not cover the report part of a group project and short writing tasks like online discussion and article reading.',
     'course_assess_def_project' => 'Group projects contain presentations, reports, leaflets and posters done by a group of students. However, it does not include group discussion, role-plays, peer-reviews and games during lessons.',
+    'course_youtubeVideo' => 'Introductory video<br><small>(Presented by CityU GE Community)</small>',
+    'course_youtubeVideo_model_title' => 'Introductory video <small>(Presented by <a href="http://www.cityugecommunity.com" target="_blank">CityU GE Community</a>)</small>',
 
     // Search
     'course_quickAccessCurrentSemester' => 'Lookup Courses Offer in :semester',

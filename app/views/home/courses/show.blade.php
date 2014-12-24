@@ -96,6 +96,9 @@
                 @if ($course->category !== 'E')
                     <a href="http://www6.cityu.edu.hk/ge_info/courses/materials/html/{{ $course->code }}.html" target="_blank" class="list-group-item">{{ trans('app.course_edgeInfo') }} <i class="fa fa-external-link"></i></a>
                 @endif
+                @if ($course->youtube_id)
+                    <a href="#" data-toggle="modal" data-target="#youtube-modal" class="list-group-item">{{ trans('app.course_youtubeVideo') }}</a>
+                @endif
                 <a href="{{{ $course->department->url }}}" target="_blank" class="list-group-item">{{ trans('app.course_department_website') }} <i class="fa fa-external-link"></i></a>
                 <a href="{{ route('departments.courses', array(strtolower($course->department->initial))) }}" class="list-group-item">{{ trans('app.course_department_course') }}</a>
             </div>
@@ -130,7 +133,8 @@
 
 
 {{-- Assessment Task Definitions --}}
-<div class="modal fade" id="assess-explain-modal" tabindex="-1" role="dialog" aria-labelledby="assess-explain-modal-title" aria-hidden="true">
+<div class="modal fade" id="assess-explain-modal" tabindex="-1" role="dialog"
+     aria-labelledby="assess-explain-modal-title" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -156,6 +160,21 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+{{-- YouTube Video --}}
+<div class="modal fade" id="youtube-modal" tabindex="-1" role="dialog" aria-labelledby="youtube-modal-title"
+     aria-hidden="true" data-video-id="{{ $course->youtube_id }}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="youtube-modal-title">{{ trans('app.course_youtubeVideo_model_title') }}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="video-container" id="course-video-container"></div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 @stop
 
@@ -222,6 +241,16 @@
             } else {
                 $(clickedTab).show();
             }
+        });
+
+        // YouTube video
+        var $videoModal = $('#youtube-modal');
+        $videoModal.on('shown.bs.modal', function () {
+            var videoId = $videoModal.attr('data-video-id');
+            $('#course-video-container').html('<iframe src="//www.youtube-nocookie.com/embed/' + videoId + '?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>');
+        });
+        $videoModal.on('hide.bs.modal', function () {
+            $('#course-video-container').empty();
         });
     </script>
 

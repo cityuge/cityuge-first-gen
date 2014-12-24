@@ -91,6 +91,8 @@ return array(
     'course_assess_def_quiz' => '可以是以個人、小組或混合形式進行。設題方式可以是多項選擇題、問答題等。此亦包括期中測驗。',
     'course_assess_def_report' => '此包括各種個人文書課業如報告、論文、文章寫作及學習歷程記錄 (Journal)。但不包括小組報告、網上討論及文章閱讀等簡短文書課業。',
     'course_assess_def_project' => '此包括小組課業如口頭匯報、小組報告、海報或單張設計等。但不包括小組討論、角色扮演 (Role-play)、組員互評 (Peer-review) 及課堂遊戲。',
+    'course_youtubeVideo' => '簡介影片<br><small>（由 CityU GE Community 提供）</small>',
+    'course_youtubeVideo_model_title' => '簡介影片<small>（由 <a href="http://www.cityugecommunity.com" target="_blank">CityU GE Community</a> 提供）</small>',
 
     // Search
     'course_quickAccessCurrentSemester' => '快速查閱於 :semester 開辦的課程',

@@ -3,9 +3,9 @@
 return array(
 
     // Home
-    'home_jumboTitle' => 'Semester B GE Add/drop',
-    'home_jumboDesc' => '2014/15 Semester B 的 GE 指定 Add/drop 日為十二月廿九及卅日。',
-    'home_jumboMore' => '教務處 <small>(ARRO)</small> 網頁 <i class="fa fa-external-link"></i>',
+    'home_jumboTitle' => '招募義工',
+    'home_jumboDesc' => '加入我們的團隊，讓網站能繼續為一眾城大同學服務。',
+    'home_jumboMore' => '詳細資料 <i class="fa fa-external-link"></i>',
 
     'home_leadParagraph' => '專為城大學生而設的精進教育課程分享平台。',
     'home_featureSearchTitle' => '搜尋課程',

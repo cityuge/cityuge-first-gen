@@ -3,7 +3,7 @@
   padding: 0;
   background-image: url('../img/hero-bg.jpg');
   background-size: cover;
-  background-position-y: 10%;
+  background-position-y: 50%;
   color: #fff;
   h1 {
     font-size: @font-size-h1;
@@ -12,17 +12,12 @@
   p {
     font-size: @font-size-large;
   }
-  @media screen and (max-width: @screen-md-max) {
-    background-position-y: 20%;
-  }
   @media screen and (max-width: @screen-sm-max) {
-    background-position-y: 0%;
     p {
       font-size: @font-size-base;
     }
   }
   @media screen and (max-width: @screen-xs-max) {
-    background-position-y: 0%;
     h1 {
       font-size: @font-size-h2;
     }

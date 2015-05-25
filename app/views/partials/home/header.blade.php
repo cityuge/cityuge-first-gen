@@ -80,6 +80,7 @@
     <link rel="apple-touch-icon-precomposed" href="{{ URL::to('') }}/ico/apple-touch-icon-57-precomposed.png">
     <meta name="msapplication-TileImage" content="{{ URL::to('') }}/ico/metro-tile.png">
     <meta name="msapplication-TileColor" content="#FF9900">
+    <meta name="theme-color" content="#feb82b">
 
     <link type="text/plain" rel="author" href="{{ asset('humans.txt') }}">
 

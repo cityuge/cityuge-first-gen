@@ -3,8 +3,8 @@
 return array(
 
     // Home
-    'home_jumboTitle' => 'Volunteers Needed',
-    'home_jumboDesc' => 'Join us now and serve our schoolmates',
+    'home_jumboTitle' => 'News',
+    'home_jumboDesc' => 'Course information for 2014/15 Summer Term is updated',
     'home_jumboMore' => 'Details <small>(Chinese only)</small> <i class="fa fa-external-link"></i>',
 
     'home_leadParagraph' => 'CityU Gateway Education course sharing platform for all.',

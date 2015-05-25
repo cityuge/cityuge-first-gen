@@ -8,10 +8,6 @@
                 <h1>{{ trans('static.home_jumboTitle') }}</h1>
 
                 <p>{{ trans('static.home_jumboDesc') }}</p>
-
-                <p><a class="btn btn-primary btn-lg" role="button"
-                      href="https://www.facebook.com/cityuge/posts/405572192933817"
-                      target="_blank">{{ trans('static.home_jumboMore') }}</a></p>
             </div>
         </div>
     </section>

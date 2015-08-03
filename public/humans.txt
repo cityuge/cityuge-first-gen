@@ -17,11 +17,14 @@
 
 /* THANKS */
   Abraxas Lee
+  Alfred Tung
   Amelia Gao
   Apple Ng
   CityU GE Community
   Donald Kwan
   Kangaroo
+  Ken Lau
+  Renee Tong
   Sharon Yau
   Zealitude
 

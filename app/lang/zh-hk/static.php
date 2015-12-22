@@ -4,7 +4,7 @@ return array(
 
     // Home
     'home_jumboTitle' => '最新消息',
-    'home_jumboDesc' => '已更新 2015/16 學年課程資料',
+    'home_jumboDesc' => '已更新 2015/16 下學期課程資料',
     'home_jumboMore' => '詳細資料 <i class="fa fa-external-link"></i>',
 
     'home_leadParagraph' => '專為城大學生而設的精進教育課程分享平台。',

@@ -70,7 +70,6 @@ return array(
 
         // 3rd party
         'Sebklaus\Profiler\Providers\ProfilerServiceProvider',
-        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 
     ),
 

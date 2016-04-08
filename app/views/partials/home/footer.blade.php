@@ -1,3 +1,20 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- Footer -->
+			<ins class="adsbygoogle"
+				 style="display:block"
+				 data-ad-client="ca-pub-3933881422753567"
+				 data-ad-slot="4145075955"
+				 data-ad-format="auto"></ins>
+			<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+		</div>
+	</div>
+</div>
+
 <footer id="overall-footer">
 	<div class="container">
 		<div class="clearfix">

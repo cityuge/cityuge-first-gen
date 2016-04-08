@@ -16,7 +16,7 @@ return array(
     // Latest academic year which the course offerings data is available
     'latestAcademicYearForOffering' => '1516',
     // Current quick access semester
-    'currentQuickAccessSemester' => '1516B',
+    'currentQuickAccessSemester' => '1516S',
     // Semester codes
     'semesters' => array('A', 'B', 'S'),
 

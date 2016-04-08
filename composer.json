@@ -2,8 +2,7 @@
   "require": {
     "laravel/framework": "4.1.*",
     "suin/php-rss-writer": "1.2",
-    "thepixeldeveloper/sitemap": "2.0.0",
-    "barryvdh/laravel-ide-helper": "1.*"
+    "thepixeldeveloper/sitemap": "2.0.0"
   },
   "require-dev": {
     "sebklaus/profiler": "dev-master",

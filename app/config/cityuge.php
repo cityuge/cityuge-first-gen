@@ -14,9 +14,9 @@ return array(
     // First semester which allowed to use when posting a comment
     'firstAllowedSemester' => '1112A',
     // Latest academic year which the course offerings data is available
-    'latestAcademicYearForOffering' => '1516',
+    'latestAcademicYearForOffering' => '1617',
     // Current quick access semester
-    'currentQuickAccessSemester' => '1516S',
+    'currentQuickAccessSemester' => '1617A',
     // Semester codes
     'semesters' => array('A', 'B', 'S'),
 

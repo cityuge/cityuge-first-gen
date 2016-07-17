@@ -4,7 +4,7 @@ return array(
 
     // Home
     'home_jumboTitle' => 'News',
-    'home_jumboDesc' => 'Course information for 2015/16 Summer is updated',
+    'home_jumboDesc' => 'Course information for 2016/17 Semester A is updated',
     'home_jumboMore' => 'Details <small>(Chinese only)</small> <i class="fa fa-external-link"></i>',
 
     'home_leadParagraph' => 'CityU Gateway Education course sharing platform for all.',

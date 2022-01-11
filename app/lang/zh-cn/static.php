@@ -4,7 +4,7 @@ return array(
 
     // Home
     'home_jumboTitle' => '最新消息',
-    'home_jumboDesc' => '已更新 2015/16 学年上学期课程数据',
+    'home_jumboDesc' => '已更新 2021/22 学年上学期课程数据',
     'home_jumboMore' => '详细资料 <i class="fa fa-external-link"></i>',
 
     'home_leadParagraph' => '专为城大学生而设的精进教育课程分享平台。',
